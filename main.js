@@ -100,26 +100,32 @@ function NewCreepLogic() {
 
     // 初级阶段：造 3 只 harvester，2 只 upgrader，2 只 builder
     if (harvesters.length < 3) {
-        if (RoomFullEnergy(room) && TryToSpawnCreep(HarvesterDesigner(room.energyAvailable), 'Harvester' + harvesters.length, {role: 'harvester'})) {
+        if (TryToSpawnCreep(HarvesterDesigner(room.energyAvailable), 'Harvester' + harvesters.length, {role: 'harvester'})) {
             return;
         }
     }
     if (upgraders.length < 2) {
-        if (RoomFullEnergy(room) && TryToSpawnCreep(UpgraderDesigner(room.energyAvailable), 'Upgrader' + upgraders.length, {role: 'upgrader'})) {
+        if (RoomFullEnergy() && TryToSpawnCreep(UpgraderDesigner(room.energyAvailable), 'Upgrader' + upgraders.length, {role: 'upgrader'})) {
             return;
         }
     }
     if (builders.length < 2) {
-        if (RoomFullEnergy(room) && TryToSpawnCreep(BuilderDesigner(room.energyAvailable), 'Builder' + builders.length, {role: 'builder'})) {
+        if (RoomFullEnergy() && TryToSpawnCreep(BuilderDesigner(room.energyAvailable), 'Builder' + builders.length, {role: 'builder'})) {
             return;
         }
     }
 
-    // 中级阶段：造高效率的 harvester
+    // 中级阶段：造高效率的 harvester & upgrader
     if (RoomFullEnergy(room)) {
         // 如果房间满能量，则造一个 harvester
-        if (TryToSpawnCreep(HarvesterDesigner(room.energyAvailable), 'Harvester' + harvesters.length, {role: 'harvester'})) {
-            return;
+        if (harvesters.length <= upgraders.length) {
+            if (TryToSpawnCreep(HarvesterDesigner(room.energyAvailable), 'Harvester' + harvesters.length, {role: 'harvester'})) {
+                return;
+            }
+        } else {
+            if (TryToSpawnCreep(UpgraderDesigner(room.energyAvailable), 'Upgrader' + upgraders.length, {role: 'upgrader'})) {
+                return;
+            }
         }
     }
 }
