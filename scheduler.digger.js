@@ -30,3 +30,5 @@ var schedulerDigger = {
         }
     }
 }
+
+module.exports = schedulerDigger;
