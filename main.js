@@ -132,7 +132,11 @@ function NewCreepLogic() {
 
 module.exports.loop = function () {
     // TODO 炮塔控制逻辑
-    
+
+    if (Game.cpu.bucket >= 10000) {
+        Game.cpu.generatePixel();
+    }
+
     // 清理无效的 creep memory
     for (var name in Memory.creeps) {
         if (!Game.creeps[name]) {
