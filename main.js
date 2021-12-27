@@ -112,7 +112,7 @@ function NewCreepLogic() {
     }
     // Three Builders
     if (builders.length < 3) {
-        if (RoomFullEnergy(room) && TryToSpawnCreep(BuilderDeUpgradersigner(room.energyAvailable), 'Builder_' + Game.time, {role: 'builder'})) {
+        if (RoomFullEnergy(room) && TryToSpawnCreep(BuilderDesigner(room.energyAvailable), 'Builder_' + Game.time, {role: 'builder'})) {
             return;
         }
     }
