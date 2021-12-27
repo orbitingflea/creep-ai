@@ -85,7 +85,7 @@ var roleBuilder = {
         if (targets.length == 0 || creep.carry.energy == 0) {
             this.pickMode(creep);
         }
-        var target = creep.pos.findClosestByPath(sources);
+        var target = creep.pos.findClosestByPath(targets);
         if (creep.repair(target) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {visualizePathStyle: {stroke: '#ffaa00'}});
         }
