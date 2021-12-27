@@ -7,8 +7,10 @@ var roleBuilder = {
         if (creep.carry.energy > 0) {
             if (Math.random() < 0.5) {
                 creep.memory.mode = 'repair';
+                creep.say('Repair');
             } else {
                 creep.memory.mode = 'build';
+                creep.say('Build');
             }
         } else {
             creep.memory.mode = 'harvest';
@@ -16,7 +18,6 @@ var roleBuilder = {
     },
 
     runHarvest: function(creep) {
-        console.log('builder at harvest mode');
         var sources = creep.room.find(FIND_SOURCES, {
             filter: (source) => {
                 return source.energy > 0;
