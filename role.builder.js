@@ -29,6 +29,10 @@ var roleBuilder = {
         }
         var source = creep.pos.findClosestByPath(sources);
         if (!source) {
+            if (creep.carry.energy > 0) {
+                this.pickMode(creep);
+                return;
+            }
             // wait at the nearest source
             source = creep.pos.findClosestByPath(creep.room.find(FIND_SOURCES));
         }
