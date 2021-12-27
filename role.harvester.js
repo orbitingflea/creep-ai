@@ -34,13 +34,17 @@ var roleHarvester = {
                 creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
             }
         } else if (creep.memory.mode == 'giving') {
+            var targets = creep.room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_EXTENSION ||
+                            structure.structureType == STRUCTURE_SPAWN) && structure.energy < structure.energyCapacity;
+                }
+            });
             if (targets.length == 0) {
-                targets = creep.room.find(FIND_STRUCTURES, {
-                        filter: (structure) => {
-                            return (structure.structureType == STRUCTURE_EXTENSION ||
-                                    structure.structureType == STRUCTURE_SPAWN ||
-                                    structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
-                        }
+                var targets = creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
+                    }
                 });
             }
             if (targets.length > 0) {
