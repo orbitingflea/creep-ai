@@ -9,7 +9,7 @@ function HarvesterThroughput(n_work, n_carry, n_move) {
     var distance_assumption = 25;
     var move_latency_fast = Math.floor(n_work / n_move);
     var move_latency_slow = Math.floor((n_work + n_carry) / n_move);
-    var time_consumed = load_time + distance_assumption / move_latency_slow + distance_assumption / move_latency_fast;
+    var time_consumed = load_time + distance_assumption * move_latency_slow + distance_assumption * move_latency_fast;
     return load / time_consumed;
 }
 
@@ -20,7 +20,7 @@ function BuilderThroughput(n_work, n_carry, n_move) {
     var distance_assumption = 25;
     var move_latency_fast = Math.floor(n_work / n_move);
     var move_latency_slow = Math.floor((n_work + n_carry) / n_move);
-    var time_consumed = 2 * load_time + distance_assumption / move_latency_slow + distance_assumption / move_latency_fast;
+    var time_consumed = 2 * load_time + distance_assumption * move_latency_slow + distance_assumption * move_latency_fast;
     return load / time_consumed;
 }
 
