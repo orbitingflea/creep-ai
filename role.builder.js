@@ -3,15 +3,28 @@ var roleBuilder = {
 
     /** @param {Creep} creep **/
 
+    getPriority: function(structure) {
+        if (structure.structureType == STRUCTURE_TOWER) {
+            return 10;
+        } else if (structure.structureType == STRUCTURE_WALL) {
+            return 5;
+        } else if (structure.structureType == STRUCTURE_RAMPART) {
+            return 4;
+        } else if (structure.structureType == STRUCTURE_ROAD) {
+            return 0;
+        } else if (structure.structureType == STRUCTURE_CONTAINER) {
+            return 0;
+        } else if (structure.structureType == STRUCTURE_STORAGE) {
+            return 0;
+        } else {
+            return 0;
+        }
+    },
+
     pickMode: function(creep) {
         if (creep.carry.energy > 0) {
-            if (Math.random() < 0.5) {
-                creep.memory.mode = 'repair';
-                creep.say('Repair');
-            } else {
-                creep.memory.mode = 'build';
-                creep.say('Build');
-            }
+            creep.memory.mode = 'build';
+            creep.say('Build');
         } else {
             creep.memory.mode = 'harvest';
         }
@@ -44,10 +57,12 @@ var roleBuilder = {
     runBuild: function(creep) {
         var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
         if (targets.length) {
+            // let target be the one in targets with highest priority
             var target = targets[0];
-            var tower_list = _.filter(targets, (obj) => (obj.structureType == STRUCTURE_TOWER));
-            if (tower_list.length > 0) {
-                target = tower_list[0];
+            for (var foo in targets) {
+                if (this.getPriority(foo) > this.getPriority(target)) {
+                    target = foo;
+                }
             }
             if (creep.build(target) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
