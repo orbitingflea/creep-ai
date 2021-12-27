@@ -131,7 +131,7 @@ function NewCreepLogic() {
 
     // 中级阶段：造高效率的 harvester & builder
     if (RoomFullEnergy(room)) {
-        if (harvesters.length <= builder.length) {
+        if (harvesters.length <= builders.length) {
             if (TryToSpawnCreep(HarvesterDesigner(room.energyAvailable), 'Harvester_' + Game.time, {role: 'harvester'})) {
                 return;
             }
