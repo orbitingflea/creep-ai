@@ -40,8 +40,13 @@ var roleBuilder = {
     runBuild: function(creep) {
         var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
         if (targets.length) {
-            if (creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+            var target = targets[0];
+            var tower_list = _.filter(targets, (obj) => (obj.structureType == STRUCTURE_TOWER));
+            if (tower_list.length > 0) {
+                target = tower_list[0];
+            }
+            if (creep.build(target) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
             }
         }
         if (targets.length == 0 || creep.carry.energy == 0) {
