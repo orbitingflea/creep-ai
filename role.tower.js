@@ -23,6 +23,10 @@ var roleTower = {
             return;
         }
 
+        if (tower.energy < tower.energyCapacity * 0.9) {
+            return;
+        }
+        
         // repair damaged structure
         var damagedStructure = tower.room.find(FIND_MY_STRUCTURES, {
             filter: (structure) => (structure.hits < structure.hitsMax)
