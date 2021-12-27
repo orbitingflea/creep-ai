@@ -23,8 +23,13 @@ var roleBuilder = {
 
     pickMode: function(creep) {
         if (creep.carry.energy > 0) {
-            creep.memory.mode = 'build';
-            creep.say('Build');
+            if (Math.random() < 0.5) {
+                creep.memory.mode = 'build';
+                creep.say('Build');
+            } else {
+                creep.memory.mode = 'repair';
+                creep.say('Repair');
+            }
         } else {
             creep.memory.mode = 'harvest';
         }
