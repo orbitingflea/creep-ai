@@ -1,9 +1,9 @@
 var roleUpgrader = {
     /** @param {Creep} creep **/
-    /*
-        搬运最近的能量，并输送给唯一的控制中心
-        memory.upgrading 表示工作状态是否是 upgrading
-    */
+
+    // 搬运最近的能量，并输送给唯一的控制中心
+    // memory.upgrading 表示工作状态是否是 upgrading
+
     run: function(creep) {
         if (creep.memory.upgrading && creep.carry.energy == 0) {
             creep.memory.upgrading = false;
@@ -14,7 +14,10 @@ var roleUpgrader = {
 
         if (creep.memory.upgrading) {
             if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+                creep.moveTo(creep.room.controller, {
+                    visualizePathStyle: {stroke: '#ffffff'},
+                    range: 7
+                });
             }
         } else {
             var sources = creep.room.find(FIND_SOURCES);
