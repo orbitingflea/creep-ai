@@ -116,8 +116,8 @@ function NewCreepLogic() {
             return;
         }
     }
-    // Three Builders
-    if (builders.length < 3) {
+    // Two Builders
+    if (builders.length < 2) {
         if (RoomFullEnergy(room) && TryToSpawnCreep(BuilderDesigner(room.energyAvailable), 'Builder_' + Game.time, {role: 'builder'})) {
             return;
         }
@@ -128,17 +128,10 @@ function NewCreepLogic() {
             return;
         }
     }
-
-    // 中级阶段：造高效率的 harvester & builder
-    if (RoomFullEnergy(room)) {
-        if (harvesters.length <= builders.length) {
-            if (TryToSpawnCreep(HarvesterDesigner(room.energyAvailable), 'Harvester_' + Game.time, {role: 'harvester'})) {
-                return;
-            }
-        } else {
-            if (TryToSpawnCreep(UpgraderDesigner(room.energyAvailable), 'Builder_' + Game.time, {role: 'builder'})) {
-                return;
-            }
+    // Third Harvester
+    if (harvesters.length < 3) {
+        if (RoomFullEnergy(room) && TryToSpawnCreep(HarvesterDesigner(room.energyAvailable), 'Harvester_' + Game.time, {role: 'harvester'})) {
+            return;
         }
     }
 }
