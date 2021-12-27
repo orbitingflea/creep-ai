@@ -23,6 +23,10 @@ var roleHarvester = {
                 }
             });
             if (!source) {
+                if (creep.carry.energy > 0) {
+                    creep.memory.mode = 'giving';
+                    return;
+                }
                 // 去最近的 source 等着
                 source = creep.pos.findClosestByPath(sources);
             }
