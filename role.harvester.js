@@ -34,11 +34,6 @@ var roleHarvester = {
                 creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
             }
         } else if (creep.memory.mode == 'giving') {
-            var targets = creep.room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
-                }
-            });  // Tower first.
             if (targets.length == 0) {
                 targets = creep.room.find(FIND_STRUCTURES, {
                         filter: (structure) => {
