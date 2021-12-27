@@ -13,7 +13,7 @@ var roleBuilder = {
                 mode = 'build';
             }
         }
-    }
+    },
 
     runHarvest: function(creep) {
         var sources = creep.room.find(FIND_SOURCES, {
@@ -31,7 +31,7 @@ var roleBuilder = {
         } else if (creep.carry.energy == creep.carryCapacity) {
             pickMode(creep);
         }
-    }
+    },
 
     runBuild: function(creep) {
         var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
@@ -43,11 +43,11 @@ var roleBuilder = {
         if (targets.length == 0 || creep.carry.energy == 0) {
             pickMode(creep);
         }
-    }
+    },
 
     runRepair: function(creep) {
         var targets = creep.room.find(FIND_MY_STRUCTURES, {
-            filter: (obj) => obj.hits < obj.hitsMax - 5;
+            filter: (obj) => obj.hits < obj.hitsMax - 5
         })
         if (targets.length == 0 || creep.carry.energy == 0) {
             pickMode(creep);
@@ -56,7 +56,7 @@ var roleBuilder = {
         if (creep.repair(target) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {visualizePathStyle: {stroke: '#ffaa00'}});
         }
-    }
+    },
 
     run: function(creep) {
         if (!creep.memory.mode) {

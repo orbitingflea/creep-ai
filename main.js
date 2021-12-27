@@ -105,12 +105,12 @@ function NewCreepLogic() {
         }
     }
     if (upgraders.length < 2) {
-        if (RoomFullEnergy() && TryToSpawnCreep(UpgraderDesigner(room.energyAvailable), 'Upgrader' + upgraders.length, {role: 'upgrader'})) {
+        if (RoomFullEnergy(room) && TryToSpawnCreep(UpgraderDesigner(room.energyAvailable), 'Upgrader' + upgraders.length, {role: 'upgrader'})) {
             return;
         }
     }
     if (builders.length < 2) {
-        if (RoomFullEnergy() && TryToSpawnCreep(BuilderDesigner(room.energyAvailable), 'Builder' + builders.length, {role: 'builder'})) {
+        if (RoomFullEnergy(room) && TryToSpawnCreep(BuilderDesigner(room.energyAvailable), 'Builder' + builders.length, {role: 'builder'})) {
             return;
         }
     }
