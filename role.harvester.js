@@ -5,7 +5,9 @@ var roleHarvester = {
         用 memory.mode == 'getting' 表示当前任务是走到最近的能量源并从中收集能量。
         用 memory.mode == 'giving' 表示当前任务是找到最近的需要能量的物体并将能量送到它。
         用 memory.mode == 'upgrading' 表示没有可以接受能量的物体，所以暂时执行一轮升级任务。
+        TODO 缓存路径。
     */
+
     run: function(creep) {
         if (!creep.memory.mode || creep.carry.energy == 0) {
             creep.memory.mode = 'getting';
