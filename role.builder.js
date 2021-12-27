@@ -60,11 +60,11 @@ var roleBuilder = {
             // let target be the one in targets with highest priority
             var target = targets[0];
             for (var foo in targets) {
+                console.log(foo, this.getPriority(foo));
                 if (this.getPriority(foo) > this.getPriority(target)) {
                     target = foo;
                 }
             }
-            console.log(target);
             if (creep.build(target) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
             }
