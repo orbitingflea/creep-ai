@@ -59,10 +59,9 @@ var roleBuilder = {
         if (targets.length) {
             // let target be the one in targets with highest priority
             var target = targets[0];
-            for (var foo in targets) {
-                console.log(foo, this.getPriority(foo));
-                if (this.getPriority(foo) > this.getPriority(target)) {
-                    target = foo;
+            for (var i in targets) {
+                if (this.getPriority(targets[i]) > this.getPriority(target)) {
+                    target = targets[i];
                 }
             }
             if (creep.build(target) == ERR_NOT_IN_RANGE) {
