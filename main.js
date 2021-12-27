@@ -116,8 +116,8 @@ function NewCreepLogic() {
             return;
         }
     }
-    // Two Builders
-    if (builders.length < 2) {
+    // 1 Builder
+    if (builders.length < 1) {
         if (RoomFullEnergy(room) && TryToSpawnCreep(BuilderDesigner(room.energyAvailable), 'Builder_' + Game.time, {role: 'builder'})) {
             return;
         }
