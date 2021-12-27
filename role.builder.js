@@ -24,11 +24,14 @@ var roleBuilder = {
             }
         });
         if (sources.length == 0 || creep.carry.energy == creep.carryCapacity) {
-            
             this.pickMode(creep);
             return;
         }
         var source = creep.pos.findClosestByPath(sources);
+        if (!source) {
+            // wait at the nearest source
+            source = creep.pos.findClosestByPath(creep.room.find(FIND_SOURCES));
+        }
         if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
             creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
         }
