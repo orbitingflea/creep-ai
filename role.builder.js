@@ -5,23 +5,25 @@ var roleBuilder = {
 
     pickMode: function(creep) {
         if (creep.carry.energy > 0) {
-            mode = 'build';
-        } else {
             if (Math.random() < 0.5) {
-                mode = 'repair';
+                creep.memory.mode = 'repair';
             } else {
-                mode = 'build';
+                creep.memory.mode = 'build';
             }
+        } else {
+            creep.memory.mode = 'harvest';
         }
     },
 
     runHarvest: function(creep) {
+        console.log('builder at harvest mode');
         var sources = creep.room.find(FIND_SOURCES, {
             filter: (source) => {
                 return source.energy > 0;
             }
         });
         if (sources.length == 0 || creep.carry.energy == creep.carryCapacity) {
+            
             this.pickMode(creep);
             return;
         }
