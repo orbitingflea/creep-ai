@@ -48,7 +48,7 @@ var roleBuilder = {
     runRepair: function(creep) {
         var targets = creep.room.find(FIND_MY_STRUCTURES, {
             filter: (obj) => obj.hits < obj.hitsMax - 5
-        })
+        });
         if (targets.length == 0 || creep.carry.energy == 0) {
             pickMode(creep);
         }
@@ -64,16 +64,16 @@ var roleBuilder = {
         }
         switch (creep.memory.mode) {
         case 'harvest':
-            runHarvest(creep);
+            this.runHarvest(creep);
             break;
         case 'repair':
-            runRepair(creep);
+            this.runRepair(creep);
             break;
         case 'build':
-            runBuild(creep);
+            this.runBuild(creep);
             break;
         default:
-            pickMode(creep);
+            this.pickMode(creep);
         }
     }
 };
