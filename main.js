@@ -104,7 +104,7 @@ function NewCreepLogic() {
             return;
         }
     }
-    if (upgraders.length < 2) {
+    if (upgraders.length < 1) {
         if (RoomFullEnergy(room) && TryToSpawnCreep(UpgraderDesigner(room.energyAvailable), 'Upgrader' + Game.time, {role: 'upgrader'})) {
             return;
         }
@@ -117,7 +117,6 @@ function NewCreepLogic() {
 
     // 中级阶段：造高效率的 harvester & upgrader
     if (RoomFullEnergy(room)) {
-        // 如果房间满能量，则造一个 harvester
         if (harvesters.length <= upgraders.length) {
             if (TryToSpawnCreep(HarvesterDesigner(room.energyAvailable), 'Harvester' + Game.time, {role: 'harvester'})) {
                 return;
