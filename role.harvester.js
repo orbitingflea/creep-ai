@@ -44,13 +44,14 @@ var roleHarvester = {
                     creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
                 }
             } else {
-                creep.memory.mode = 'upgrading';
+                // creep.memory.mode = 'upgrading';
+                // wait.
             }
         }
 
         if (creep.memory.mode == 'upgrading') {
             if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+                creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}, range: 3});
             }
         }
     }
