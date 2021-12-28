@@ -1,3 +1,5 @@
+var util = require('util');
+
 module.exports = (args) => ({
     // arg.sourceId, arg.targetIdList
     
@@ -16,16 +18,22 @@ module.exports = (args) => ({
     
     target: creep => {
         const targetList1 = _.filter(args.targetIdList.map(id => Game.getObjectById(id)),
-                                     struc => (struc.energy < struc.energyCapacity &&
-                                               struc.structureType != STRUCTURE_TOWER));
+                                     struc => (struc.structureType &&
+                                        struc.energy < struc.energyCapacity &&
+                                        struc.structureType != STRUCTURE_TOWER));
         const targetList2 = _.filter(args.targetIdList.map(id => Game.getObjectById(id)),
-                                     struc => (struc.energy < struc.energyCapacity &&
-                                               struc.structureType == STRUCTURE_TOWER));
+                                     struc => (struc.structureType == STRUCTURE_TOWER &&
+                                        struc.energy < struc.energyCapacity * 0.8));
+        const targetList3 = _.filter(args.targetIdList.map(id => Game.getObjectById(id)),
+                                     creep => (util.getObjectType(creep) == 'creep' &&
+                                               creep.store[RESOURCE_ENERGY] < creep.store.getCapacity() * 0.2));
         var target;
         if (targetList1.length > 0) {
             target = creep.pos.findClosestByPath(targetList1);
         } else if (targetList2.length > 0) {
             target = creep.pos.findClosestByPath(targetList2);
+        } else if (targetList3.length > 0) {
+            target = creep.pos.findClosestByPath(targetList3);
         } else {
             return false;
         }

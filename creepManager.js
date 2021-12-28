@@ -13,7 +13,8 @@ const configList = [
         argComputer: function() {
             return {
                 sourceId: '61c9b463d054a45518e8b5e3',  // container below
-                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom())
+                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom()).concat(
+                    util.getBuilderCreeps(util.myRoom()))
             };
         }
     },
@@ -25,7 +26,8 @@ const configList = [
         argComputer: function() {
             return {
                 sourceId: '61c9fced7a3c3521135e617c',  // container above
-                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom())
+                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom()).concat(
+                    util.getBuilderCreeps(util.myRoom()))
             };
         }
     },
