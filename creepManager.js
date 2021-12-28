@@ -18,7 +18,7 @@ const configList = [
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom()).concat(
                     util.getBuilderCreepIdList(util.myRoom())).concat(
                     util.getUpgraderCreepIdList(util.myRoom())).concat(
-                    '61cb01a791dde3d80281b58e')  // storage
+                    ['61cb01a791dde3d80281b58e'])  // storage
             };
         }
     },
@@ -35,7 +35,7 @@ const configList = [
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom()).concat(
                     util.getBuilderCreepIdList(util.myRoom())).concat(
                     util.getUpgraderCreepIdList(util.myRoom())).concat(
-                    '61cb01a791dde3d80281b58e')  // storage
+                    ['61cb01a791dde3d80281b58e'])  // storage
             };
         }
     },
