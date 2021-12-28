@@ -12,6 +12,8 @@ function carrierTargetPriority(obj) {
                 return obj.energy < obj.energyCapacity * 0.6 ? 80 : -1;
             case STRUCTURE_STORAGE:
                 return 1;  // least priority
+            default:
+                return -1;
         }
     } else {
         // is a creep
