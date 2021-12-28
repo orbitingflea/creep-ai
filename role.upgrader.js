@@ -29,7 +29,6 @@ var roleUpgrader = {
             });
             if (!source) {
                 creep.memory.upgrading = true;
-                return;
             }
             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
