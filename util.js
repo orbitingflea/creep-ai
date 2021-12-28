@@ -42,8 +42,7 @@ var util = {
     },
 
     closestObjectWithTopPriority: function(targetList, priorityFunction, pos) {
-        var targetListSorted = _.sortBy(targetList, priorityFunction);
-        _.reverse(targetListSorted);
+        var targetListSorted = _.sortBy(targetList, priorityFunction).reverse();
         const n = targetListSorted.length;
         for (var i = 0; i < n; ) {
             var j = i;
