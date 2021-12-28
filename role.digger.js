@@ -14,6 +14,6 @@ var roleDigger = {
             creep.harvest(source);
         }
     }
-}
+};
 
 module.exports = roleDigger;

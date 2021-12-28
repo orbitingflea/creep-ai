@@ -45,6 +45,6 @@ var roleTower = {
             return;
         }
     }
-}
+};
 
 module.exports = roleTower;

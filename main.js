@@ -3,6 +3,9 @@ var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleTower = require('role.tower');
 
+require('creepApi.js');
+require('mount.creep.js');
+
 function HarvesterThroughput(n_work, n_carry, n_move) {
     // 假设往返距离都是 25 格，并且都是平原。
     var load = n_carry * 50;
@@ -136,7 +139,7 @@ function NewCreepLogic() {
     }
 }
 
-module.exports.loop = function () {
+module.exports.loop = function() {
     if (Game.cpu.bucket >= 10000) {
         Game.cpu.generatePixel();
     }
@@ -161,6 +164,9 @@ module.exports.loop = function () {
         if (creep.memory.role == 'builder') {
             roleBuilder.run(creep);
         }
+        if (creep.configName) {
+            creep.work();
+        }
     }
 
     // 让炮塔行动
@@ -171,6 +177,5 @@ module.exports.loop = function () {
         }
     }
 
-
     NewCreepLogic();
-}
+};
