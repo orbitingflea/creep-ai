@@ -27,8 +27,8 @@ var roleHarvester = {
             }
             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
-                return;
             }
+            return;
         } else if (creep.memory.mode == 'giving') {
             var targets = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
@@ -47,8 +47,8 @@ var roleHarvester = {
                 var target = creep.pos.findClosestByPath(targets);
                 if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
-                    return;
                 }
+                return;
             } else {
                 // creep.memory.mode = 'upgrading';
                 // wait.
@@ -58,8 +58,8 @@ var roleHarvester = {
         if (creep.memory.mode == 'upgrading') {
             if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}, range: 3});
-                return;
             }
+            return;
         }
 
         creep.moveTo(creep.room.getPositionAt(16, 33), {range: 2});
