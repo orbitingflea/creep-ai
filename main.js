@@ -142,6 +142,7 @@ function NewCreepLogic() {
 }
 
 function CreateCarrier1Logic() {
+    console.log('called');
     var sourceId = "61c9b463d054a45518e8b5e3";
     var targets = Game.spawns['Spawn1'].room.find(FIND_MY_STRUCTURES, {
         filter: (structure) => {
@@ -158,6 +159,8 @@ module.exports = {
 };
 
 module.exports.loop = function() {
+    CreateCarrier1Logic();
+
     if (Game.cpu.bucket >= 10000) {
         Game.cpu.generatePixel();
     }
