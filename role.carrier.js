@@ -3,16 +3,17 @@ var util = require('util');
 function carrierTargetPriority(obj) {
     if (obj.structureType) {
         // is a structure
-        if (obj.energy == obj.energyCapacity) {
+        if (obj.store[RESOURCE_ENERGY] == obj.store.getCapacity(RESOURCE_ENERGY)) {
             return -1;
         }
         switch (obj.structureType) {
             case STRUCTURE_EXTENSION:
+                console.log('extension found');
                 return 100;
             case STRUCTURE_SPAWN:
                 return 100;
             case STRUCTURE_TOWER:
-                return obj.energy < obj.energyCapacity * 0.6 ? 80 : -1;
+                return obj.store[RESOURCE_ENERGY] < obj.store.getCapacity(RESOURCE_ENERGY) * 0.6 ? 80 : -1;
             case STRUCTURE_STORAGE:
                 console.log('storage found');
                 return 10;  // least priority
