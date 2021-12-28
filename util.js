@@ -55,7 +55,7 @@ var util = {
         var targetListSorted = _.sortBy(targetList, priorityFunction).reverse();
         const n = targetListSorted.length;
         for (var i = 0; i < n; ) {
-            var j = i;
+            var j = i + 1;
             while (j < n && priorityFunction(targetListSorted[j]) == priorityFunction(targetListSorted[i])) {
                 j++;
             }

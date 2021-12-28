@@ -14,7 +14,8 @@ function carrierTargetPriority(obj) {
             case STRUCTURE_TOWER:
                 return obj.energy < obj.energyCapacity * 0.6 ? 80 : -1;
             case STRUCTURE_STORAGE:
-                return 1;  // least priority
+                console.log('storage found');
+                return 10;  // least priority
             default:
                 return -1;
         }
@@ -29,7 +30,7 @@ function carrierTargetPriority(obj) {
 
 module.exports = (args) => ({
     // arg.sourceId, arg.targetIdList
-    
+
     source: creep => {
         const source = Game.getObjectById(args.sourceId);  // source 是一个 container / storage
         var result = creep.withdraw(source, RESOURCE_ENERGY);
