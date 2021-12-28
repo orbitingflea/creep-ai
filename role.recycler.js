@@ -20,7 +20,6 @@ module.exports = (args) => ({
                 return tomb.store[RESOURCE_ENERGY];
             }
         });
-        console.log(droppedList.length);
         if (droppedList.length == 0 && tombList.length == 0) {
             return true;
         }
@@ -30,7 +29,8 @@ module.exports = (args) => ({
             return false;
         }
 
-        var result = creep.withdraw(source, RESOURCE_ENERGY);
+        var result = util.getObjectType(source) == 'tombstone' ?
+            creep.withdraw(source, RESOURCE_ENERGY) : creep.pickup(source);
         if (result == ERR_NOT_IN_RANGE) {
             creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
             return false;
