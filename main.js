@@ -158,6 +158,10 @@ function CreateCarrier1Logic() {
     creepApi.add('carrier_1', 'carrier', sourceId, targetIdList);
 }
 
+module.exports = {
+    CreateCarrier1Logic: CreateCarrier1Logic
+};
+
 module.exports.loop = function() {
     if (Game.cpu.bucket >= 10000) {
         Game.cpu.generatePixel();
@@ -197,8 +201,4 @@ module.exports.loop = function() {
     }
 
     NewCreepLogic();
-};
-
-module.exports = {
-    CreateCarrier1Logic: CreateCarrier1Logic
 };
