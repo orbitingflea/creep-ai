@@ -47,7 +47,19 @@ const configList = [
         argComputer: function() {
             return {
                 sourceId: '5bbcaf379099fc012e63a55d',  // source above
-                containerId: '61c9fced7a3c3521135e617c', // container above
+                containerId: '61c9fced7a3c3521135e617c',  // container above
+            };
+        }
+    },
+    {
+        name: "recycler",
+        role: "recycler",
+        body: [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
+               CARRY, CARRY, MOVE],
+        require: 1,
+        argComputer: function() {
+            return {
+                targetId: '61cb01a791dde3d80281b58e',  // storage
             };
         }
     }
