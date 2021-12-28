@@ -79,8 +79,8 @@ var roleBuilder = {
     },
 
     runRepair: function(creep) {
-        var targets = creep.room.find(FIND_MY_STRUCTURES, {
-            filter: (obj) => obj.hits < obj.hitsMax - 5
+        var targets = creep.room.find(FIND_STRUCTURES, {
+            filter: (obj) => obj.hits < obj.hitsMax && obj.structureType != STRUCTURE_WALL
         });
         if (targets.length == 0 || creep.carry.energy == 0) {
             this.pickMode(creep);
