@@ -23,7 +23,7 @@ var roleTower = {
             return;
         }
 
-        if (tower.energy < tower.energyCapacity * 0.9) {
+        if (tower.energy < tower.energyCapacity * 0.4) {
             return;
         }
 
