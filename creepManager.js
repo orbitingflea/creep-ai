@@ -9,7 +9,7 @@ const configList = [
         name: "carrier_down",
         role: "carrier",
         body: [CARRY, CARRY, MOVE],  // experimental
-        require: 1,
+        require: 0,
         argComputer: function() {
             return {
                 sourceId: '61c9b463d054a45518e8b5e3',  // container below
