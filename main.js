@@ -198,3 +198,5 @@ module.exports.loop = function() {
 
     NewCreepLogic();
 };
+
+module.exports.CreateCarrier1Logic = CreateCarrier1Logic;
