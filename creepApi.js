@@ -8,8 +8,6 @@ global.creepApi = {
     add: function(configName, role, args) {
         if (!Memory.creepConfigs) Memory.creepConfigs = {};
         Memory.creepConfigs[configName] = {role, args};
-        console.log('role', role);
-        console.log('args', args);
         return `${configName} 配置项已更新：[角色] ${role} [工作参数] ${args}`;
     },
 

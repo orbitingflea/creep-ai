@@ -2,7 +2,8 @@ module.exports = (args) => ({
     // arg.sourceId, arg.targetIdList
     source: creep => {
         const source = Game.getObjectById(args.sourceId);  // source 是一个 container / storage
-        if (creep.withdraw(source) == ERR_NOT_IN_RANGE) {
+        var result = creep.withdraw(source, RESOURCE_ENERGY);
+        if (result == ERR_NOT_IN_RANGE) {
             creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
             return false;
         }
