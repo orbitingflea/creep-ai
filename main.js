@@ -142,10 +142,6 @@ function NewCreepLogic() {
 }
 
 function CreateCarrier1Logic() {
-    if (creepApi.get('carrier_1')) {
-        return;
-    }
-    
     var sourceId = "61c9b463d054a45518e8b5e3";
     var targets = Game.spawns['Spawn1'].room.find(FIND_MY_STRUCTURES, {
         filter: (structure) => {
@@ -154,8 +150,7 @@ function CreateCarrier1Logic() {
         }
     });
     var targetIdList = targets.map((obj) => obj.id);
-
-    console.log(creepApi.add('carrier_1', 'carrier', sourceId, targetIdList));
+    console.log(creepApi.add('carrier_1', 'carrier', {sourceId, targetIdList}));
 }
 
 module.exports = {
