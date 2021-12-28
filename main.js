@@ -183,7 +183,7 @@ module.exports.loop = function() {
         if (creep.memory.role == 'builder') {
             roleBuilder.run(creep);
         }
-        if (creep.configName) {
+        if (creep.memory.configName) {
             creep.work();
         }
     }
