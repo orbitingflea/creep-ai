@@ -1,5 +1,27 @@
 var util = require('util');
 
+function carrierTargetPriority(obj) {
+    if (obj.structureType) {
+        // is a structure
+        switch (obj.structureType) {
+            case STRUCTURE_EXTENSION:
+                return 100;
+            case STRUCTURE_SPAWN:
+                return 100;
+            case STRUCTURE_TOWER:
+                return obj.energy < obj.energyCapacity * 0.6 ? 80 : -1;
+            case STRUCTURE_STORAGE:
+                return 1;  // least priority
+        }
+    } else {
+        // is a creep
+        if (obj.store[RESOURCE_ENERGY] < obj.store.getCapacity() * 0.6) {
+            return 50;
+        }
+        return -1;
+    }
+}
+
 module.exports = (args) => ({
     // arg.sourceId, arg.targetIdList
     
@@ -15,23 +37,15 @@ module.exports = (args) => ({
         }
         return false;
     },
-    
+
     target: creep => {
-        const targetList1 = _.filter(args.targetIdList.map(id => Game.getObjectById(id)),
-                                     struc => (struc && struc.structureType &&
-                                        struc.energy < struc.energyCapacity &&
-                                        struc.structureType != STRUCTURE_TOWER));
-        const targetList2 = _.filter(args.targetIdList.map(id => Game.getObjectById(id)),
-                                     struc => (struc && struc.structureType == STRUCTURE_TOWER &&
-                                        struc.energy < struc.energyCapacity * 0.8));
-        const targetList3 = _.filter(args.targetIdList.map(id => Game.getObjectById(id)),
-                                     creep => (creep && util.getObjectType(creep) == 'creep' &&
-                                        creep.store[RESOURCE_ENERGY] < creep.store.getCapacity() * 0.8));
-        var target;
-        if (target = creep.pos.findClosestByPath(targetList1)) {
-        } else if (target = creep.pos.findClosestByPath(targetList2)) {
-        } else if (target = creep.pos.findClosestByPath(targetList3)) {
-        } else {
+        const targetList = _.filter(args.targetIdList.map(id => Game.getObjectById(id)),
+                                    (obj) => {
+                                        return obj && carrierTargetPriority(obj) > 0;
+                                    });
+        var target = util.closestObjectWithTopPriority(targetList, carrierTargetPriority, creep.pos);
+        if (!target) {
+            creep.say('No Target');
             return false;
         }
         if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {

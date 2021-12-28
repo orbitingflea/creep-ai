@@ -8,26 +8,34 @@ const configList = [
     {
         name: "carrier_down",
         role: "carrier",
-        body: [CARRY, CARRY, MOVE],  // experimental
-        require: 0,
+        body: [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
+               CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
+               CARRY, CARRY, MOVE, CARRY, CARRY, MOVE],
+        require: 0,  // to be used in the future
         argComputer: function() {
             return {
-                sourceId: '61c9b463d054a45518e8b5e3',  // container below
+                sourceId: '61c9fced7a3c3521135e617c',  // container above
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom()).concat(
-                    util.getBuilderCreepIdList(util.myRoom()))
+                    util.getBuilderCreepIdList(util.myRoom())).concat(
+                    '61cb01a791dde3d80281b58e'  // storage
+                )
             };
         }
     },
     {
         name: "carrier_up",
         role: "carrier",
-        body: [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE],
+        body: [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
+               CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
+               CARRY, CARRY, MOVE, CARRY, CARRY, MOVE],
         require: 2,
         argComputer: function() {
             return {
                 sourceId: '61c9fced7a3c3521135e617c',  // container above
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom()).concat(
-                    util.getBuilderCreepIdList(util.myRoom()))
+                    util.getBuilderCreepIdList(util.myRoom())).concat(
+                    '61cb01a791dde3d80281b58e'  // storage
+                )
             };
         }
     },

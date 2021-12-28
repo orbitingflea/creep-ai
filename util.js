@@ -6,7 +6,7 @@ var util = {
         }
         var l = 1, r = str.indexOf(' #');
         if (str[0] == '[' && r != -1) {
-            return str.substr(l, r - l);
+            return str.substring(l, r);
         } else {
             return 'unknown';
         }
@@ -39,6 +39,23 @@ var util = {
             memory: memory
         });
         return res == 0;
+    },
+
+    closestObjectWithTopPriority: function(targetList, priorityFunction, pos) {
+        var targetListSorted = _.sortBy(targetList, priorityFunction, "desc");
+        const n = targetListSorted.length;
+        for (var i = 0; i < n; ) {
+            var j = i;
+            while (j < n && priorityFunction(targetListSorted[j]) == priorityFunction(targetListSorted[i])) {
+                j++;
+            }
+            var closest = pos.findClosestByPath(targetListSorted.slice(i, j));
+            if (closest) {
+                return closest;
+            }
+            i = j;
+        }
+        return null;
     }
 };
 
