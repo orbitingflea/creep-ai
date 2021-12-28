@@ -20,18 +20,22 @@ module.exports = (args) => ({
                 return tomb.store[RESOURCE_ENERGY];
             }
         });
-        if (droppedList.length == 0 && tombList.length == 0) {
+        const ruinList = room.find(FIND_RUINS, {
+            filter: (ruin) => {
+                return ruin.store[RESOURCE_ENERGY];
+            }
+        });
+        if (droppedList.length == 0 && tombList.length == 0 && ruinList.length == 0) {
             return true;
-        }
-        const source = creep.pos.findClosestByPath(droppedList.concat(tombList));
+        }s
+        const source = creep.pos.findClosestByPath(droppedList.concat(tombList).concat(ruinList));
         if (!source) {
             creep.say('Not Reachable');
             return false;
         }
 
-        var result = util.getObjectType(source) == 'tombstone' ?
-            creep.withdraw(source, RESOURCE_ENERGY) : creep.pickup(source);
-        if (result == ERR_NOT_IN_RANGE) {
+        if (creep.withdraw(source, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE ||
+            creep.pickup(source) == ERR_NOR_IN_RANGE) {
             creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
             return false;
         }
