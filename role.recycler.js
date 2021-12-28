@@ -27,7 +27,7 @@ module.exports = (args) => ({
         });
         if (droppedList.length == 0 && tombList.length == 0 && ruinList.length == 0) {
             return true;
-        }s
+        }
         const source = creep.pos.findClosestByPath(droppedList.concat(tombList).concat(ruinList));
         if (!source) {
             creep.say('Not Reachable');
