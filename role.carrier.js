@@ -39,6 +39,9 @@ module.exports = (args) => ({
     },
 
     target: creep => {
+        if (creep.store[RESOURCE_ENERGY] == 0) {
+            return true;
+        }
         const targetList = _.filter(args.targetIdList.map(id => Game.getObjectById(id)),
                                     (obj) => {
                                         return obj && carrierTargetPriority(obj) > 0;
