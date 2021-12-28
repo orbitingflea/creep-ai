@@ -32,7 +32,7 @@ const configList = [
     {
         name: "digger_up",
         role: "digger",
-        body: [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, MOVE],
+        body: [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE, MOVE],
         require: 1,
         argComputer: function() {
             return {
