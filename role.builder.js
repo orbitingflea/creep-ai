@@ -50,12 +50,12 @@ var roleBuilder = {
                 this.pickMode(creep);
                 return;
             }
+            creep.moveTo(creep.room.getPositionAt(16, 33), {range: 2});
         }
         if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
             creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
-            return;
         }
-        creep.moveTo(creep.room.getPositionAt(16, 33), {range: 2});
+        return;
     },
 
     runBuild: function(creep) {
