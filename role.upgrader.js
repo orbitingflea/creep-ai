@@ -18,8 +18,8 @@ var roleUpgrader = {
                     visualizePathStyle: {stroke: '#ffffff'},
                     range: 1
                 });
-                return;
             }
+            return;
         } else {
             var sources = creep.room.find(FIND_SOURCES);
             var source = creep.pos.findClosestByPath(sources, {
