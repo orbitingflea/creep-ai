@@ -1,5 +1,5 @@
 const roles = {
-    carrier: require('role.carrier.js')
+    carrier: require('role.carrier')
 };
 
 Creep.prototype.work = function() {
