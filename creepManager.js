@@ -28,7 +28,7 @@ const configList = [
         body: [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
                CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
                CARRY, CARRY, MOVE, CARRY, CARRY, MOVE],
-        require: 2,
+        require: 1,
         argComputer: function() {
             return {
                 sourceId: '61c9fced7a3c3521135e617c',  // container above
