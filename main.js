@@ -155,7 +155,7 @@ function CreateCarrier1Logic() {
     });
     var targetIdList = targets.map((obj) => obj.id);
 
-    creepApi.add('carrier_1', 'carrier', sourceId, targetIdList);
+    console.log(creepApi.add('carrier_1', 'carrier', sourceId, targetIdList));
 }
 
 module.exports = {
