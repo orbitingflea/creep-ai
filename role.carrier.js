@@ -26,7 +26,7 @@ module.exports = (args) => ({
                                         struc.energy < struc.energyCapacity * 0.8));
         const targetList3 = _.filter(args.targetIdList.map(id => Game.getObjectById(id)),
                                      creep => (util.getObjectType(creep) == 'creep' &&
-                                               creep.store[RESOURCE_ENERGY] < creep.store.getCapacity() * 0.2));
+                                               creep.store[RESOURCE_ENERGY] < creep.store.getCapacity() * 0.8));
         var target;
         if (targetList1.length > 0) {
             target = creep.pos.findClosestByPath(targetList1);
