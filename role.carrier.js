@@ -3,6 +3,9 @@ var util = require('util');
 function carrierTargetPriority(obj) {
     if (obj.structureType) {
         // is a structure
+        if (obj.energy == obj.energyCapacity) {
+            return -1;
+        }
         switch (obj.structureType) {
             case STRUCTURE_EXTENSION:
                 return 100;
