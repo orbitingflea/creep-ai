@@ -159,7 +159,7 @@ module.exports = {
 };
 
 module.exports.loop = function() {
-    CreateCarrier1Logic();
+    // CreateCarrier1Logic();
 
     if (Game.cpu.bucket >= 10000) {
         Game.cpu.generatePixel();
