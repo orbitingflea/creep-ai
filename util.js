@@ -22,10 +22,20 @@ var util = {
         }).map((obj) => obj.id);
     },
 
+    // find old version builders
     getBuilderCreepIdList(room) {
         return room.find(FIND_MY_CREEPS, {
             filter: (creep) => {
                 return (creep.memory.role == 'builder');
+            }
+        }).map((obj) => obj.id);
+    },
+
+    // find old version upgraders
+    getBuilderCreepIdList(room) {
+        return room.find(FIND_MY_CREEPS, {
+            filter: (creep) => {
+                return (creep.memory.role == 'upgrader');
             }
         }).map((obj) => obj.id);
     },

@@ -17,8 +17,8 @@ const configList = [
                 sourceId: '61c9fced7a3c3521135e617c',  // container above
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom()).concat(
                     util.getBuilderCreepIdList(util.myRoom())).concat(
-                    '61cb01a791dde3d80281b58e'  // storage
-                )
+                    util.getUpgraderCreepIdList(util.myRoom())).concat(
+                    '61cb01a791dde3d80281b58e')  // storage
             };
         }
     },
@@ -34,8 +34,8 @@ const configList = [
                 sourceId: '61c9fced7a3c3521135e617c',  // container above
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom()).concat(
                     util.getBuilderCreepIdList(util.myRoom())).concat(
-                    '61cb01a791dde3d80281b58e'  // storage
-                )
+                    util.getUpgraderCreepIdList(util.myRoom())).concat(
+                    '61cb01a791dde3d80281b58e')  // storage
             };
         }
     },
