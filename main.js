@@ -110,19 +110,14 @@ function NewCreepLogic() {
             return;
         }
     }
-    if (harvesters.length < 2) {
-        if (RoomFullEnergy(room) && TryToSpawnCreep(HarvesterDesigner(room.energyAvailable), 'Harvester_' + Game.time, {role: 'harvester'})) {
-            return;
-        }
-    }
     // First Upgrader
     if (upgraders.length < 1) {
         if (RoomFullEnergy(room) && TryToSpawnCreep(UpgraderDesigner(room.energyAvailable), 'Upgrader_' + Game.time, {role: 'upgrader'})) {
             return;
         }
     }
-    // 1 Builder
-    if (builders.length < 1) {
+    // 2 Builder
+    if (builders.length < 2) {
         if (RoomFullEnergy(room) && TryToSpawnCreep(BuilderDesigner(room.energyAvailable), 'Builder_' + Game.time, {role: 'builder'})) {
             return;
         }

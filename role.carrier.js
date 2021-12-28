@@ -37,7 +37,7 @@ module.exports = (args) => ({
             creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
             return false;
         }
-        if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity() || source.store[RESOURCE_ENERGY] < 10) {
+        if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity() || source.store[RESOURCE_ENERGY] < 100) {
             return true;
         }
         return false;
