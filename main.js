@@ -155,7 +155,7 @@ function CreateCarrier1Logic() {
     });
     var targetIdList = targets.map((obj) => obj.id);
 
-    creepApi.create('carrier_1', 'carrier', sourceId, targetIdList);
+    creepApi.add('carrier_1', 'carrier', sourceId, targetIdList);
 }
 
 module.exports.loop = function() {
@@ -199,4 +199,6 @@ module.exports.loop = function() {
     NewCreepLogic();
 };
 
-module.exports.CreateCarrier1Logic = CreateCarrier1Logic;
+module.exports = {
+    CreateCarrier1Logic: CreateCarrier1Logic
+};
