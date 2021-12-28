@@ -147,7 +147,7 @@ function CreateCarrier1Logic() {
     }
     
     var sourceId = "61c9b463d054a45518e8b5e3";
-    var targets = Game.spawn['Spawn1'].room.find(FIND_MY_STRUCTURES, {
+    var targets = Game.spawns['Spawn1'].room.find(FIND_MY_STRUCTURES, {
         filter: (structure) => {
             return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN ||
                 structure.structureType == STRUCTURE_TOWER) && structure.pos.y >= 30;
