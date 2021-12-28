@@ -2,7 +2,7 @@ module.exports = (args) => ({
     // args: {sourceId, containerId}
     
     prepare: creep => {
-        if (creep.pos != Game.getObjectById(args.containerId).pos) {
+        if (creep.pos.isEqualTo(Game.getObjectById(args.containerId).pos)) {
             creep.moveTo(Game.getObjectById(args.containerId), {visualizePathStyle: {stroke: '#ffaa00'}});
             return false;
         }
