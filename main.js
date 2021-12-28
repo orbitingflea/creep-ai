@@ -104,7 +104,7 @@ function NewCreepLogic() {
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
 
-    // 初级阶段：造 2 只 harvester，2 只 upgrader，3 只 builder
+    // 初级阶段：造 1 只 harvester，1 只 upgrader，2 只 builder
     if (harvesters.length < 1) {
         if (TryToSpawnCreep(HarvesterDesigner(room.energyAvailable), 'Harvester_' + Game.time, {role: 'harvester'})) {
             return;
@@ -119,12 +119,6 @@ function NewCreepLogic() {
     // 2 Builder
     if (builders.length < 2) {
         if (RoomFullEnergy(room) && TryToSpawnCreep(BuilderDesigner(room.energyAvailable), 'Builder_' + Game.time, {role: 'builder'})) {
-            return;
-        }
-    }
-    // Second Upgrader
-    if (upgraders.length < 2) {
-        if (RoomFullEnergy(room) && TryToSpawnCreep(UpgraderDesigner(room.energyAvailable), 'Upgrader_' + Game.time, {role: 'upgrader'})) {
             return;
         }
     }
