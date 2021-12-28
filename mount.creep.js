@@ -10,7 +10,7 @@ Creep.prototype.work = function() {
         // this.say('找不到配置！');
         return;
     }
-    const creepLogic = roles[creepConfig.role](...creepConfig.args);
+    const creepLogic = roles[creepConfig.role](creepConfig.args);
     console.log(creepConfig.args);
 
     if (!this.memory.ready) {
