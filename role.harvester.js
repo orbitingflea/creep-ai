@@ -23,15 +23,11 @@ var roleHarvester = {
                 }
             });
             if (!source) {
-                if (creep.carry.energy > 0) {
-                    creep.memory.mode = 'giving';
-                    return;
-                }
-                // 去最近的 source 等着
-                source = creep.pos.findClosestByPath(sources);
+                creep.memory.mode = 'giving';
             }
             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
+                return;
             }
         } else if (creep.memory.mode == 'giving') {
             var targets = creep.room.find(FIND_STRUCTURES, {
@@ -51,6 +47,7 @@ var roleHarvester = {
                 var target = creep.pos.findClosestByPath(targets);
                 if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
+                    return;
                 }
             } else {
                 // creep.memory.mode = 'upgrading';
@@ -61,8 +58,11 @@ var roleHarvester = {
         if (creep.memory.mode == 'upgrading') {
             if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}, range: 3});
+                return;
             }
         }
+
+        creep.moveTo(creep.room.getPositionAt(16, 33), {range: 2});
     }
 };
 
