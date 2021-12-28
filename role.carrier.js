@@ -28,12 +28,9 @@ module.exports = (args) => ({
                                      creep => (creep && util.getObjectType(creep) == 'creep' &&
                                         creep.store[RESOURCE_ENERGY] < creep.store.getCapacity() * 0.8));
         var target;
-        if (targetList1.length > 0) {
-            target = creep.pos.findClosestByPath(targetList1);
-        } else if (targetList2.length > 0) {
-            target = creep.pos.findClosestByPath(targetList2);
-        } else if (targetList3.length > 0) {
-            target = creep.pos.findClosestByPath(targetList3);
+        if (target = creep.pos.findClosestByPath(targetList1)) {
+        } else if (target = creep.pos.findClosestByPath(targetList2)) {
+        } else if (target = creep.pos.findClosestByPath(targetList3)) {
         } else {
             return false;
         }
