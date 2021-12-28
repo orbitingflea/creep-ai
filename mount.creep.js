@@ -11,6 +11,7 @@ Creep.prototype.work = function() {
         return;
     }
     const creepLogic = roles[creepConfig.role](...creepConfig.args);
+    console.log(creepConfig.args.sourceId);
 
     if (!this.memory.ready) {
         // 有准备阶段配置则执行
