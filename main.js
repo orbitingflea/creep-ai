@@ -6,6 +6,8 @@ var roleTower = require('role.tower');
 require('creepApi');
 require('mount.creep');
 
+var creepManager = require('creepManager');
+
 function HarvesterThroughput(n_work, n_carry, n_move) {
     // 假设往返距离都是 25 格，并且都是平原。
     var load = n_carry * 50;
@@ -131,32 +133,10 @@ function NewCreepLogic() {
             return;
         }
     }
-    // Carrier
-    if (_.filter(Game.creeps, (creep) => creep.memory.role == 'carrier').length < 1) {
-        // CreateCarrier1Logic();
-        if (TryToSpawnCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE], 'Carrier_' + Game.time,
-            {role: 'carrier', configName: 'carrier_1'})) {
-            return;
-        }
-    }
+    
+    // New creeps
+    creepManager.run();
 }
-
-function CreateCarrier1Logic() {
-    console.log('called');
-    var sourceId = "61c9b463d054a45518e8b5e3";
-    var targets = Game.spawns['Spawn1'].room.find(FIND_MY_STRUCTURES, {
-        filter: (structure) => {
-            return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN ||
-                structure.structureType == STRUCTURE_TOWER) && structure.pos.y >= 30;
-        }
-    });
-    var targetIdList = targets.map((obj) => obj.id);
-    console.log(creepApi.add('carrier_1', 'carrier', {sourceId, targetIdList}));
-}
-
-module.exports = {
-    CreateCarrier1Logic: CreateCarrier1Logic
-};
 
 module.exports.loop = function() {
     // CreateCarrier1Logic();
