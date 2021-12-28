@@ -35,7 +35,7 @@ module.exports = (args) => ({
         }
 
         if (creep.withdraw(source, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE ||
-            creep.pickup(source) == ERR_NOR_IN_RANGE) {
+            creep.pickup(source) == ERR_NOT_IN_RANGE) {
             creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
             return false;
         }
