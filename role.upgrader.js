@@ -27,8 +27,8 @@ var roleUpgrader = {
                 }
             });
             if (!source) {
-                // 去最近的 source 等着
-                source = creep.pos.findClosestByPath(sources);
+                creep.memory.upgrading = true;
+                return;
             }
             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
