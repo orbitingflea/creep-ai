@@ -32,7 +32,7 @@ var util = {
     },
 
     // find old version upgraders
-    getBuilderCreepIdList(room) {
+    getUpgraderCreepIdList(room) {
         return room.find(FIND_MY_CREEPS, {
             filter: (creep) => {
                 return (creep.memory.role == 'upgrader');
