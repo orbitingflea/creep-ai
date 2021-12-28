@@ -20,6 +20,7 @@ module.exports = (args) => ({
                 return tomb.store[RESOURCE_ENERGY];
             }
         });
+        console.log(droppedList.length);
         if (droppedList.length == 0 && tombList.length == 0) {
             return true;
         }
