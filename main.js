@@ -131,12 +131,31 @@ function NewCreepLogic() {
             return;
         }
     }
-    // Third Harvester
-    if (harvesters.length < 3) {
-        if (RoomFullEnergy(room) && TryToSpawnCreep(HarvesterDesigner(room.energyAvailable), 'Harvester_' + Game.time, {role: 'harvester'})) {
+    // Carrier
+    if (_.filter(Game.creeps, (creep) => creep.memory.role == 'carrier').length < 1) {
+        // CreateCarrier1Logic();
+        if (TryToSpawnCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE], 'Carrier_' + Game.time,
+            {role: 'carrier', configName: 'carrier_1'})) {
             return;
         }
     }
+}
+
+function CreateCarrier1Logic() {
+    if (creepApi.get('carrier_1')) {
+        return;
+    }
+    
+    var sourceId = "61c9b463d054a45518e8b5e3";
+    var targets = Game.spawn['Spawn1'].room.find(FIND_MY_STRUCTURES, {
+        filter: (structure) => {
+            return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN ||
+                structure.structureType == STRUCTURE_TOWER) && structure.pos.y >= 30;
+        }
+    });
+    var targetIdList = targets.map((obj) => obj.id);
+
+    creepApi.create('carrier_1', 'carrier', sourceId, targetIdList);
 }
 
 module.exports.loop = function() {
