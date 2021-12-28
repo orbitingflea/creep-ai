@@ -3,8 +3,8 @@ var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleTower = require('role.tower');
 
-require('creepApi.js');
-require('mount.creep.js');
+require('creepApi');
+require('mount.creep');
 
 function HarvesterThroughput(n_work, n_carry, n_move) {
     // 假设往返距离都是 25 格，并且都是平原。
