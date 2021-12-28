@@ -1,7 +1,7 @@
-module.exports = (arg) => ({
+module.exports = (args) => ({
     // arg.sourceId, arg.targetIdList
     source: creep => {
-        const source = Game.getObjectById(arg.sourceId);  // source 是一个 container / storage
+        const source = Game.getObjectById(args.sourceId);  // source 是一个 container / storage
         if (creep.withdraw(source) == ERR_NOT_IN_RANGE) {
             creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
             return false;
@@ -12,7 +12,7 @@ module.exports = (arg) => ({
         return false;
     },
     target: creep => {
-        const targetList = _.filter(arg.targetIdList.map(id => Game.getObjectById(id)),
+        const targetList = _.filter(args.targetIdList.map(id => Game.getObjectById(id)),
                                     struc => struc.energy < struc.energyCapacity);
         const target = creep.pos.findClosestByPath(targetList);
         if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {

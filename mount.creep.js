@@ -10,8 +10,8 @@ Creep.prototype.work = function() {
         // this.say('找不到配置！');
         return;
     }
+    console.log('runtime args', creepConfig.args);
     const creepLogic = roles[creepConfig.role](creepConfig.args);
-    console.log(creepConfig.args);
 
     if (!this.memory.ready) {
         // 有准备阶段配置则执行
