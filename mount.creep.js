@@ -1,5 +1,6 @@
 const roles = {
-    carrier: require('role.carrier')
+    carrier: require('role.carrier'),
+    digger: require('role.digger'),
 };
 
 Creep.prototype.work = function() {
@@ -14,12 +15,12 @@ Creep.prototype.work = function() {
 
     if (!this.memory.ready) {
         // 有准备阶段配置则执行
-        if (creepLogic.prepare && creepLogic.isReady) {
-            creepLogic.prepare(this);
-            this.memory.ready = creepLogic.isReady(this);
-        }
         // 没有就直接准备完成
-        else this.memory.ready = true;
+        if (creepLogic.prepare) {
+            this.memory.ready = creepLogic.prepare(this);
+        } else {
+            this.memory.ready = true;
+        }
         return;
     }
 

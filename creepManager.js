@@ -28,6 +28,18 @@ const configList = [
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom())
             };
         }
+    },
+    {
+        name: "digger_up",
+        role: "digger",
+        body: [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, MOVE],
+        require: 1,
+        argComputer: function() {
+            return {
+                sourceId: '5bbcaf379099fc012e63a55d',  // source above
+                containerId: '61c9fced7a3c3521135e617c', // container above
+            };
+        }
     }
 ];
 

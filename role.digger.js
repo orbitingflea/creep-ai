@@ -1,19 +1,21 @@
-var roleDigger = {
-    // must spawn with information
-    // memory.sourceId
-    // memory.containerId
-
-    run: function(creep) {
-        var container = Game.getObjectById(creep.memory.containerId);
-        var source = Game.getObjectById(creep.memory.sourceId);
-        if (creep.pos != container.pos) {
-            // routing mode
-            creep.moveTo(container);
-        } else {
-            // working mode
-            creep.harvest(source);
+module.exports = (args) => ({
+    // args: {sourceId, containerId}
+    
+    prepare: creep => {
+        if (creep.pos != Game.getObjectById(args.containerId).pos) {
+            creep.moveTo(Game.getObjectById(args.containerId), {visualizePathStyle: {stroke: '#ffaa00'}});
+            return false;
         }
-    }
-};
+        return true;
+    },
 
-module.exports = roleDigger;
+    source: creep => {
+        const source = Game.getObjectById(args.sourceId);
+        creep.harvest(source);
+        return false;
+    },
+
+    target: creep => {
+        return true;
+    }
+});
