@@ -8,7 +8,7 @@ const configList = [
     {
         name: "carrier_down",
         role: "carrier",
-        body: [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE],
+        body: [CARRY, CARRY, MOVE],  // experimental
         require: 1,
         argComputer: function() {
             return {
@@ -21,8 +21,8 @@ const configList = [
     {
         name: "carrier_up",
         role: "carrier",
-        body: [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE],
-        require: 1,
+        body: [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE],
+        require: 2,
         argComputer: function() {
             return {
                 sourceId: '61c9fced7a3c3521135e617c',  // container above
