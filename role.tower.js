@@ -28,8 +28,10 @@ var roleTower = {
         }
 
         // repair damaged structure
-        var damagedStructure = tower.room.find(FIND_MY_STRUCTURES, {
-            filter: (structure) => (structure.hits < structure.hitsMax && structure.structureType != STRUCTURE_RAMPART)
+        var damagedStructure = tower.room.find(FIND_STRUCTURES, {
+            filter: (structure) => (structure.hits < structure.hitsMax &&
+                structure.structureType != STRUCTURE_RAMPART &&
+                structure.structureType != STRUCTURE_WALL)
         });
         target = damagedStructure[0];
         // find the one with largest priority
