@@ -53,6 +53,7 @@ module.exports = (args) => ({
             creep.say('No Target');
             return false;
         }
+        console.log(`target is ${target}`);
         if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
             return false;
