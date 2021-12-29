@@ -12,22 +12,16 @@ module.exports = (args) => ({
     },
 
     source: creep => {
-        const source = Game.getObjectById(args.containerId);
-        var result = creep.withdraw(source, RESOURCE_ENERGY);
-        if (result == ERR_NOT_ENOUGH_RESOURCES) {
-            creep.say('Empty');
-            return true;
-        }
+        const container = Game.getObjectById(args.containerId);
+        creep.withdraw(container, RESOURCE_ENERGY);
         return true;
     },
 
     target: creep => {
-        const container = Game.getObjectById(args.containerId);
         const controller = Game.getObjectById(args.controllerId);
-        const result = creep.upgradeController(controller);
-        if (result != OK) {
+        creep.upgradeController(controller);
+        if (creep.store[RESOURCE_ENERGY] == 0) {
             return true;
         }
-        return false;
     }
 });
