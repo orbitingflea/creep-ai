@@ -13,6 +13,8 @@ function carrierTargetPriority(obj) {
                 return 100;
             case STRUCTURE_TOWER:
                 return obj.store[RESOURCE_ENERGY] < obj.store.getCapacity(RESOURCE_ENERGY) * 0.6 ? 80 : -1;
+            case STRUCTURE_CONTAINER:
+                return 55;
             case STRUCTURE_STORAGE:
                 return 10;  // least priority
             default:
