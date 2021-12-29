@@ -104,7 +104,7 @@ var creepManager = {
             var numExist = _.filter(Game.creeps, (creep) => creep.memory.configName == conf.name).length;
             if (numExist < conf.require) {
                 var body = conf.body ? conf.body : conf.bodyDesigner(room.energyCapacityAvailable);
-                console.log(`require ${conf.name}, ${body}`);
+                console.log(`[DEBUG] require ${conf.name}, ${body}`);
                 util.tryToSpawnCreep(conf.body, conf.name + Game.time, {configName: conf.name});
                 return;  // 靠前的有高优先级
             }
