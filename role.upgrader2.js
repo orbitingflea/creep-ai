@@ -26,7 +26,6 @@ module.exports = (args) => ({
         const controller = Game.getObjectById(args.controllerId);
         const result = creep.upgradeController(controller);
         if (result != OK) {
-            creep.say(result);
             return true;
         }
         return false;
