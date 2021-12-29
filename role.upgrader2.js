@@ -13,7 +13,8 @@ module.exports = (args) => ({
 
     source: creep => {
         const source = Game.getObjectById(args.containerId);
-        if (creep.withdraw(source) == ERR_NOT_ENOUGH_RESOURCES) {
+        var result = creep.withdraw(source, RESOURCE_ENERGY);
+        if (result == ERR_NOT_ENOUGH_RESOURCES) {
             creep.say('Empty');
             return true;
         }
