@@ -23,5 +23,6 @@ module.exports = (args) => ({
         if (creep.store[RESOURCE_ENERGY] == 0) {
             return true;
         }
+        return false;
     }
 });
