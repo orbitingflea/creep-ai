@@ -29,7 +29,6 @@ const configList = [
                 sourceId: '61c9fced7a3c3521135e617c',  // container above
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom()).concat(
                     util.getBuilderCreepIdList(util.myRoom())).concat(
-                    util.getUpgraderCreepIdList(util.myRoom())).concat(
                     ['61cb01a791dde3d80281b58e', '61cbd8df1682cd84285bc145'])  // storage
             };
         }
@@ -46,7 +45,6 @@ const configList = [
                 sourceId: '61c9fced7a3c3521135e617c',  // container above
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom()).concat(
                     util.getBuilderCreepIdList(util.myRoom())).concat(
-                    util.getUpgraderCreepIdList(util.myRoom())).concat(
                     ['61cb01a791dde3d80281b58e', '61cbd8df1682cd84285bc145'])  // storage, container
             };
         }
