@@ -48,7 +48,7 @@ var util = {
         var res = Game.spawns['Spawn1'].spawnCreep(body, name, {
             memory: memory
         });
-        console.log(`[DEBUG] spawn with res = ${res}`);
+        // console.log(`[DEBUG] spawn with res = ${res}`);
         return res == 0;
     },
 
