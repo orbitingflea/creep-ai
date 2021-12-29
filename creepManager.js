@@ -62,6 +62,24 @@ const configList = [
                 targetId: '61cb01a791dde3d80281b58e',  // storage
             };
         }
+    },
+    {
+        name: "upgrader",
+        role: "upgrader",
+        bodyDesigner: function(energy) {
+            var body = [MOVE, MOVE, MOVE, CARRY];
+            energy -= 200;
+            while (energy >= 100) {
+                body.push(WORK);
+                energy -= 100;
+            }
+            return body;
+        },
+        require: 0,  // container not finished yet
+        args: {
+            controllerId: '5bbcaf379099fc012e63a55e',
+            containerId: ''  // TODO
+        }
     }
 ];
 
@@ -69,6 +87,7 @@ var creepManager = {
     updateConfigs: function() {
         for (var i = 0; i < configList.length; i++) {
             var conf = configList[i];
+            var args = conf.args ? conf.args : conf.argComputer();
             creepApi.add(conf.name, conf.role, conf.argComputer());
         }
     },
@@ -84,6 +103,7 @@ var creepManager = {
             var conf = configList[i];
             var numExist = _.filter(Game.creeps, (creep) => creep.memory.configName == conf.name).length;
             if (numExist < conf.require) {
+                var body = conf.body ? conf.body : conf.bodyDesigner(room.energyCapacityAvailable);
                 util.tryToSpawnCreep(conf.body, conf.name + Game.time, {configName: conf.name});
                 return;  // 靠前的有高优先级
             }
