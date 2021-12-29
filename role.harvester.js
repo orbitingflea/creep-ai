@@ -23,7 +23,9 @@ var roleHarvester = {
                 }
             });
             if (!source) {
-                creep.memory.mode = 'giving';
+                // creep.memory.mode = 'giving';
+                creep.moveTo(creep.room.getPositionAt(16, 33), {range: 2});
+                return;
             }
             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
