@@ -15,6 +15,7 @@ module.exports = (args) => ({
         const source = Game.getObjectById(args.containerId);
         if (creep.withdraw(source) == ERR_NOT_ENOUGH_RESOURCES) {
             creep.say('Empty');
+            return true;
         }
         return true;
     },
@@ -25,8 +26,8 @@ module.exports = (args) => ({
         const result = creep.upgradeController(controller);
         if (result != OK) {
             creep.say(result);
+            return true;
         }
-        creep.withdraw(container);
         return false;
     }
 });

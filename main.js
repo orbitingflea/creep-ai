@@ -110,12 +110,6 @@ function NewCreepLogic() {
             return;
         }
     }
-    // First Upgrader
-    if (upgraders.length < 1) {
-        if (RoomFullEnergy(room) && TryToSpawnCreep(UpgraderDesigner(room.energyAvailable), 'Upgrader_' + Game.time, {role: 'upgrader'})) {
-            return;
-        }
-    }
     // 2 Builder
     if (builders.length < 2) {
         if (RoomFullEnergy(room) && TryToSpawnCreep(BuilderDesigner(room.energyAvailable), 'Builder_' + Game.time, {role: 'builder'})) {
