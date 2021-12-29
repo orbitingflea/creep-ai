@@ -88,7 +88,7 @@ var creepManager = {
         for (var i = 0; i < configList.length; i++) {
             var conf = configList[i];
             var args = conf.args ? conf.args : conf.argComputer();
-            creepApi.add(conf.name, conf.role, conf.argComputer());
+            creepApi.add(conf.name, conf.role, args);
         }
     },
 
