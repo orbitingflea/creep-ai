@@ -6,6 +6,18 @@ require('creepApi');
 
 const configList = [
     {
+        name: "digger_up",
+        role: "digger",
+        body: [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE],
+        require: 1,
+        argComputer: function() {
+            return {
+                sourceId: '5bbcaf379099fc012e63a55d',  // source above
+                containerId: '61c9fced7a3c3521135e617c',  // container above
+            };
+        }
+    },
+    {
         name: "carrier_down",
         role: "carrier",
         body: [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
@@ -40,30 +52,6 @@ const configList = [
         }
     },
     {
-        name: "digger_up",
-        role: "digger",
-        body: [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE],
-        require: 1,
-        argComputer: function() {
-            return {
-                sourceId: '5bbcaf379099fc012e63a55d',  // source above
-                containerId: '61c9fced7a3c3521135e617c',  // container above
-            };
-        }
-    },
-    {
-        name: "recycler",
-        role: "recycler",
-        body: [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
-               CARRY, CARRY, MOVE],
-        require: 1,
-        argComputer: function() {
-            return {
-                targetId: '61cb01a791dde3d80281b58e',  // storage
-            };
-        }
-    },
-    {
         name: "upgrader",
         role: "upgrader",
         bodyDesigner: function(energy) {
@@ -80,7 +68,19 @@ const configList = [
             controllerId: '5bbcaf379099fc012e63a55e',
             containerId: '61cbd8df1682cd84285bc145'
         }
-    }
+    },
+    {
+        name: "recycler",
+        role: "recycler",
+        body: [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
+               CARRY, CARRY, MOVE],
+        require: 1,
+        argComputer: function() {
+            return {
+                targetId: '61cb01a791dde3d80281b58e',  // storage
+            };
+        }
+    },
 ];
 
 var creepManager = {
