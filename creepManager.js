@@ -29,7 +29,7 @@ const configList = [
     },
 
     {
-        name: "digger_up",
+        name: "digger_down",
         role: "digger",
         body: worker10,
         require: 1,
@@ -43,14 +43,23 @@ const configList = [
         name: "carrier_down",
         role: "carrier",
         body: carrier1000,
-        require: 0,
+        require: 1,
         argComputer: function() {
             return {
                 sourceId: util.constant.idContainerDown,
-                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom())
-                    .concat(util.getBuilderCreepIdList(util.myRoom()))
-                    .concat([util.constant.idContainerNearController, util.constant.idStorage]),
+                targetIdList: [util.constant.idStorage],
             };
+        }
+    },
+
+    {
+        name: "digger_up",
+        role: "digger",
+        body: worker10,
+        require: 1,
+        args: {
+            sourceId: util.constant.idSourceUp,
+            containerId: util.constant.idContainerUp,
         }
     },
 
@@ -63,8 +72,8 @@ const configList = [
             return {
                 sourceId: util.constant.idContainerUp,
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom())
-                    .concat(util.getBuilderCreepIdList(util.myRoom()))
-                    .concat([util.constant.idContainerNearController, util.constant.idStorage]),
+                    .filter((id) => Game.getObjectById(id).pos.y <= 30)
+                    .concat([util.constant.idStorage]),
             };
         }
     },
