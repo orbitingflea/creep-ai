@@ -115,7 +115,6 @@ function NewCreepLogic() {
 }
 
 module.exports.loop = function() {
-    console.log(util.constant.idStorage);
     // CreateCarrier1Logic();
 
     if (Game.cpu.bucket >= 10000) {
