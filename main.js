@@ -7,6 +7,7 @@ require('creepApi');
 require('mount.creep');
 
 var creepManager = require('creepManager');
+var util = require('util');
 
 function HarvesterThroughput(n_work, n_carry, n_move) {
     // 假设往返距离都是 25 格，并且都是平原。
@@ -114,6 +115,7 @@ function NewCreepLogic() {
 }
 
 module.exports.loop = function() {
+    console.log(util.constant.idStorage);
     // CreateCarrier1Logic();
 
     if (Game.cpu.bucket >= 10000) {
