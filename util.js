@@ -73,7 +73,7 @@ var util = {
 
     constant: utilConstant,
 
-    resourceTypeList: this.constant.resourceTypeList,
+    resourceTypeList: utilConstant.resourceTypeList,
 };
 
 module.exports = util;
