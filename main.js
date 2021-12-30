@@ -128,6 +128,8 @@ module.exports.loop = function() {
             console.log('Clear invalid memory for Creep: ', name);
         }
     }
+    
+    NewCreepLogic();
 
     // 让所有 creep 执行他们的角色
     for (var name in Game.creeps) {
@@ -153,6 +155,4 @@ module.exports.loop = function() {
             roleTower.run(structure);
         }
     }
-
-    NewCreepLogic();
 };
