@@ -10,6 +10,7 @@ const carrier1000 = [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
     CARRY, CARRY, MOVE, CARRY, CARRY, MOVE];
 const carrier500 = [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
     CARRY, CARRY, MOVE];
+const carrier100 = [CARRY, CARRY, MOVE];
 
 const configList = [
     {
@@ -41,7 +42,7 @@ const configList = [
     {
         name: "carrier_down",
         role: "carrier",
-        body: carrier500,
+        body: carrier100,
         require: 1,
         argComputer: function() {
             return {
