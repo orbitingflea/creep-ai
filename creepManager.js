@@ -34,8 +34,8 @@ const configList = [
         body: worker10,
         require: 1,
         args: {
-            sourceId: util.constant.idSourceUp,
-            containerId: util.constant.idContainerUp,
+            sourceId: util.constant.idSourceDown,
+            containerId: util.constant.idContainerDown,
         }
     },
 
