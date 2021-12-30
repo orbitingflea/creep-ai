@@ -71,9 +71,7 @@ const configList = [
         argComputer: function() {
             return {
                 sourceId: util.constant.idContainerUp,
-                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom())
-                    .filter((id) => Game.getObjectById(id).pos.y <= 30)
-                    .concat([util.constant.idStorage]),
+                targetIdList: [util.constant.idStorage],
             };
         }
     },
