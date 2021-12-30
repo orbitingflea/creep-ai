@@ -20,7 +20,7 @@ const configList = [
         argComputer: function() {
             return {
                 sourceId: util.constant.idStorage,
-                targetId: util.getStructureIdListMayNeedEnergy(util.myRoom())
+                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom())
                 .concat([util.constant.idContainerNearController]),
             };
         }
