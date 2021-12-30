@@ -38,8 +38,17 @@ var roleBuilder = {
     runHarvest: function(creep) {
         if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity()) {
             this.pickMode(creep);
+            return;
         }
         var source = Game.getObjectById('61cb01a791dde3d80281b58e');
+        if (source.store[RESOURCE_ENERGY] <= 10000) {
+            if (creep.store[RESOURCE_ENERGY] == 0) {
+                creep.moveTo(creep.room.getPositionAt(16, 33), {range: 2});
+            } else {
+                this.pickMode(creep);
+            }
+            return;
+        }
         if (creep.withdraw(source, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
         }
