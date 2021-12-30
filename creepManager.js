@@ -4,79 +4,87 @@
 var util = require('util');
 require('creepApi');
 
+const worker10 = [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE];
+const carrier1000 = [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
+    CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
+    CARRY, CARRY, MOVE, CARRY, CARRY, MOVE];
+const carrier500 = [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
+    CARRY, CARRY, MOVE];
+
 const configList = [
+    {
+        name: 'carrier_from_storage',
+        role: 'carrier',
+        body: carrier500,
+        require: 1,
+        argComputer: function() {
+            return {
+                sourceId: util.constant.idStorage,
+                targetId: util.getStructureIdListMayNeedEnergy(util.myRoom())
+                .concat([util.constant.idContainerNearController]),
+            };
+        }
+    },
+
     {
         name: "digger_up",
         role: "digger",
-        body: [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE],
+        body: worker10,
         require: 1,
-        argComputer: function() {
-            return {
-                sourceId: '5bbcaf379099fc012e63a55d',  // source above
-                containerId: '61c9fced7a3c3521135e617c',  // container above
-            };
+        args: {
+            sourceId: util.constant.idSourceUp,
+            containerId: util.constant.idContainerUp,
         }
     },
+
     {
         name: "carrier_down",
         role: "carrier",
-        body: [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
-               CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
-               CARRY, CARRY, MOVE, CARRY, CARRY, MOVE],
-        require: 0,  // to be used in the future
+        body: carrier1000,
+        require: 0,
         argComputer: function() {
             return {
-                sourceId: '61c9fced7a3c3521135e617c',  // container above
-                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom()).concat(
-                    util.getBuilderCreepIdList(util.myRoom())).concat(
-                    ['61cb01a791dde3d80281b58e', '61cbd8df1682cd84285bc145'])  // storage
+                sourceId: util.constant.idContainerDown,
+                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom())
+                    .concat(util.getBuilderCreepIdList(util.myRoom()))
+                    .concat([util.constant.idContainerNearController, util.constant.idStorage]),
             };
         }
     },
+
     {
         name: "carrier_up",
         role: "carrier",
-        body: [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
-               CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
-               CARRY, CARRY, MOVE, CARRY, CARRY, MOVE],
+        body: carrier1000,
         require: 1,
         argComputer: function() {
             return {
-                sourceId: '61c9fced7a3c3521135e617c',  // container above
-                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom()).concat(
-                    util.getBuilderCreepIdList(util.myRoom())).concat(
-                    ['61cb01a791dde3d80281b58e', '61cbd8df1682cd84285bc145'])  // storage, container
+                sourceId: util.constant.idContainerUp,
+                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom())
+                    .concat(util.getBuilderCreepIdList(util.myRoom()))
+                    .concat([util.constant.idContainerNearController, util.constant.idStorage]),
             };
         }
     },
+
     {
         name: "upgrader",
         role: "upgrader",
-        bodyDesigner: function(energy) {
-            var body = [MOVE, MOVE, MOVE, CARRY];
-            energy -= 200;
-            while (energy >= 100) {
-                body.push(WORK);
-                energy -= 100;
-            }
-            return body;
-        },
-        require: 1,  // container not finished yet
+        body: worker10,
+        require: 1,
         args: {
-            controllerId: '5bbcaf379099fc012e63a55e',
-            containerId: '61cbd8df1682cd84285bc145'
+            controllerId: util.constant.idController,
+            containerId: util.constant.idContainerNearController,
         }
     },
+
     {
         name: "recycler",
         role: "recycler",
-        body: [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
-               CARRY, CARRY, MOVE],
+        body: carrier500,
         require: 1,
-        argComputer: function() {
-            return {
-                targetId: '61cb01a791dde3d80281b58e',  // storage
-            };
+        args: {
+            targetId: util.constant.idStorage,
         }
     },
 ];
@@ -101,10 +109,10 @@ var creepManager = {
             var conf = configList[i];
             var numExist = _.filter(Game.creeps, (creep) => creep.memory.configName == conf.name).length;
             if (numExist < conf.require) {
-                var body = conf.body ? conf.body : conf.bodyDesigner(room.energyCapacityAvailable);
-                // console.log(`[DEBUG] require ${conf.name}, ${body}`);
-                util.tryToSpawnCreep(body, conf.name + Game.time, {configName: conf.name});
-                return;  // 靠前的有高优先级
+                var myBody = conf.body ? conf.body : conf.bodyDesigner(room.energyCapacityAvailable);
+                util.tryToSpawnCreep(myBody, conf.name + '_' + Game.time, {configName: conf.name});
+                // 列表中靠前的 creep 有高优先级，即使能量不够，也不 spawn 后面的 creep
+                return;
             }
         }
     }
