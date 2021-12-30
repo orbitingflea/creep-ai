@@ -1,3 +1,5 @@
+// [WARN] this file is no longer used
+
 var roleUpgrader = {
     /** @param {Creep} creep **/
 

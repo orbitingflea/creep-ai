@@ -36,23 +36,11 @@ var roleBuilder = {
     },
 
     runHarvest: function(creep) {
-        var sources = creep.room.find(FIND_SOURCES, {
-            filter: (source) => {
-                return source.energy > 0;
-            }
-        });
-        if (sources.length == 0 || creep.carry.energy == creep.carryCapacity) {
+        if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity()) {
             this.pickMode(creep);
         }
-        var source = creep.pos.findClosestByPath(sources);
-        if (!source) {
-            if (creep.carry.energy > 0) {
-                this.pickMode(creep);
-                return;
-            }
-            creep.moveTo(creep.room.getPositionAt(16, 33), {range: 2});
-        }
-        if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
+        var source = Game.getObjectById('61cb01a791dde3d80281b58e');
+        if (creep.withdraw(source, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
         }
         return;
