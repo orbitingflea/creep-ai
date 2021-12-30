@@ -1,3 +1,5 @@
+var utilConstant = require('util.constant');
+
 var util = {
     getObjectType: function(obj) {
         var str = obj.toString();
@@ -69,7 +71,7 @@ var util = {
         return null;
     },
 
-    constant: require('util.constant'),
+    constant: utilConstant,
 
     resourceTypeList: this.constant.resourceTypeList,
 };

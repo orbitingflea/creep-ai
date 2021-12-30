@@ -1,4 +1,4 @@
-module.exports = {
+var utilConstant = {
     resourceTypeList: [
         RESOURCE_ENERGY,
         RESOURCE_POWER,
@@ -54,3 +54,5 @@ module.exports = {
     idContainerNearController: '61cbd8df1682cd84285bc145',
     idStorage: '61cb01a791dde3d80281b58e',
 };
+
+module.exports = utilConstant;
