@@ -23,7 +23,6 @@ const configList = [
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom())
                 .concat([util.constant.idContainerNearController]),
             };
-            console.log(`[DEBUG] ${result.targetIdList}`);
             return result;
         }
     },
@@ -42,7 +41,7 @@ const configList = [
     {
         name: "carrier_down",
         role: "carrier",
-        body: carrier1000,
+        body: carrier500,
         require: 1,
         argComputer: function() {
             return {
