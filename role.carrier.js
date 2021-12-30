@@ -34,13 +34,12 @@ module.exports = (args) => ({
 
     source: creep => {
         const source = Game.getObjectById(args.sourceId);  // source 是一个 container / storage
+        if (creep.store.getUsedCapacity() == creep.store.getCapacity() || source.store[RESOURCE_ENERGY] < 100) {
+            return true;
+        }
         var result = creep.withdraw(source, RESOURCE_ENERGY);
         if (result == ERR_NOT_IN_RANGE) {
             creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
-            return false;
-        }
-        if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity() || source.store[RESOURCE_ENERGY] < 100) {
-            return true;
         }
         return false;
     },
@@ -60,10 +59,6 @@ module.exports = (args) => ({
         }
         if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
-            return false;
-        }
-        if (creep.store[RESOURCE_ENERGY] == 0) {
-            return true;
         }
         return false;
     }

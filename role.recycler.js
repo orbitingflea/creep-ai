@@ -24,6 +24,7 @@ module.exports = (args) => ({
         if (droppedList.length == 0 && tombList.length == 0 && ruinList.length == 0) {
             return true;
         }
+        
         const source = creep.pos.findClosestByPath(droppedList.concat(tombList).concat(ruinList));
         if (!source) {
             creep.say('No Reachable');
@@ -46,9 +47,6 @@ module.exports = (args) => ({
                 }
             }
         }
-        if (creep.store.getUsedCapacity() == creep.store.getCapacity()) {
-            return true;
-        }
         return false;
     },
 
@@ -67,9 +65,6 @@ module.exports = (args) => ({
             if (creep.store[type] > 0) {
                 creep.transfer(target, type);
             }
-        }
-        if (creep.store.getUsedCapacity() == 0) {
-            return true;
         }
         return false;
     }

@@ -13,16 +13,20 @@ module.exports = (args) => ({
 
     source: creep => {
         const container = Game.getObjectById(args.containerId);
+        if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity() ||
+            creep.store[RESOURCE_ENERGY] > 0 && container.store[RESOURCE_ENERGY] == 0) {
+            return true;
+        }
         creep.withdraw(container, RESOURCE_ENERGY);
-        return true;
+        return false;
     },
 
     target: creep => {
         const controller = Game.getObjectById(args.controllerId);
-        creep.upgradeController(controller);
         if (creep.store[RESOURCE_ENERGY] == 0) {
             return true;
         }
+        creep.upgradeController(controller);
         return false;
     }
 });
