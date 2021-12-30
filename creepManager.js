@@ -18,11 +18,13 @@ const configList = [
         body: carrier500,
         require: 1,
         argComputer: function() {
-            return {
+            var result = {
                 sourceId: util.constant.idStorage,
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom())
                 .concat([util.constant.idContainerNearController]),
             };
+            console.log(`[DEBUG] ${result.targetIdList}`);
+            return result;
         }
     },
 
