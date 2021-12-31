@@ -11,12 +11,41 @@ const carrier1000 = [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
 const carrier500 = [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
     CARRY, CARRY, MOVE];
 const carrier100 = [CARRY, CARRY, MOVE];
+const carrierMain = carrier500;  // from storage, lifeline!
 
 const configList = [
     {
+        name: 'carrier_sos',
+        role: 'carrier',
+        body: [CARRY, MOVE],
+        requireFunction: function() {
+            var energyAvailable = util.myRoom().energyAvailable;
+            var mainCarrierCost = util.getCreepCost(carrierMain);
+            var numMainCarrier = _.filter(Game.creeps, (creep) => creep.memory.configName == 'carrier_from_storage').length;
+            if (numMainCarrier == 0 && energyAvailable < mainCarrierCost) {
+                return 1;
+            } else {
+                return 0;
+            }
+        },
+        argComputer: function() {
+            var result = {
+                sourceId: util.constant.idStorage,
+                targetIdList: util.myRoom().find(FIND_MY_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_EXTENSION ||
+                                structure.structureType == STRUCTURE_SPAWN);
+                    }
+                }).map((obj) => obj.id),
+            };
+            return result;
+        }
+    },
+
+    {
         name: 'carrier_from_storage',
         role: 'carrier',
-        body: carrier500,
+        body: carrierMain,
         require: 1,
         argComputer: function() {
             var result = {
@@ -111,15 +140,16 @@ var creepManager = {
         this.updateConfigs();
         var room = util.myRoom();
         var spawner = Game.spawns['Spawn1'];
-        if (spawner.spawning || room.energyAvailable < 200) {
+        if (spawner.spawning) {
             return;
         }
         for (var i = 0; i < configList.length; i++) {
             var conf = configList[i];
             var numExist = _.filter(Game.creeps, (creep) => creep.memory.configName == conf.name).length;
+            var confRequire = conf.require ? conf.require : conf.requireFunction();
             if (numExist < conf.require) {
-                var myBody = conf.body ? conf.body : conf.bodyDesigner(room.energyCapacityAvailable);
-                util.tryToSpawnCreep(myBody, conf.name + '_' + Game.time, {configName: conf.name});
+                var confBody = conf.body ? conf.body : conf.bodyDesigner(room.energyCapacityAvailable);
+                util.tryToSpawnCreep(confBody, conf.name + '_' + Game.time, {configName: conf.name});
                 // 列表中靠前的 creep 有高优先级，即使能量不够，也不 spawn 后面的 creep
                 return;
             }

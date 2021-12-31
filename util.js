@@ -24,24 +24,6 @@ var util = {
         }).map((obj) => obj.id);
     },
 
-    // find old version builders
-    getBuilderCreepIdList(room) {
-        return room.find(FIND_MY_CREEPS, {
-            filter: (creep) => {
-                return (creep.memory.role == 'builder');
-            }
-        }).map((obj) => obj.id);
-    },
-
-    // find old version upgraders
-    getUpgraderCreepIdList(room) {
-        return room.find(FIND_MY_CREEPS, {
-            filter: (creep) => {
-                return (creep.memory.role == 'upgrader');
-            }
-        }).map((obj) => obj.id);
-    },
-
     myRoom: function() {
         return Game.spawns['Spawn1'].room;
     },
@@ -50,7 +32,6 @@ var util = {
         var res = Game.spawns['Spawn1'].spawnCreep(body, name, {
             memory: memory
         });
-        // console.log(`[DEBUG] spawn with res = ${res}`);
         return res == 0;
     },
 
@@ -69,6 +50,14 @@ var util = {
             i = j;
         }
         return null;
+    },
+
+    getCreepCost: function(body) {
+        var cost = 0;
+        for (var i = 0; i < body.length; i++) {
+            cost += BODYPART_COST[body[i]];
+        }
+        return cost;
     },
 
     constant: utilConstant,
