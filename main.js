@@ -101,6 +101,9 @@ function NewCreepLogic() {
         return;
     }
 
+    // New version creeps
+    creepManager.run();
+
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
 
     // create 1 old Builder
@@ -109,9 +112,6 @@ function NewCreepLogic() {
             return;
         }
     }
-
-    // New version creeps
-    creepManager.run();
 }
 
 module.exports.loop = function() {
