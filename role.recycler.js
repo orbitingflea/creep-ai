@@ -40,7 +40,7 @@ module.exports = (args) => ({
         if (result == ERR_INVALID_TARGET) {
             // target need withdraw method
             const types = util.resourceTypeList;
-            for (var i = 0; i < types.length; i++) {
+            for (var i = types.length - 1; i >= 0; i--) {
                 var type = types[i];
                 if (source.store[type] > 0) {
                     creep.withdraw(source, type);
