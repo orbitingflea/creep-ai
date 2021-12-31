@@ -22,7 +22,6 @@ const configList = [
             var energyAvailable = util.myRoom().energyAvailable;
             var mainCarrierCost = util.getCreepCost(carrierMain);
             var numMainCarrier = _.filter(Game.creeps, (creep) => creep.memory.configName == 'carrier_from_storage').length;
-            console.log('[DEBUG] dudu');
             if (numMainCarrier == 0 && energyAvailable < mainCarrierCost) {
                 return 1;
             } else {
