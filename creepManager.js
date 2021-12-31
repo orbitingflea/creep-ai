@@ -22,6 +22,7 @@ const configList = [
             var energyAvailable = util.myRoom().energyAvailable;
             var mainCarrierCost = util.getCreepCost(carrierMain);
             var numMainCarrier = _.filter(Game.creeps, (creep) => creep.memory.configName == 'carrier_from_storage').length;
+            console.log('[DEBUG] dudu');
             if (numMainCarrier == 0 && energyAvailable < mainCarrierCost) {
                 return 1;
             } else {
@@ -147,7 +148,7 @@ var creepManager = {
             var conf = configList[i];
             var numExist = _.filter(Game.creeps, (creep) => creep.memory.configName == conf.name).length;
             var confRequire = conf.require ? conf.require : conf.requireFunction();
-            if (numExist < conf.require) {
+            if (numExist < confRequire) {
                 var confBody = conf.body ? conf.body : conf.bodyDesigner(room.energyCapacityAvailable);
                 util.tryToSpawnCreep(confBody, conf.name + '_' + Game.time, {configName: conf.name});
                 // 列表中靠前的 creep 有高优先级，即使能量不够，也不 spawn 后面的 creep
