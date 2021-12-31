@@ -16,7 +16,7 @@ const configList = [
     {
         name: 'carrier_from_storage',
         role: 'carrier',
-        body: carrier100,
+        body: carrier500,
         require: 1,
         argComputer: function() {
             var result = {
