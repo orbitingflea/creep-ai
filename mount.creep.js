@@ -1,6 +1,7 @@
 const roles = {
     carrier: require('role.carrier'),
     digger: require('role.digger'),
+    diggerLink: require('role.diggerLink'),
     recycler: require('role.recycler'),
     upgrader: require('role.upgrader2'),  // CAUTION
     worker: require('role.worker'),
@@ -27,17 +28,23 @@ Creep.prototype.work = function() {
         return;
     }
 
-    var stateChange = true;
+    var stateChange = true, wait = false;
     // 执行对应阶段
     // 阶段执行结果返回 true 就说明需要更换 working 状态
     // 要求 source, target 返回 true 时不改变游戏状态（在开始阶段判定）
     if (this.memory.working) {
         if (creepLogic.target) stateChange = creepLogic.target(this);
-        if (stateChange) stateChange = !creepLogic.source(this);
+        if (stateChange) wait = creepLogic.source(this);
     } else {
         if (creepLogic.source) stateChange = creepLogic.source(this);
-        if (stateChange) stateChange = !creepLogic.target(this);
+        if (stateChange) wait = creepLogic.target(this);
     }
     // 状态变化了就切换工作阶段
-    if (stateChange) this.memory.working = !this.memory.working;
+    if (wait) {
+        stateChange = false;
+        if (creepLogic.wait) creepLogic.wait(this);
+    }
+    if (stateChange) {
+        this.memory.working = !this.memory.working;
+    }
 };
