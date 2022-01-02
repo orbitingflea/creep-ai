@@ -17,7 +17,7 @@ const carrier1000 = BodyWCM(0, 20, 10);
 const carrier500 = BodyWCM(0, 10, 5);
 const carrier100 = BodyWCM(0, 2, 1);
 const carrierMain = carrier500;  // from storage, lifeline!
-const fullstackWorker = BodyWCM(10, 10, 10);
+const fullstackWorker = BodyWCM(5, 5, 5);
 
 const configList = [
     {
