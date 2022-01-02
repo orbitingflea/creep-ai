@@ -199,7 +199,14 @@ const configList = [
         bodyDesigner: (energy) => {
             return BodyWCM(Math.floor((energy - 50) / 100), 0, 1);
         },
-        require: 1,
+        requireFunction: function() {
+            const mineral = Game.getObjectById(util.constant.idMineral);
+            if (mineral && mineral.mineralAmount > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        },
         args: {
             sourceId: util.constant.idMineral,
             targetId: util.constant.idStorage,
