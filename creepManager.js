@@ -68,7 +68,7 @@ const configList = [
     {
         name: "digger_down",
         role: "digger",
-        body: worker10,
+        body: BodyWCM(10, 0, 2),
         require: 1,
         args: {
             sourceId: util.constant.idSourceDown,
