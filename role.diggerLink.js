@@ -25,7 +25,7 @@ module.exports = (args) => ({
 
     target: creep => {
         const link = Game.getObjectById(args.linkId);
-        if (link.store[RESOURCE_ENERGY] == link.store.getCapacity() || creep.store[RESOURCE_ENERGY] == 0) {
+        if (link.store[RESOURCE_ENERGY] == link.store.getCapacity(RESOURCE_ENERGY) || creep.store[RESOURCE_ENERGY] == 0) {
             return true;
         }
         creep.transfer(link, RESOURCE_ENERGY);

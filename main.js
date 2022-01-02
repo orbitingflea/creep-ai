@@ -150,7 +150,7 @@ module.exports.loop = function() {
     // Link
     var link1 = Game.getObjectById(util.constant.idLinkUp);
     var link2 = Game.getObjectById(util.constant.idLinkDown);
-    if (link1.store[RESOURCE_ENERGY] == link1.store.getCapacity()) {
+    if (link1.store[RESOURCE_ENERGY] == link1.store.getCapacity(RESOURCE_ENERGY)) {
         link1.transferEnergy(link2);
     }
 };
