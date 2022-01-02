@@ -2,7 +2,8 @@ const roles = {
     carrier: require('role.carrier'),
     digger: require('role.digger'),
     recycler: require('role.recycler'),
-    upgrader: require('role.upgrader2'),  // WARN
+    upgrader: require('role.upgrader2'),  // CAUTION
+    worker: require('role.worker'),
 };
 
 Creep.prototype.work = function() {

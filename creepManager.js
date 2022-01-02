@@ -4,14 +4,20 @@
 var util = require('util');
 require('creepApi');
 
-const worker10 = [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE];
-const carrier1000 = [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
-    CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
-    CARRY, CARRY, MOVE, CARRY, CARRY, MOVE];
-const carrier500 = [CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE, CARRY, CARRY, MOVE,
-    CARRY, CARRY, MOVE];
-const carrier100 = [CARRY, CARRY, MOVE];
+function BodyWCM(nWork, nCarry, nMove) {
+    var body = [];
+    for (var i = 0; i < nWork; i++) body.push(WORK);
+    for (var i = 0; i < nCarry; i++) body.push(CARRY);
+    for (var i = 0; i < nMove; i++) body.push(MOVE);
+    return body;
+}
+
+const worker10 = BodyWCM(10, 2, 3);
+const carrier1000 = BodyWCM(0, 20, 10);
+const carrier500 = BodyWCM(0, 10, 5);
+const carrier100 = BodyWCM(0, 2, 1);
 const carrierMain = carrier500;  // from storage, lifeline!
+const fullstackWorker = BodyWCM(10, 10, 10);
 
 const configList = [
     {
@@ -125,6 +131,43 @@ const configList = [
             targetId: util.constant.idStorage,
         }
     },
+
+    {
+        name: "builder",
+        role: "worker",
+        body: fullstackWorker,
+        require: 1,
+        argComputer: function() {
+            var sourceId = util.constant.idStorage;
+            var taskList = [];
+            var room = util.myRoom();
+
+            // build structures
+            taskList = taskList.concat(room.find(FIND_CONSTRUCTION_SITES).map((obj) => ({
+                targetId: obj.id,
+                action: 'build',
+                priority: 100
+            })));
+
+            // repair ramparts
+            taskList = taskList.concat(room.find(FIND_MY_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_RAMPART && structure.hits < structure.hitsMax);
+                }
+            }).map((obj) => ({
+                targetId: obj.id,
+                action: 'repair',
+                priority: 50
+            })));
+
+            // upgrade controller
+            taskList.push({
+                targetId: util.constant.idController,
+                action: 'upgrade',
+                priority: 1
+            });
+        }
+    }
 ];
 
 var creepManager = {

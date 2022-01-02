@@ -52,6 +52,29 @@ var util = {
         return null;
     },
 
+    closestTaskWithTopPriority: function(taskList, pos) {
+        var tasks = _.sortBy(taskList, (task) => (task.priority)).reverse();
+        const n = tasks.length;
+        for (var i = 0; i < n; ) {
+            var j = i + 1;
+            while (j < n && tasks[i].priority == tasks[j].priority) {
+                j++;
+            }
+            var closest = pos.findClosestByPath(tasks.slice(i, j).map((task) => Game.getObjectById(task.targetId)));
+            if (closest) {
+                for (var k = i; k < j; k++) {
+                    if (tasks[k].targetId == closest.id) {
+                        return tasks[k];
+                    }
+                }
+                console.log('runtime error');
+                return null;
+            }
+            i = j;
+        }
+        return null;
+    },
+
     getCreepCost: function(body) {
         var cost = 0;
         for (var i = 0; i < body.length; i++) {
