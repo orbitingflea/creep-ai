@@ -60,7 +60,8 @@ var util = {
             while (j < n && tasks[i].priority == tasks[j].priority) {
                 j++;
             }
-            var closest = pos.findClosestByPath(tasks.slice(i, j).map((task) => Game.getObjectById(task.targetId)));
+            var closest = pos.findClosestByPath(tasks.slice(i, j).map((task) => Game.getObjectById(task.targetId)),
+                { range: 3 });
             if (closest) {
                 for (var k = i; k < j; k++) {
                     if (tasks[k].targetId == closest.id) {
