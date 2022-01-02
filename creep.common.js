@@ -14,6 +14,15 @@ var creepCommon = {
         }
         return true;
     },
+
+    prepareGotoPosition2: (posXY) => (creep) => {
+        const pos = creep.room.getPositionAt(...posXY);
+        if (!creep.pos.isEqualTo(pos)) {
+            creep.moveTo(pos, {visualizePathStyle: {stroke: '#ffaa00'}});
+            return false;
+        }
+        return true;
+    },
 };
 
 module.exports = creepCommon;
