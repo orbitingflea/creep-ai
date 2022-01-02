@@ -146,4 +146,11 @@ module.exports.loop = function() {
             roleTower.run(structure);
         }
     }
+
+    // Link
+    var link1 = Game.getObjectById(util.constant.idLinkUp);
+    var link2 = Game.getObjectById(util.constant.idLinkDown);
+    if (link1.store[RESOURCE_ENERGY] == link1.getStoreCapacity()) {
+        link1.transferEnergy(link2);
+    }
 };

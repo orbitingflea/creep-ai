@@ -50,6 +50,7 @@ var utilConstant = {
     idContainerDown: '61c9b463d054a45518e8b5e3',
     idContainerUp: '61c9fced7a3c3521135e617c',
     idLinkUp: '61cbe8e6b199f8706ab9b0ec',
+    idLinkDown: '61cb2c0a63208010d208e1f8',
     idController: '5bbcaf379099fc012e63a55e',
     idContainerNearController: '61cbd8df1682cd84285bc145',
     idStorage: '61cb01a791dde3d80281b58e',

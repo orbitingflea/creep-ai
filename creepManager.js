@@ -89,12 +89,13 @@ const configList = [
 
     {
         name: "digger_up",
-        role: "digger",
+        role: "diggerLink",
         body: worker10,
         require: 1,
         args: {
             sourceId: util.constant.idSourceUp,
             containerId: util.constant.idContainerUp,
+            linkId: util.constant.idLinkUp,
         }
     },
 
