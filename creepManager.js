@@ -150,7 +150,7 @@ const configList = [
                         structure.hits < structure.hitsMax - 10000;
                 }
             });
-            if (constructionSites.length > 0 || ramparts.length > 0) {
+            if (constructionSites.length > 0) {
                 return 2;
             } else {
                 return 1;
