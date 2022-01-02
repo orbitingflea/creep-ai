@@ -35,7 +35,7 @@ module.exports = (args) => ({
 
     source: creep => {
         const source = Game.getObjectById(args.sourceId);  // source 是一个 container / storage
-        if (creep.store.getUsedCapacity() == creep.store.getCapacity() || source.store[RESOURCE_ENERGY] < 100) {
+        if (creep.store.getUsedCapacity() == creep.store.getCapacity() || source.store[RESOURCE_ENERGY] < 50) {
             return true;
         }
         var result = creep.withdraw(source, RESOURCE_ENERGY);
@@ -53,9 +53,13 @@ module.exports = (args) => ({
                                     (obj) => {
                                         return obj && carrierTargetPriority(obj) > 0;
                                     });
+        if (targetList.length == 0) {
+            return true;
+        }
+        
         var target = util.closestObjectWithTopPriority(targetList, carrierTargetPriority, creep.pos);
         if (!target) {
-            creep.say('No Target');
+            creep.say('No Reachable');
             return false;
         }
         if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
