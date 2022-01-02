@@ -166,6 +166,11 @@ const configList = [
                 action: 'upgrade',
                 priority: 1
             });
+
+            return {
+                sourceId: sourceId,
+                taskList: taskList,
+            };
         }
     }
 ];
