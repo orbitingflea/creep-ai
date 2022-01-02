@@ -34,8 +34,9 @@ module.exports = (args) => ({
             return false;
         }
         var target = Game.getObjectById(task.targetId);
-        if (!creep.pos.inRangeTo(target, 3)) {
-            creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
+        var goalRange = task.action == 'build' ? 1 : 3;
+        if (!creep.pos.inRangeTo(target, goalRange)) {
+            creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, range: goalRange});
             return false;
         }
         var result;
