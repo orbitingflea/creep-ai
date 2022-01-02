@@ -9,6 +9,14 @@ var creepCommon = {
     waitGotoPark: () => (creep) => {
         creep.moveTo(util.parkPosition(), { range: 1 });
     },
+
+    prepareGotoWorkingPosition: (pos) => (creep) => {
+        if (!creep.pos.isEqualTo(pos)) {
+            creep.moveTo(pos, {visualizePathStyle: {stroke: '#ffaa00'}});
+            return false;
+        }
+        return true;
+    },
 };
 
 module.exports = creepCommon;
