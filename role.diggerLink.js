@@ -12,10 +12,10 @@ module.exports = (args) => ({
     source: creep => {
         const source = Game.getObjectById(args.sourceId);
         const container = Game.getObjectById(args.containerId);
-        if (creep.store[RESOURCE_ENERGY] == creep.getStoreCapacity()) {
+        if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity()) {
             return true;
         }
-        if (container.store[RESOURCE_ENERGY] >= creep.getStoreCapacity()) {
+        if (container.store[RESOURCE_ENERGY] >= creep.store.getCapacity()) {
             creep.withdraw(container, RESOURCE_ENERGY);
         } else {
             creep.harvest(source);
