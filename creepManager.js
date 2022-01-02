@@ -82,12 +82,13 @@ const configList = [
         body: carrier100,
         require: 1,
         argComputer: function() {
-            return {
+            var result = {
                 storageId: util.constant.idStorage,
                 linkId: util.constant.idLinkDown,
                 containerId: util.constant.idContainerDown,
                 workingPosition: [26, 43],
             };
+            return result;
         }
     },
 
