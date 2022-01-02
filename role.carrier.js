@@ -1,4 +1,5 @@
 var util = require('util');
+var creepCommon = require('creep.common');
 
 function carrierTargetPriority(obj) {
     if (obj.structureType) {
@@ -61,5 +62,7 @@ module.exports = (args) => ({
             creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
         }
         return false;
-    }
+    },
+
+    wait: creepCommon.waitGotoPark(),
 });
