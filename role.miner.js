@@ -13,7 +13,7 @@ module.exports = (args) => ({
         }
         var result = creep.harvest(source);
         if (result != OK) {
-            creep.say(result);
+            // creep.say(result);
         }
         return false;
     },
