@@ -86,9 +86,7 @@ const configList = [
                 storageId: util.constant.idStorage,
                 linkId: util.constant.idLinkDown,
                 containerId: util.constant.idContainerDown,
-                getWorkingPosition: function() {
-                    return util.myRoom().getPositionAt(26, 43);
-                },
+                workingPosition: [26, 43],
             };
         }
     },

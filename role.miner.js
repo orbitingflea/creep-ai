@@ -12,6 +12,9 @@ module.exports = (args) => ({
             return false;
         }
         var result = creep.harvest(extractor);
+        if (result != OK) {
+            creep.say(result);
+        }
         return false;
     },
 
