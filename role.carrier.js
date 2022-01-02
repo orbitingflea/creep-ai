@@ -31,7 +31,7 @@ function carrierTargetPriority(obj) {
 }
 
 module.exports = (args) => ({
-    // arg.sourceId, arg.targetIdList
+    // args.sourceId, args.targetIdList, args.parkWhenWait
 
     source: creep => {
         const source = Game.getObjectById(args.sourceId);  // source 是一个 container / storage
@@ -64,5 +64,5 @@ module.exports = (args) => ({
         return false;
     },
 
-    wait: creepCommon.waitGotoPark(),
+    wait: args.parkWhenWait ? creepCommon.waitGotoPark() : null,
 });

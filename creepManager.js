@@ -43,6 +43,7 @@ const configList = [
                                 structure.structureType == STRUCTURE_SPAWN);
                     }
                 }).map((obj) => obj.id),
+                parkWhenWait: true,
             };
             return result;
         }
@@ -57,7 +58,8 @@ const configList = [
             var result = {
                 sourceId: util.constant.idStorage,
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom())
-                .concat([util.constant.idContainerNearController]),
+                    .concat([util.constant.idContainerNearController]),
+                parkWhenWait: true,
             };
             return result;
         }
@@ -83,6 +85,7 @@ const configList = [
             return {
                 sourceId: util.constant.idContainerDown,
                 targetIdList: [util.constant.idStorage],
+                parkWhenWait: false,
             };
         }
     },
@@ -103,7 +106,7 @@ const configList = [
         name: "carrier_up",
         role: "carrier",
         body: carrier1000,
-        require: 1,
+        require: 0,  // DELETE
         argComputer: function() {
             return {
                 sourceId: util.constant.idContainerUp,
