@@ -201,6 +201,7 @@ const configList = [
         args: {
             sourceId: util.constant.idMineral,
             targetId: util.constant.idStorage,
+            containerId: util.constant.idContainerNearMineral,
         }
     }
 ];
