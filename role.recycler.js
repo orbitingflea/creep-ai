@@ -28,7 +28,7 @@ module.exports = (args) => ({
         var source;
 
         if (droppedList.length == 0 && tombList.length == 0 && ruinList.length == 0) {
-            if (mineContainer.store[RESOURCE_LEMERGIUM] >= 50) {
+            if (mineContainer.store[RESOURCE_LEMERGIUM] >= 200) {
                 source = mineContainer;
             } else {
                 return true;
