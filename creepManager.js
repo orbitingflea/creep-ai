@@ -145,7 +145,7 @@ const configList = [
                 }
             });
             if (constructionSites.length > 0 || ramparts.length > 0) {
-                return 4;
+                return 2;
             } else {
                 return 1;
             }
