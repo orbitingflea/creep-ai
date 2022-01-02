@@ -23,6 +23,15 @@ var creepCommon = {
         }
         return true;
     },
+
+    prepareGotoObject: (id) => (creep) => {
+        const obj = Game.getObjectById(id);
+        if (!creep.pos.isEqualTo(obj.pos)) {
+            creep.moveTo(obj, {visualizePathStyle: {stroke: '#ffaa00'}});
+            return false;
+        }
+        return true;
+    },
 };
 
 module.exports = creepCommon;
