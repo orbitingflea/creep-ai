@@ -21,6 +21,7 @@ module.exports = (args) => ({
                 return ruin.store.getUsedCapacity() > 0;
             }
         });
+
         if (droppedList.length == 0 && tombList.length == 0 && ruinList.length == 0) {
             return true;
         }
@@ -67,5 +68,9 @@ module.exports = (args) => ({
             }
         }
         return false;
-    }
+    },
+
+    wait: creep => {
+        creep.moveTo(util.parkPosition(), { range: 1 });
+    },
 });
