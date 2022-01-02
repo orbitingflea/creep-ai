@@ -136,14 +136,27 @@ const configList = [
         name: "builder",
         role: "worker",
         body: fullstackWorker,
-        require: 1,
+        requireFunction: function() {
+            var constructionSites = util.myRoom().find(FIND_MY_CONSTRUCTION_SITES);
+            var ramparts = util.myRoom().find(FIND_MY_STRUCTURES, {
+                filter: (structure) => {
+                    return structure.structureType == STRUCTURE_RAMPART &&
+                        structure.hits < structure.hitsMax - 10000;
+                }
+            });
+            if (constructionSites.length > 0 || ramparts.length > 0) {
+                return 4;
+            } else {
+                return 1;
+            }
+        },
         argComputer: function() {
             var sourceId = util.constant.idStorage;
             var taskList = [];
             var room = util.myRoom();
 
             // build structures
-            taskList = taskList.concat(room.find(FIND_CONSTRUCTION_SITES).map((obj) => ({
+            taskList = taskList.concat(room.find(FIND_MY_CONSTRUCTION_SITES).map((obj) => ({
                 targetId: obj.id,
                 action: 'build',
                 priority: 100
