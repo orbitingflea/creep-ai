@@ -196,7 +196,7 @@ const configList = [
     {
         name: "miner",
         role: "miner",
-        body: BodyWCM(5, 1, 3),
+        body: BodyWCM(10, 10, 10),
         require: 1,
         args: {
             sourceId: util.constant.idMineral,
