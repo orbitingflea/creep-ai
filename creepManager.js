@@ -214,6 +214,7 @@ var creepManager = {
         for (var i = 0; i < configList.length; i++) {
             var conf = configList[i];
             var numExist = _.filter(Game.creeps, (creep) => creep.memory.configName == conf.name).length;
+            console.log('[DEBUG] ' + conf.name);
             var confRequire = conf.require ? conf.require : conf.requireFunction();
             if (numExist < confRequire) {
                 var confBody = conf.body ? conf.body : conf.bodyDesigner(room.energyCapacityAvailable);
