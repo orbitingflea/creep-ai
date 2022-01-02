@@ -5,7 +5,9 @@ module.exports = (args) => ({
     // args.storageId, args.linkId, args.terminalId, args.containerId
     // move from containerId and linkId to storageId
 
-    prepare: creepCommon.prepareGotoPosition(args.getWorkingPosition()),
+    prepare: creep => {
+        creepCommon.prepareGotoPosition(creep, args.getWorkingPosition());
+    },
 
     source: creep => {
         if (creep.store.getUsedCapacity() == creep.store.getCapacity()) {

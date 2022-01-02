@@ -1,4 +1,5 @@
 var util = require('util');
+var creepCommon = require('creep.common');
 
 module.exports = (args) => ({
     // args.targetId
@@ -71,6 +72,6 @@ module.exports = (args) => ({
     },
 
     wait: creep => {
-        creep.moveTo(util.parkPosition(), { range: 1 });
+        creepCommon.waitGotoPark(creep);
     },
 });
