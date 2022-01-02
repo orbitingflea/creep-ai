@@ -6,6 +6,7 @@ module.exports = (args) => ({
     // move from containerId and linkId to storageId
 
     prepare: creep => {
+        console.log(`[DEBUG] ${args}`);
         creepCommon.prepareGotoPosition(creep, args.getWorkingPosition());
     },
 
