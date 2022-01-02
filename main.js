@@ -96,22 +96,13 @@ function RoomFullEnergy(room) {
 
 function NewCreepLogic() {
     var room = Game.spawns['Spawn1'].room;
-    if (Game.spawns['Spawn1'].spawning || room.energyAvailable < 200) {
+    if (Game.spawns['Spawn1'].spawning || room.energyAvailable < 100) {
         // cannot spawn anything, return
         return;
     }
 
     // New version creeps
     creepManager.run();
-
-    var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-
-    // create 1 old Builder
-    if (builders.length < 1) {
-        if (RoomFullEnergy(room) && TryToSpawnCreep(BuilderDesigner(room.energyAvailable), 'Builder_' + Game.time, {role: 'builder'})) {
-            return;
-        }
-    }
 }
 
 module.exports.loop = function() {
