@@ -56,7 +56,7 @@ module.exports = (args) => ({
         if (targetList.length == 0) {
             return true;
         }
-        
+
         var target = util.closestObjectWithTopPriority(targetList, carrierTargetPriority, creep.pos);
         if (!target) {
             creep.say('No Reachable');

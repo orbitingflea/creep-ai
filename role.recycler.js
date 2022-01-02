@@ -23,18 +23,26 @@ module.exports = (args) => ({
             }
         });
 
+        // extra one
+        var mineContainer = Game.getObjectById(util.constant.idContainerNearMineral);
+        var source;
+
         if (droppedList.length == 0 && tombList.length == 0 && ruinList.length == 0) {
-            return true;
-        }
-        
-        const source = creep.pos.findClosestByPath(droppedList.concat(tombList).concat(ruinList));
-        if (!source) {
-            creep.say('No Reachable');
-            return false;
+            if (mineContainer.store[RESOURCE_LEMERGIUM] >= 50) {
+                source = mineContainer;
+            } else {
+                return true;
+            }
+        } else {
+            source = creep.pos.findClosestByPath(droppedList.concat(tombList).concat(ruinList));
+            if (!source) {
+                creep.say('No Reachable');
+                return false;
+            }
         }
 
         if (!creep.pos.inRangeTo(source, 1)) {
-            creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
+            creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00', range: 1}});
             return false;
         }
 

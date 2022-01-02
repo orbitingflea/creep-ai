@@ -196,7 +196,9 @@ const configList = [
     {
         name: "miner",
         role: "miner",
-        body: BodyWCM(18, 2, 2),
+        bodyDesigner: (energy) => {
+            return BodyWCM(Math.floor((energy - 50) / 100), 0, 1);
+        },
         require: 1,
         args: {
             sourceId: util.constant.idMineral,
