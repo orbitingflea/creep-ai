@@ -28,5 +28,9 @@ global.creepApi = {
     get: function(configName) {
         if (!Memory.creepConfigs) return undefined;
         return Memory.creepConfigs[configName];
+    },
+
+    clean: function() {
+        Memory.creepConfigs = {};
     }
 }
