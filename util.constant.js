@@ -54,6 +54,7 @@ var utilConstant = {
     idController: '5bbcaf379099fc012e63a55e',
     idContainerNearController: '61cbd8df1682cd84285bc145',
     idStorage: '61cb01a791dde3d80281b58e',
+    idExtractor: '61d133fc768aa135b1c2d74e',
 };
 
 module.exports = utilConstant;

@@ -192,6 +192,17 @@ const configList = [
                 taskList: taskList,
             };
         }
+    },
+
+    {
+        name: "miner",
+        role: "miner",
+        body: BodyWCM(1, 1, 1),
+        require: 1,
+        args: {
+            extractorId: util.constant.idExtractor,
+            targetId: util.constant.idStorage,
+        }
     }
 ];
 
