@@ -1,17 +1,17 @@
-// args = {extractorId, targetId}
+// args = {sourceId, targetId}
 var util = require('util');
 
 module.exports = (args) => ({
     source: creep => {
-        const extractor = Game.getObjectById(args.extractorId);
+        const source = Game.getObjectById(args.sourceId);
         if (creep.store.getUsedCapacity() == creep.store.getCapacity()) {
             return true;
         }
-        if (!creep.pos.inRangeTo(extractor, 1)) {
-            creep.moveTo(extractor, {visualizePathStyle: {stroke: '#ffaa00'}, range: 1});
+        if (!creep.pos.inRangeTo(source, 1)) {
+            creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}, range: 1});
             return false;
         }
-        var result = creep.harvest(extractor);
+        var result = creep.harvest(source);
         if (result != OK) {
             creep.say(result);
         }

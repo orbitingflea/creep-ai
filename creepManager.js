@@ -199,7 +199,7 @@ const configList = [
         body: BodyWCM(1, 1, 1),
         require: 1,
         args: {
-            extractorId: util.constant.idExtractor,
+            sourceId: util.constant.idMineral,
             targetId: util.constant.idStorage,
         }
     }
