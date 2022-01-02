@@ -12,3 +12,5 @@ var creepCommon = {
         }
     },
 };
+
+module.exports = creepCommon;
