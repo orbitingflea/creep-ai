@@ -78,14 +78,17 @@ const configList = [
 
     {
         name: "carrier_down",
-        role: "carrier",
+        role: "carrierCenter",
         body: carrier100,
         require: 1,
         argComputer: function() {
             return {
-                sourceId: util.constant.idContainerDown,
-                targetIdList: [util.constant.idStorage],
-                parkWhenWait: false,
+                getWorkingPosition: function() {
+                    return util.myRoom().getPositionAt(26, 43);
+                },
+                storageId: util.constant.idStorage,
+                linkId: util.constant.idLinkDown,
+                containerId: util.constant.idContainerDown,
             };
         }
     },

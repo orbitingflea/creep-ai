@@ -1,5 +1,6 @@
 const roles = {
     carrier: require('role.carrier'),
+    carrierCenter: require('role.carrierCenter'),
     digger: require('role.digger'),
     diggerLink: require('role.diggerLink'),
     recycler: require('role.recycler'),
