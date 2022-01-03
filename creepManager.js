@@ -171,7 +171,7 @@ const configList = [
             // repair ramparts
             taskList = taskList.concat(room.find(FIND_MY_STRUCTURES, {
                 filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_RAMPART && structure.hits < structure.hitsMax);
+                    return (structure.structureType == STRUCTURE_RAMPART && structure.hits < util.constant.hitsMaxRampart);
                 }
             }).map((obj) => ({
                 targetId: obj.id,
