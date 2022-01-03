@@ -2,7 +2,7 @@
 // args.sourceId 定义了获取能量的地方，通常是 storage id
 // args.taskList 定义了当前这个 worker 需要完成的任务列表，每个任务包含三个元素：
 // 1. targetId
-// 2. action: 'build' / 'repair' / 'upgrade' / 'harvest'
+// 2. action: 'build' / 'repair' / 'upgrade'
 // 3. priority
 // 工作的时候会在 priority 并列最高的任务中找到最近的，然后执行
 
@@ -34,7 +34,7 @@ module.exports = (args) => ({
             return false;
         }
         var target = Game.getObjectById(task.targetId);
-        var goalRange = task.action == 'harvest' ? 1 : 3;
+        var goalRange = 3;
         if (!creep.pos.inRangeTo(target, goalRange)) {
             creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, range: goalRange});
             return false;
