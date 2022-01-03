@@ -7,6 +7,7 @@
 // 工作的时候会在 priority 并列最高的任务中找到最近的，然后执行
 
 var util = require('util');
+var creepCommon = require('creep.common');
 
 module.exports = (args) => ({
     source: creep => {
@@ -61,5 +62,7 @@ module.exports = (args) => ({
             return false;
         }
         return false;
-    }
+    },
+
+    wait: creepCommon.waitGotoPark2(),
 });

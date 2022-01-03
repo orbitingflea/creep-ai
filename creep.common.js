@@ -7,6 +7,10 @@ var creepCommon = {
         creep.moveTo(util.parkPosition(), { range: 1 });
     },
 
+    waitGotoPark2: () => (creep) => {
+        creep.moveTo(util.parkPosition(), { range: 1 });
+    },
+
     prepareGotoPosition: (creep, pos) => {
         if (!creep.pos.isEqualTo(pos)) {
             creep.moveTo(pos, {visualizePathStyle: {stroke: '#ffaa00'}});
