@@ -11,7 +11,7 @@ var util = require('util');
 module.exports = (args) => ({
     source: creep => {
         const source = Game.getObjectById(args.sourceId);
-        if (creep.store.getUsedCapacity() == creep.store.getCapacity() || source.store[RESOURCE_ENERGY] < 10000) {
+        if (creep.store.getUsedCapacity() == creep.store.getCapacity() || source.store[RESOURCE_ENERGY] < 100000) {
             return true;
         }
         var result = creep.withdraw(source, RESOURCE_ENERGY);
