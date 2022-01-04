@@ -161,7 +161,7 @@ const configList = [
             var sourceId = util.constant.idStorage;
             return {
                 sourceId: sourceId,
-                targetList: taskCommon.GetWorkerTasks(util.myRoom()),
+                taskList: taskCommon.GetWorkerTasks(util.myRoom()),
             };
         }
     },
