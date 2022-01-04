@@ -202,7 +202,7 @@ const configList = [
         name: "reserver_E38S46",
         role: "reserver",
         body: [CLAIM, MOVE],
-        require: 1,
+        require: 0,
         args: {
             roomName: "E38S46",
         }
@@ -212,7 +212,7 @@ const configList = [
         name: "harvester_E38S46",
         role: "basic_harvester",
         body: fullstackWorker,
-        require: 3,
+        require: 1,
         args: {
             sourceId: util.constant.idSourceE38S46,
             targetId: util.constant.idStorage,
