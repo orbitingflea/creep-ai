@@ -13,7 +13,7 @@ module.exports = {
 
         // repair structures
         taskList = taskList.concat(room.find(FIND_STRUCTURES, {
-            filter: (structure) => (structure.hits < structure.hitsMax &&
+            filter: (structure) => (structure.hits < structure.hitsMax - 10 &&
                 structure.structureType != STRUCTURE_RAMPART &&
                 structure.structureType != STRUCTURE_WALL)
         }).map((obj) => ({

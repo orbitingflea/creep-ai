@@ -16,8 +16,9 @@ module.exports = (args) => ({
         if (creep.store[RESOURCE_ENERGY] == 0) {
             return true;
         }
-        const taskList = _.filter(args.taskList, (task) => {
-            return Game.getObjectById(task.targetId)
+        const taskList = args.taskList.filter((task) => {
+            var obj = Game.getObjectById(task.targetId);
+            return obj && !(task.action == 'repair' && obj.hits >= obj.hitsMax - 10);
         });
         var task = util.closestTaskWithTopPriority(taskList, creep.pos);
         if (!task) {
