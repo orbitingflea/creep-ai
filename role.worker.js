@@ -19,11 +19,6 @@ module.exports = (args) => ({
         const taskList = _.filter(args.taskList, (task) => {
             return Game.getObjectById(task.targetId)
         });
-        console.log('[DEBUG] begin task list');
-        for (var i = 0; i < taskList.length; i++) {
-            console.log(`action: ${taskList[i].action}, id: ${taskList[i].targetId}`);
-        }
-        console.log('[DEBUG] end task list');
         var task = util.closestTaskWithTopPriority(taskList, creep.pos);
         if (!task) {
             creep.say('No Task');
