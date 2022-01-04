@@ -10,7 +10,7 @@ module.exports = (args) => ({
         if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity() || source.energy == 0) {
             return true;
         }
-        if (creep.inRangeTo(source, 1)) {
+        if (creep.pos.inRangeTo(source, 1)) {
             creep.harvest(source);
         } else {
             creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00', range: 1}});
@@ -23,7 +23,7 @@ module.exports = (args) => ({
         if (creep.store[RESOURCE_ENERGY] == 0) {
             return true;
         }
-        if (creep.inRangeTo(controller, 3)) {
+        if (creep.pos.inRangeTo(controller, 3)) {
             creep.upgradeController(controller);
         } else {
             creep.moveTo(controller, {visualizePathStyle: {stroke: '#ffffff', range: 3}});
