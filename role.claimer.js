@@ -4,8 +4,19 @@ var creepCommon = require('creep.common');
 
 module.exports = (args) => ({
     prepare: creep => {
-        creep.moveTo(new RoomPosition(31, 39, 'E39S45'));
-        return false;
+        const roomName = 'E39S45';
+        const controller = Game.getObjectById(args.controllerId);
+        if (controller) {
+            if (creep.pos.inRangeTo(controller, 1)) {
+                return true;
+            } else {
+                creep.moveTo(controller, {visualizePathStyle: {stroke: '#ffffff'}});
+                return false;
+            }
+        } else {
+            creep.moveTo(new RoomPosition(10, 10, roomName));
+            return false;
+        }
     },
 
     source: creep => {
