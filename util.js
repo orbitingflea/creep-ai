@@ -25,7 +25,7 @@ var util = {
     },
 
     myRoom: function() {
-        return Game.spawns['Spawn1'].room;
+        return Game.rooms['E38S45'];
     },
 
     myRoom2: function() {
