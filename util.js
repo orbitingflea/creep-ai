@@ -29,7 +29,7 @@ var util = {
     },
 
     myRoom2: function() {
-        return Game.room['E39S45'];
+        return Game.rooms['E39S45'];
     },
 
     parkPosition: function() {
