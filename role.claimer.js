@@ -3,7 +3,10 @@ var util = require('util');
 var creepCommon = require('creep.common');
 
 module.exports = (args) => ({
-    prepare: creepCommon.prepareGotoObjectInRange(args.controllerId, 1),
+    prepare: creep => {
+        creep.moveTo(new RoomPosition(31, 39, 'E39S45'));
+        return false;
+    },
 
     source: creep => {
         return true;
