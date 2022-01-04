@@ -11,7 +11,7 @@ module.exports = (args) => ({
         }
         const s_room = Game.rooms[args.sourceRoom];
         if (creep.room != s_room) {
-            creep.moveTo(s_room.getPositionAt(25, 25), {visualizePathStyle: {stroke: '#ffaa00', range: 10}});
+            creep.moveTo(new RoomPosition(25, 25, args.sourceRoom), {visualizePathStyle: {stroke: '#ffaa00', range: 10}});
             return false;
         }
         const source = Game.getObjectById(args.sourceId);
