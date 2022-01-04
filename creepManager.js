@@ -223,6 +223,17 @@ const configList = [
             controllerId: util.constant.idController2
         }
     },
+
+    {
+        name: "upgrader_neighbor",
+        role: "basic_upgrader",
+        body: fullstackWorker,
+        require: 1,
+        args: {
+            controllerId: util.constant.idController2,
+            sourceId: util.constant.idSource2,
+        }
+    }
 ];
 
 var creepManager = {
