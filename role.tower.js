@@ -23,9 +23,12 @@ var roleTower = {
             return;
         }
 
-        if (tower.energy < tower.energyCapacity * 0.4) {
+        if (tower.energy < tower.energyCapacity * 0.9) {
             return;
         }
+        
+        // TMP: do not repair
+        return;
 
         // repair damaged structure
         var damagedStructure = tower.room.find(FIND_STRUCTURES, {

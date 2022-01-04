@@ -151,10 +151,10 @@ const configList = [
                         structure.hits < structure.hitsMax - 10000;
                 }
             });
-            if (constructionSites.length > 0) {
-                return 1;
+            if (constructionSites.length >= 3) {
+                return 2;
             } else {
-                return 0;
+                return 1;
             }
         },
         argComputer: function() {
