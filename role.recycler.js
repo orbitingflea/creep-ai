@@ -54,6 +54,7 @@ module.exports = (args) => ({
                 var type = types[i];
                 if (source.store[type] > 0) {
                     creep.withdraw(source, type);
+                    return false;
                 }
             }
         }

@@ -264,7 +264,7 @@ var configList = [
 
 var creepManager = {
     updateConfigs: function() {
-        creepApi.clean();
+        // creepApi.clean();
         for (var i = 0; i < configList.length; i++) {
             var conf = configList[i];
             var args = conf.args ? conf.args : conf.argComputer();
