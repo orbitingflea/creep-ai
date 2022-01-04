@@ -7,10 +7,10 @@ var creepManager = require('creepManager');
 var util = require('util');
 
 function HarvesterThroughput(n_work, n_carry, n_move) {
-    // 假设往返距离都是 25 格，并且都是平原。
+    // 假设往返距离都是 50 格，并且都是平原。
     var load = n_carry * 50;
     var load_time = load / n_work;
-    var distance_assumption = 25;
+    var distance_assumption = 50;
     var move_latency_fast = Math.ceil(n_work / n_move);
     var move_latency_slow = Math.ceil((n_work + n_carry) / n_move);
     var time_consumed = load_time + distance_assumption * move_latency_slow + distance_assumption * move_latency_fast;
@@ -151,3 +151,5 @@ module.exports.loop = function() {
         link1.transferEnergy(link2);
     }
 };
+
+module.exports.HarvesterDesigner = HarvesterDesigner;
