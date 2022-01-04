@@ -13,6 +13,7 @@ module.exports = (args) => ({
             creep.moveTo(new RoomPosition(25, 25, args.roomName), {visualizePathStyle: {stroke: '#ffffff', range: 10}});
             return false;
         }
+        const room = creep.room;
 
         const droppedList = room.find(FIND_DROPPED_RESOURCES);
         const tombList = room.find(FIND_TOMBSTONES, {
