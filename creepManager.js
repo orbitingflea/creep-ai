@@ -191,10 +191,11 @@ const configList = [
         body: fullstackWorker,
         require: 1,
         argComputer: function() {
-            return {
+            var res = {
                 sourceId: util.constant.idSource2,
                 taskList: taskCommon.GetWorkerTasks(util.myRoom2()),
-            }
+            };
+            return res;
         },
     },
 
