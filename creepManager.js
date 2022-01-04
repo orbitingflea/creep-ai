@@ -177,7 +177,7 @@ var configList = [
     {
         name: 'carrier_n',
         role: 'carrier',
-        body: BodyWCM(0, 4, 2),
+        body: carrier500,
         require: 1,
         argComputer: function() {
             var result = {
