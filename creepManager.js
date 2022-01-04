@@ -249,17 +249,6 @@ var configList = [
             targetId: util.constant.idStorage,
         }
     },
-
-    {
-        name: "harvester_E39S46",
-        role: "outer_harvester",
-        body: BodyWCM(5, 15, 10),
-        require: 1,
-        args: {
-            roomName: 'E39S46',
-            targetId: util.constant.idRoom2.container_near_controller,
-        }
-    },
 ];
 
 var creepManager = {
