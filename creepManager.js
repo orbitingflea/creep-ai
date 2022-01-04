@@ -219,35 +219,6 @@ const configList = [
             targetId: util.constant.idStorage,
         }
     },
-
-    {
-        name: "harvester_E37S46",
-        role: "outer_harvester",
-        body: BodyWCM(5, 15, 10),
-        require: 2,
-        args: {
-            roomName: 'E37S46',
-            targetId: util.constant.idStorage,
-        }
-    },
-
-    {
-        name: "miner_E37S46",
-        role: "outer_miner",
-        body: BodyWCM(10, 10, 10),
-        requireFunction: function() {
-            var mineral = Game.getObjectById(util.constant.idMineralE37S46);
-            if (mineral && mineral.mineralAmount > 0) {
-                return 1;
-            } else {
-                return 0;
-            }
-        },
-        args: {
-            roomName: 'E37S46',
-            targetId: util.constant.idStorage,
-        }
-    },
 ];
 
 var creepManager = {
