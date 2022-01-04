@@ -25,7 +25,10 @@ module.exports = (args) => ({
 
     target: creep => {
         const target = Game.getObjectById(args.constrollerId);
-        creep.claimController(target);
+        var result = creep.claimController(target);
+        if (result != OK) {
+            console.log('[INFO] claimController failed: ' + result);
+        }
         return false;
     }
 });
