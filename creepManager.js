@@ -225,7 +225,7 @@ const configList = [
         name: "harvester_E39S46",
         role: "outer_harvester",
         body: BodyWCM(5, 15, 10),
-        require: 2,
+        require: 1,
         args: {
             roomName: 'E39S46',
             targetId: util.constant.idStorage,
