@@ -218,7 +218,7 @@ const configList = [
         name: "claimer",
         role: "claimer",
         body: [CLAIM, MOVE, MOVE, MOVE, MOVE],
-        require: 1,
+        require: 0,
         args: {
             controllerId: util.constant.idController2
         }
