@@ -11,6 +11,7 @@ const roles = {
     reserver: require('role.reserver'),
     basic_upgrader: require('role.basic_upgrader'),
     basic_harvester: require('role.basic_harvester'),
+    outer_harvester: require('role.outer_harvester'),
 };
 
 Creep.prototype.work = function() {

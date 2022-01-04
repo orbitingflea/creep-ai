@@ -210,13 +210,12 @@ const configList = [
 
     {
         name: "harvester_E38S46",
-        role: "basic_harvester",
+        role: "outer_harvester",
         body: fullstackWorker,
         require: 1,
         args: {
-            sourceId: util.constant.idSourceE38S46,
+            roomName: 'E38S46',
             targetId: util.constant.idStorage,
-            sourceRoom: "E38S46",
         }
     }
 ];
