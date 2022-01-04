@@ -9,6 +9,7 @@ const roles = {
     miner: require('role.miner'),
     claimer: require('role.claimer'),
     basic_upgrader: require('role.basic_upgrader'),
+    basic_harvester: require('role.basic_harvester'),
 };
 
 Creep.prototype.work = function() {

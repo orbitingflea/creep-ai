@@ -219,6 +219,18 @@ const configList = [
                 taskList: taskCommon.GetWorkerTasks(util.myRoom2()),
             }
         },
+    },
+
+    {
+        name: "harvester_E38S46",
+        role: "basic_harvester",
+        body: fullstackWorker,
+        require: 1,
+        args: {
+            sourceId: util.constant.idSourceE38S46,
+            targetId: util.constant.idStorage,
+            sourceRoom: "E38S46",
+        }
     }
 ];
 
