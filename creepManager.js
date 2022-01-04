@@ -210,7 +210,7 @@ const configList = [
 
     {
         name: "worker_neighbor",
-        role: "basic_worker",
+        role: "worker",
         body: fullstackWorker,
         require: 1,
         argComputer: function() {
