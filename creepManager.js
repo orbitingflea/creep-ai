@@ -257,7 +257,7 @@ var configList = [
         require: 1,
         args: {
             roomName: 'E39S46',
-            targetId: util.constant.idStorage,
+            targetId: util.constant.idRoom2.container_near_controller,
         }
     },
 ];
