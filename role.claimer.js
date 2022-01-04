@@ -3,7 +3,7 @@ var util = require('util');
 var creepCommon = require('creep.common');
 
 module.exports = (args) => ({
-    prepare: creepCommon.prepareGotoObject(args.controllerId, 1),
+    prepare: creepCommon.prepareGotoObjectInRange(args.controllerId, 1),
 
     source: creep => {
         return true;

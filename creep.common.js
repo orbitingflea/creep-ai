@@ -28,7 +28,16 @@ var creepCommon = {
         return true;
     },
 
-    prepareGotoObject: (id, range = 0) => (creep) => {
+    prepareGotoObject: (id) => (creep) => {
+        const obj = Game.getObjectById(id);
+        if (!creep.pos.inRangeTo(obj.pos, 0)) {
+            creep.moveTo(obj, {visualizePathStyle: {stroke: '#ffaa00'}});
+            return false;
+        }
+        return true;
+    },
+
+    prepareGotoObjectInRange: (id, range) => (creep) => {
         const obj = Game.getObjectById(id);
         if (!creep.pos.inRangeTo(obj.pos, range)) {
             creep.moveTo(obj, {visualizePathStyle: {stroke: '#ffaa00', range: range}});
