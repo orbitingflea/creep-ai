@@ -10,17 +10,7 @@ var util = require('util');
 var creepCommon = require('creep.common');
 
 module.exports = (args) => ({
-    source: creep => {
-        const source = Game.getObjectById(args.sourceId);
-        if (creep.store.getUsedCapacity() == creep.store.getCapacity() || source.store[RESOURCE_ENERGY] < 1000000) {
-            return true;
-        }
-        var result = creep.withdraw(source, RESOURCE_ENERGY);
-        if (result == ERR_NOT_IN_RANGE) {
-            creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
-        }
-        return false;
-    },
+    source: creepCommon.sourceById(args.sourceId),
 
     target: creep => {
         if (creep.store[RESOURCE_ENERGY] == 0) {
