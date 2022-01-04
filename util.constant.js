@@ -62,6 +62,7 @@ var utilConstant = {
     idSource2: '5bbcaf4a9099fc012e63a6e7',
 
     idSourceE38S46: '5bbcaf379099fc012e63a561',
+    idMineralE37S46: '5bbcb647d867df5e542076b4',
 
     hitsMaxRampart: 1000000,
 };
