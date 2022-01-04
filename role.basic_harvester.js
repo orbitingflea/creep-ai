@@ -1,7 +1,7 @@
 var util = require('util');
 
 module.exports = (args) => ({
-    // args: {sourceRoom, sourceId, targetRoom, targetId}
+    // args: {sourceRoom, sourceId, targetId}
 
     prepare: null,
 

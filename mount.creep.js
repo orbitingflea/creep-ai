@@ -8,6 +8,7 @@ const roles = {
     worker: require('role.worker'),
     miner: require('role.miner'),
     claimer: require('role.claimer'),
+    reserver: require('role.reserver'),
     basic_upgrader: require('role.basic_upgrader'),
     basic_harvester: require('role.basic_harvester'),
 };

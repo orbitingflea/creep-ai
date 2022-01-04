@@ -106,19 +106,6 @@ const configList = [
     },
 
     {
-        name: "carrier_up",
-        role: "carrier",
-        body: carrier1000,
-        require: 0,  // DELETE
-        argComputer: function() {
-            return {
-                sourceId: util.constant.idContainerUp,
-                targetIdList: [util.constant.idStorage],
-            };
-        }
-    },
-
-    {
         name: "upgrader",
         role: "upgrader",
         body: worker10,
@@ -188,16 +175,6 @@ const configList = [
     },
 
     {
-        name: "claimer",
-        role: "claimer",
-        body: [CLAIM, MOVE, MOVE, MOVE, MOVE],
-        require: 0,
-        args: {
-            controllerId: util.constant.idController2
-        }
-    },
-
-    {
         name: "upgrader_neighbor",
         role: "basic_upgrader",
         body: fullstackWorker,
@@ -222,10 +199,20 @@ const configList = [
     },
 
     {
+        name: "reserver_E38S46",
+        role: "reserver",
+        body: [CLAIM, MOVE],
+        require: 1,
+        args: {
+            roomName: "E38S46",
+        }
+    },
+
+    {
         name: "harvester_E38S46",
         role: "basic_harvester",
         body: fullstackWorker,
-        require: 1,
+        require: 3,
         args: {
             sourceId: util.constant.idSourceE38S46,
             targetId: util.constant.idStorage,
