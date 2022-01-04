@@ -20,7 +20,7 @@ const carrier100 = BodyWCM(0, 2, 1);
 const carrierMain = carrier500;  // from storage, lifeline!
 const fullstackWorker = BodyWCM(10, 10, 10);
 
-const configList = [
+var configList = [
     {
         name: 'carrier_sos',
         role: 'carrier',
@@ -67,7 +67,7 @@ const configList = [
     },
 
     {
-        name: "carrier_down",
+        name: "carrier_center",
         role: "carrierCenter",
         body: carrier100,
         require: 1,
@@ -175,13 +175,18 @@ const configList = [
     },
 
     {
-        name: "upgrader_neighbor",
-        role: "basic_upgrader",
-        body: fullstackWorker,
+        name: 'carrier_n',
+        role: 'carrier',
+        body: BodyWCM(0, 4, 2),
         require: 1,
-        args: {
-            controllerId: util.constant.idController2,
-            sourceId: util.constant.idSource2,
+        argComputer: function() {
+            var result = {
+                sourceId: util.constant.idRoom2.container_near_source,
+                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom2())
+                    .concat([util.constant.idRoom2.container_near_controller]),
+                parkWhenWait: false,
+            };
+            return result;
         }
     },
 
@@ -192,12 +197,36 @@ const configList = [
         require: 1,
         argComputer: function() {
             var res = {
-                sourceId: util.constant.idSource2,
+                sourceId: util.constant.idRoom2.container_near_controller,
                 taskList: taskCommon.GetWorkerTasks(util.myRoom2()),
             };
             return res;
         },
     },
+
+    {
+        name: "upgrader_n",
+        role: "upgrader",
+        body: BodyWCM(5, 1, 2),
+        require: 1,
+        args: {
+            controllerId: util.constant.idRoom2.controller,
+            containerId: util.constant.idRoom2.container_near_controller,
+        }
+    },
+
+    {
+        name: "digger_n",
+        role: "digger",
+        body: BodyWCM(10, 0, 2),
+        require: 1,
+        args: {
+            sourceId: util.constant.idRoom2.source,
+            containerId: util.constant.idRoom2.container_near_source,
+        }
+    },
+
+    // ---------- outer harvester ----------
 
     {
         name: "harvester_E38S46",

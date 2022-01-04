@@ -61,8 +61,12 @@ var utilConstant = {
     idController2: '5bbcaf4a9099fc012e63a6e6',
     idSource2: '5bbcaf4a9099fc012e63a6e7',
 
-    idSourceE38S46: '5bbcaf379099fc012e63a561',
-    idMineralE37S46: '5bbcb647d867df5e542076b4',
+    idRoom2: {
+        container_near_controller: '61d4151e76241cb831f71b24',
+        controller: '5bbcaf4a9099fc012e63a6e6',
+        container_near_source: '61d3c908896d0d4e9caa5551',
+        source: '5bbcaf4a9099fc012e63a6e7',
+    },
 
     hitsMaxRampart: 1000000,
 };
