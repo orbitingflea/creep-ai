@@ -53,7 +53,7 @@ var creepCommon = {
         const type = util.getObjectType(source);
         if (creep.store.getUsedCapacity() == creep.store.getCapacity() ||
             (type == 'source' && source.energy == 0) ||
-            (type == 'storage' && source.store[RESOURCE_ENERGY] <= 1000000)) {
+            (type.indexOf('storage') != -1 && source.store[RESOURCE_ENERGY] <= 1000000)) {
             return true;
         }
         if (creep.pos.inRangeTo(source, 1)) {
