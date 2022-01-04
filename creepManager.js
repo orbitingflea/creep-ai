@@ -2,6 +2,7 @@
 // 这个文件规定了需要的 creep 集合。如果某种类型 creep 太少，则尝试 spawn。
 
 var util = require('util');
+var taskCommon = require('task.common');
 require('creepApi');
 
 function BodyWCM(nWork, nCarry, nMove) {
@@ -66,17 +67,6 @@ const configList = [
     },
 
     {
-        name: "digger_down",
-        role: "digger",
-        body: BodyWCM(10, 0, 2),
-        require: 1,
-        args: {
-            sourceId: util.constant.idSourceDown,
-            containerId: util.constant.idContainerDown,
-        }
-    },
-
-    {
         name: "carrier_down",
         role: "carrierCenter",
         body: carrier100,
@@ -89,6 +79,17 @@ const configList = [
                 workingPosition: [26, 43],
             };
             return result;
+        }
+    },
+
+    {
+        name: "digger_down",
+        role: "digger",
+        body: BodyWCM(10, 0, 2),
+        require: 1,
+        args: {
+            sourceId: util.constant.idSourceDown,
+            containerId: util.constant.idContainerDown,
         }
     },
 
@@ -158,37 +159,9 @@ const configList = [
         },
         argComputer: function() {
             var sourceId = util.constant.idStorage;
-            var taskList = [];
-            var room = util.myRoom();
-
-            // build structures
-            taskList = taskList.concat(room.find(FIND_MY_CONSTRUCTION_SITES).map((obj) => ({
-                targetId: obj.id,
-                action: 'build',
-                priority: 100
-            })));
-
-            // repair ramparts
-            taskList = taskList.concat(room.find(FIND_MY_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_RAMPART && structure.hits < util.constant.hitsMaxRampart);
-                }
-            }).map((obj) => ({
-                targetId: obj.id,
-                action: 'repair',
-                priority: 50
-            })));
-
-            // upgrade controller
-            taskList.push({
-                targetId: util.constant.idController,
-                action: 'upgrade',
-                priority: 1
-            });
-
             return {
                 sourceId: sourceId,
-                taskList: taskList,
+                targetIdList: taskCommon.GetWorkerTasks(util.myRoom()),
             };
         }
     },
@@ -233,6 +206,19 @@ const configList = [
             controllerId: util.constant.idController2,
             sourceId: util.constant.idSource2,
         }
+    },
+
+    {
+        name: "worker_neighbor",
+        role: "basic_worker",
+        body: fullstackWorker,
+        require: 1,
+        argComputer: function() {
+            return {
+                sourceId: util.constant.idSource2,
+                taskList: taskCommon.GetWorkerTasks(util.myRoom2()),
+            }
+        },
     }
 ];
 
