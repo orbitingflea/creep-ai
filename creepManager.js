@@ -218,7 +218,7 @@ var configList = [
     {
         name: "digger_n",
         role: "digger",
-        body: BodyWCM(10, 0, 2),
+        body: BodyWCM(10, 0, 5),
         require: 1,
         args: {
             sourceId: util.constant.idRoom2.source,
