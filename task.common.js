@@ -29,6 +29,8 @@ module.exports = {
             priority: 1
         });
 
+        console.log('[DEBUG] ' + taskList.length);
+
         return taskList;
     }
 };
