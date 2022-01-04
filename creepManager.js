@@ -211,13 +211,13 @@ const configList = [
     {
         name: "harvester_E38S46",
         role: "outer_harvester",
-        body: fullstackWorker,
+        body: BodyWCM(5, 15, 10),
         require: 1,
         args: {
             roomName: 'E38S46',
             targetId: util.constant.idStorage,
         }
-    }
+    },
 ];
 
 var creepManager = {
