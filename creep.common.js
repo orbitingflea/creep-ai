@@ -28,10 +28,10 @@ var creepCommon = {
         return true;
     },
 
-    prepareGotoObject: (id) => (creep) => {
+    prepareGotoObject: (id, range = 0) => (creep) => {
         const obj = Game.getObjectById(id);
-        if (!creep.pos.isEqualTo(obj.pos)) {
-            creep.moveTo(obj, {visualizePathStyle: {stroke: '#ffaa00'}});
+        if (!creep.pos.inRangeTo(obj.pos, range)) {
+            creep.moveTo(obj, {visualizePathStyle: {stroke: '#ffaa00', range: range}});
             return false;
         }
         return true;

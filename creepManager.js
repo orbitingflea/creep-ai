@@ -212,7 +212,17 @@ const configList = [
             targetId: util.constant.idStorage,
             containerId: util.constant.idContainerNearMineral,
         }
-    }
+    },
+
+    {
+        name: "claimer",
+        role: "claimer",
+        body: [CLAIM, MOVE, MOVE, MOVE, MOVE],
+        require: 1,
+        args: {
+            controllerId: util.constant.idController2
+        }
+    },
 ];
 
 var creepManager = {

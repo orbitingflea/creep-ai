@@ -58,6 +58,8 @@ var utilConstant = {
     idMineral: '5bbcb651d867df5e5420771f',
     idContainerNearMineral: '61d1bde8c970355bfa5970a7',
 
+    idController2: '5bbcaf4a9099fc012e63a6e6',
+
     hitsMaxRampart: 1000000,
 };
 
