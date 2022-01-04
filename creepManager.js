@@ -199,22 +199,23 @@ const configList = [
     },
 
     {
-        name: "reserver_E38S46",
-        role: "reserver",
-        body: [CLAIM, MOVE],
-        require: 0,
-        args: {
-            roomName: "E38S46",
-        }
-    },
-
-    {
         name: "harvester_E38S46",
         role: "outer_harvester",
         body: BodyWCM(5, 15, 10),
         require: 1,
         args: {
             roomName: 'E38S46',
+            targetId: util.constant.idStorage,
+        }
+    },
+
+    {
+        name: "harvester_E37S45",
+        role: "outer_harvester",
+        body: BodyWCM(5, 15, 10),
+        require: 1,
+        args: {
+            roomName: 'E37S45',
             targetId: util.constant.idStorage,
         }
     },
