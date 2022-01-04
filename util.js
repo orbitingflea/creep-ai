@@ -28,6 +28,10 @@ var util = {
         return Game.spawns['Spawn1'].room;
     },
 
+    myRoom2: function() {
+        return Game.room['E39S45'];
+    },
+
     parkPosition: function() {
         return this.myRoom().getPositionAt(17, 33);
     },
