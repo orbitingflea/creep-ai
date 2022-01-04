@@ -6,7 +6,7 @@ module.exports = (args) => ({
     prepare: creep => {
         const s_room = Game.rooms[args.roomName];
         if (creep.room != s_room) {
-            creep.moveTo(new RoomPosition(25, 25, args.sourceRoom), {visualizePathStyle: {stroke: '#ffffff', range: 10}});
+            creep.moveTo(new RoomPosition(25, 25, args.roomName), {visualizePathStyle: {stroke: '#ffffff', range: 10}});
             return false;
         }
         const controller = s_room.controller;
