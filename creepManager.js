@@ -124,13 +124,17 @@ var configList = [
         argComputer: function() {
             var targetId = util.constant.idStorage;
             var sourceIdList = [];
-            var roomList = [util.myRoom(), util.myRoom2()];
-            for (var i = 0; i < roomList.length; i++) {
-                var room = roomList[i];
-                sourceIdList = sourceIdList.concat(taskCommon.GetRecyclerTargets(room));
-            }
-            if (Game.getObjectById(util.constant.idContainerNearMineral).store[RESOURCE_LEMERGIUM] > 200) {
-                sourceIdList.push(util.constant.idContainerNearMineral);
+            try {
+                var roomList = [util.myRoom(), util.myRoom2()];
+                for (var i = 0; i < roomList.length; i++) {
+                    var room = roomList[i];
+                    sourceIdList = sourceIdList.concat(taskCommon.GetRecyclerTargets(room));
+                }
+                if (Game.getObjectById(util.constant.idContainerNearMineral).store[RESOURCE_LEMERGIUM] > 200) {
+                    sourceIdList.push(util.constant.idContainerNearMineral);
+                }
+            } catch (error) {
+                console.log(error);
             }
             return {
                 targetId: targetId,

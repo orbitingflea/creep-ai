@@ -9,6 +9,11 @@ module.exports = (args) => ({
         if (creep.store.getUsedCapacity() == creep.store.getCapacity()) {
             return true;
         }
+        
+        console.log(`[INFO] I am recycler`);
+        for (var i = 0; i < args.sourceIdList.length; i++) {
+            console.log(`[INFO] - target: ${args.sourceIdList[i]}`)
+        }
 
         var sourceList = args.sourceIdList;
         if (sourceList.length == 0) {
