@@ -178,12 +178,12 @@ var configList = [
         name: 'carrier_n',
         role: 'carrier',
         body: carrier500,
-        require: 1,
+        require: 2,
         argComputer: function() {
             var result = {
                 sourceId: util.constant.idRoom2.container_near_source,
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom2())
-                    .concat([util.constant.idRoom2.container_near_controller]),
+                    .concat([util.constant.idRoom2.container_near_controller, util.constant.idStorage]),
                 parkWhenWait: false,
             };
             return result;
