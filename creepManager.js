@@ -225,7 +225,7 @@ var configList = [
     {
         name: "worker_neighbor",
         role: "worker",
-        body: BodyWCM(5, 5, 5),
+        body: BodyWCM(10, 10, 10),
         require: 1,
         argComputer: function() {
             var res = {
@@ -239,7 +239,7 @@ var configList = [
     {
         name: "upgrader_n",
         role: "upgrader",
-        body: BodyWCM(5, 1, 2),
+        body: BodyWCM(10, 1, 6),
         require: 1,
         args: {
             controllerId: util.constant.idRoom2.controller,
