@@ -129,7 +129,7 @@ var configList = [
                 var room = roomList[i];
                 sourceIdList = sourceIdList.concat(taskCommon.GetRecyclerTargets(room));
             }
-            if (Game.getObjectById(util.constant.idContainerNearMineral).store[LEMERGIUM] > 200) {
+            if (Game.getObjectById(util.constant.idContainerNearMineral).store[RESOURCE_LEMERGIUM] > 200) {
                 sourceIdList.push(util.constant.idContainerNearMineral);
             }
             return {
