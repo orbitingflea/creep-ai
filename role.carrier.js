@@ -59,8 +59,7 @@ module.exports = (args) => ({
 
         var target = util.closestObjectWithTopPriority(targetList, carrierTargetPriority, creep.pos);
         if (!target) {
-            creep.say('No Reachable');
-            return false;
+            target = targetList[0];
         }
         if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
