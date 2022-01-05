@@ -290,7 +290,6 @@ var creepManager = {
     },
 
     run: function() {
-        this.updateConfigs();
         var room = util.myRoom();
         var spawner = Game.spawns['Spawn1'];
         if (spawner.spawning) {

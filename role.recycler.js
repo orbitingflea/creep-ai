@@ -12,18 +12,18 @@ module.exports = (args) => ({
         
         console.log(`[INFO] I am recycler`);
         for (var i = 0; i < args.sourceIdList.length; i++) {
-            console.log(`[INFO] - target: ${args.sourceIdList[i]}`)
+            console.log(`[INFO] - target: ${Game.getObjectById(args.sourceIdList[i])}`)
         }
 
-        var sourceList = args.sourceIdList;
+        var sourceList = args.sourceIdList.map((id) => Game.getObjectById(id));
         if (sourceList.length == 0) {
             return true;
         }
 
-        var source = creep.pos.findClosestByPath(sourceList);
+        var source = creep.pos.findClosestByPath(sourceList, {range: 1});
         if (!source) {
-            creep.say('No Reach');
-            return false;
+            source = sourceList[0];
+            // guess: no in same room
         }
 
         if (!creep.pos.inRangeTo(source, 1)) {

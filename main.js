@@ -32,6 +32,7 @@ module.exports.loop = function() {
         }
     }
     
+    creepManager.updateConfigs();
     NewCreepLogic();
 
     // 让所有 creep 执行他们的角色
