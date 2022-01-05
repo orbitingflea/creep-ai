@@ -215,7 +215,7 @@ var configList = [
         argComputer: function() {
             var result = {
                 sourceId: util.constant.idRoom2.container_near_controller,
-                targetIdList: util.constant.idStorage,
+                targetIdList: [util.constant.idStorage],
                 parkWhenWait: false,
             };
             return result;
