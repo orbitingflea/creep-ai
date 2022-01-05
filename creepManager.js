@@ -225,7 +225,7 @@ var configList = [
     {
         name: "worker_neighbor",
         role: "worker",
-        body: fullstackWorker,
+        body: BodyWCM(5, 5, 5),
         require: 1,
         argComputer: function() {
             var res = {
