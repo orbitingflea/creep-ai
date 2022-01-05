@@ -2,7 +2,7 @@ var util = require('util');
 var creepCommon = require('creep.common');
 
 module.exports = (args) => ({
-    // args.targetId
+    // args = {targetId, sourceIdList}
     // collect dropped energy or tombstone's energy
 
     source: creep => {
@@ -10,35 +10,15 @@ module.exports = (args) => ({
             return true;
         }
 
-        var room = Game.getObjectById(args.targetId).room;
-        const droppedList = room.find(FIND_DROPPED_RESOURCES);
-        const tombList = room.find(FIND_TOMBSTONES, {
-            filter: (tomb) => {
-                return tomb.store.getUsedCapacity() > 0;
-            }
-        });
-        const ruinList = room.find(FIND_RUINS, {
-            filter: (ruin) => {
-                return ruin.store.getUsedCapacity() > 0;
-            }
-        });
+        var sourceList = args.sourceIdList;
+        if (sourceList.length == 0) {
+            return true;
+        }
 
-        // extra one
-        var mineContainer = Game.getObjectById(util.constant.idContainerNearMineral);
-        var source;
-
-        if (droppedList.length == 0 && tombList.length == 0 && ruinList.length == 0) {
-            if (mineContainer.store[RESOURCE_LEMERGIUM] >= 200) {
-                source = mineContainer;
-            } else {
-                return true;
-            }
-        } else {
-            source = creep.pos.findClosestByPath(droppedList.concat(tombList).concat(ruinList));
-            if (!source) {
-                creep.say('No Reachable');
-                return false;
-            }
+        var source = creep.pos.findClosestByPath(sourceList);
+        if (!source) {
+            creep.say('No Reach');
+            return false;
         }
 
         if (!creep.pos.inRangeTo(source, 1)) {
@@ -75,6 +55,7 @@ module.exports = (args) => ({
             var type = types[i];
             if (creep.store[type] > 0) {
                 creep.transfer(target, type);
+                return false;
             }
         }
         return false;

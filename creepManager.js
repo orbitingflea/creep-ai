@@ -121,8 +121,21 @@ var configList = [
         role: "recycler",
         body: carrier500,
         require: 1,
-        args: {
-            targetId: util.constant.idStorage,
+        argComputer: function() {
+            var targetId = util.constant.idStorage;
+            var sourceIdList = [];
+            var roomList = [util.myRoom(), util.myRoom2()];
+            for (var i = 0; i < roomList.length; i++) {
+                var room = roomList[i];
+                sourceIdList = sourceIdList.concat(taskCommon.GetRecyclerTargets(room));
+            }
+            if (Game.getObjectById(util.constant.idContainerNearMineral).store[LEMERGIUM] > 200) {
+                sourceIdList.push(util.constant.idContainerNearMineral);
+            }
+            return {
+                targetId: targetId,
+                sourceIdList: sourceIdList,
+            };
         }
     },
 

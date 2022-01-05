@@ -41,5 +41,20 @@ module.exports = {
         });
 
         return taskList;
-    }
+    },
+
+    GetRecyclerTargets: function(room) {
+        const droppedList = room.find(FIND_DROPPED_RESOURCES);
+        const tombList = room.find(FIND_TOMBSTONES, {
+            filter: (tomb) => {
+                return tomb.store.getUsedCapacity() > 0;
+            }
+        });
+        const ruinList = room.find(FIND_RUINS, {
+            filter: (ruin) => {
+                return ruin.store.getUsedCapacity() > 0;
+            }
+        });
+        return droppedList.concat(tombList).concat(ruinList).map((obj) => obj.id);
+    },
 };
