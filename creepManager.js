@@ -211,7 +211,7 @@ var configList = [
         name: 'carrier_n_to_storage',
         role: 'carrier',
         body: carrier500,
-        require: 0,
+        require: 1,
         argComputer: function() {
             var result = {
                 sourceId: util.constant.idRoom2.container_near_controller,
