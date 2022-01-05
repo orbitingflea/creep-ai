@@ -195,7 +195,7 @@ var configList = [
         name: 'carrier_n',
         role: 'carrier',
         body: carrier500,
-        require: 1,
+        require: 2,
         argComputer: function() {
             var result = {
                 sourceId: util.constant.idRoom2.container_near_source,
@@ -214,7 +214,7 @@ var configList = [
         require: 1,
         argComputer: function() {
             var result = {
-                sourceId: util.constant.idRoom2.container_near_source,
+                sourceId: util.constant.idRoom2.container_near_controller,
                 targetIdList: util.constant.idStorage,
                 parkWhenWait: false,
             };
