@@ -1,10 +1,10 @@
+var util = require('util');
 var roleTower = require('role.tower');
 
 require('creepApi');
 require('mount.creep');
 
 var creepManager = require('creepManager');
-var util = require('util');
 
 function NewCreepLogic() {
     var room = Game.spawns['Spawn1'].room;
