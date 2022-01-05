@@ -195,12 +195,27 @@ var configList = [
         name: 'carrier_n',
         role: 'carrier',
         body: carrier500,
-        require: 2,
+        require: 1,
         argComputer: function() {
             var result = {
                 sourceId: util.constant.idRoom2.container_near_source,
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom2())
-                    .concat([util.constant.idRoom2.container_near_controller, util.constant.idStorage]),
+                    .concat([util.constant.idRoom2.container_near_controller]),
+                parkWhenWait: false,
+            };
+            return result;
+        }
+    },
+
+    {
+        name: 'carrier_n_to_storage',
+        role: 'carrier',
+        body: carrier500,
+        require: 1,
+        argComputer: function() {
+            var result = {
+                sourceId: util.constant.idRoom2.container_near_source,
+                targetIdList: util.constant.idStorage,
                 parkWhenWait: false,
             };
             return result;
