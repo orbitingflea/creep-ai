@@ -216,7 +216,7 @@ var configList = [
             var result = {
                 sourceId: util.constant.idRoom2.container_near_controller,
                 targetIdList: [util.constant.idStorage],
-                parkWhenWait: false,
+                parkWhenWait: true,
             };
             return result;
         }
