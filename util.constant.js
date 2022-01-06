@@ -1,3 +1,5 @@
+// @ts-check
+
 var utilConstant = {
     resourceTypeList: [
         RESOURCE_ENERGY,
