@@ -12,6 +12,7 @@ module.exports = {
         })));
 
         // repair structures
+        /*
         taskList = taskList.concat(room.find(FIND_STRUCTURES, {
             filter: (structure) => (structure.hits < structure.hitsMax - 10 &&
                 structure.structureType != STRUCTURE_RAMPART &&
@@ -21,6 +22,7 @@ module.exports = {
             action: 'repair',
             priority: 100
         })));
+        */
 
         // repair ramparts
         taskList = taskList.concat(room.find(FIND_MY_STRUCTURES, {
