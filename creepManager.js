@@ -264,7 +264,7 @@ var configList = [
         name: "harvester_E38S46",
         role: "outer_harvester",
         body: BodyWCM(5, 15, 10),
-        require: 1,
+        require: 0,
         args: {
             roomName: 'E38S46',
             targetId: util.constant.idStorage,
@@ -275,7 +275,7 @@ var configList = [
         name: "harvester_E37S45",
         role: "outer_harvester",
         body: BodyWCM(5, 15, 10),
-        require: 1,
+        require: 0,
         args: {
             roomName: 'E37S45',
             targetId: util.constant.idStorage,
