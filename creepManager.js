@@ -54,7 +54,7 @@ var configList = [
         name: 'carrier_from_storage',
         role: 'carrier',
         body: carrierMain,
-        require: 1,
+        require: 2,
         argComputer: function() {
             var result = {
                 sourceId: util.constant.idStorage,
