@@ -216,7 +216,7 @@ var configList = [
         name: 'carrier_n2',
         role: 'carrier',
         body: carrier500,
-        require: 1,
+        require: 0,
         argComputer: function() {
             var result = {
                 sourceId: util.constant.idRoom2.storage,
@@ -284,7 +284,13 @@ var configList = [
         name: "harvester_E38S46",
         role: "outer_harvester",
         body: BodyWCM(5, 15, 10),
-        require: 0,
+        requireFunction: function() {
+            // if saw hostile creeps in 1500 ticks, do not spawn harvester
+            if (Memory.last_seen_hostile && Game.time - Memory.last_seen_hostile < 1500) {
+                return 0;
+            }
+            return 1;
+        },
         args: {
             roomName: 'E38S46',
             targetId: util.constant.idStorage,
@@ -295,7 +301,13 @@ var configList = [
         name: "harvester_E37S45",
         role: "outer_harvester",
         body: BodyWCM(5, 15, 10),
-        require: 0,
+        requireFunction: function() {
+            // if saw hostile creeps in 1500 ticks, do not spawn harvester
+            if (Memory.last_seen_hostile && Game.time - Memory.last_seen_hostile < 1500) {
+                return 0;
+            }
+            return 1;
+        },
         args: {
             roomName: 'E37S45',
             targetId: util.constant.idStorage,

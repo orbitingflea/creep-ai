@@ -1,11 +1,25 @@
 var util = require('util');
 
+function HasHostileCreepWithAttack(room) {
+    var hostileCreepList = room.find(FIND_HOSTILE_CREEPS);
+    for (var i = 0; i < hostileCreepList.length; i++) {
+        if (hostileCreepList[i].getActiveBodyparts(ATTACK) > 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
 module.exports = (args) => ({
     // args: {roomName, targetId}
 
     prepare: null,
 
     source: creep => {
+        if (HasHostileCreepWithAttack(creep.room)) {
+            Memory.last_seen_hostile = Game.time;
+        }
+        
         if (creep.store.getUsedCapacity() == creep.store.getCapacity()) {
             return true;
         }
@@ -52,6 +66,10 @@ module.exports = (args) => ({
     },
 
     target: creep => {
+        if (HasHostileCreepWithAttack(creep.room)) {
+            Memory.last_seen_hostile = Game.time;
+        }
+
         if (creep.store.getUsedCapacity() == 0) {
             return true;
         }
