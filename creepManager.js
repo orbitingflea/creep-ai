@@ -148,6 +148,12 @@ var configList = [
         role: "worker",
         body: fullstackWorker,
         requireFunction: function() {
+            if (util.myRoom().storage.store[RESOURCE_ENERGY] > 600000) {
+                return 3;
+            }
+            if (util.myRoom().storage.store[RESOURCE_ENERGY] > 400000) {
+                return 2;
+            }
             var constructionSites = util.myRoom().find(FIND_MY_CONSTRUCTION_SITES);
             var ramparts = util.myRoom().find(FIND_MY_STRUCTURES, {
                 filter: (structure) => {
