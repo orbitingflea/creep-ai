@@ -54,12 +54,27 @@ var configList = [
         name: 'carrier_from_storage',
         role: 'carrier',
         body: carrierMain,
-        require: 2,
+        require: 1,
         argComputer: function() {
             var result = {
                 sourceId: util.constant.idStorage,
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom())
                     .concat([util.constant.idContainerNearController]),
+                parkWhenWait: true,
+            };
+            return result;
+        }
+    },
+
+    {
+        name: 'carrier_to_upgrade',
+        role: 'carrier',
+        body: carrierMain,
+        require: 1,
+        argComputer: function() {
+            var result = {
+                sourceId: util.constant.idStorage,
+                targetIdList: [util.constant.idContainerNearController],
                 parkWhenWait: true,
             };
             return result;
