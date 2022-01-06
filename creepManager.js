@@ -199,6 +199,21 @@ var configList = [
         argComputer: function() {
             var result = {
                 sourceId: util.constant.idRoom2.container_near_source,
+                targetIdList: [util.constant.idRoom2.storage],
+                parkWhenWait: false,
+            };
+            return result;
+        }
+    },
+
+    {
+        name: 'carrier_n2',
+        role: 'carrier',
+        body: carrier500,
+        require: 1,
+        argComputer: function() {
+            var result = {
+                sourceId: util.constant.idRoom2.storage,
                 targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom2())
                     .concat([util.constant.idRoom2.container_near_controller]),
                 parkWhenWait: false,
@@ -211,7 +226,7 @@ var configList = [
         name: 'carrier_n_to_storage',
         role: 'carrier',
         body: carrier500,
-        require: 2,
+        require: 0,
         argComputer: function() {
             var result = {
                 sourceId: util.constant.idRoom2.container_near_controller,
@@ -229,7 +244,7 @@ var configList = [
         require: 1,
         argComputer: function() {
             var res = {
-                sourceId: util.constant.idRoom2.container_near_controller,
+                sourceId: util.constant.idRoom2.storage,
                 taskList: taskCommon.GetWorkerTasks(util.myRoom2()),
             };
             return res;
