@@ -108,7 +108,7 @@ var configList = [
     {
         name: "upgrader",
         role: "upgrader",
-        body: worker10,
+        body: BodyWCM(20, 2, 4),
         require: 1,
         args: {
             controllerId: util.constant.idController,
