@@ -19,7 +19,8 @@ var util = {
             filter: (structure) => {
                 return (structure.structureType == STRUCTURE_EXTENSION ||
                         structure.structureType == STRUCTURE_SPAWN ||
-                        structure.structureType == STRUCTURE_TOWER);
+                        structure.structureType == STRUCTURE_TOWER ||
+                        structure.structureType == STRUCTURE_LAB);
             }
         }).map((obj) => obj.id);
     },
