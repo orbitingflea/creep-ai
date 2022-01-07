@@ -220,7 +220,8 @@ var configList = [
         argComputer: function() {
             var result = {
                 sourceId: util.constant.idRoom2.container_near_source,
-                targetIdList: [util.constant.idRoom2.container_near_controller, util.constant.idRoom2.storage],
+                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom2())
+                    .concat([util.constant.idRoom2.container_near_controller, util.constant.idRoom2.storage]),
                 parkWhenWait: false,
             };
             return result;
