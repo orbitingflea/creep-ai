@@ -24,10 +24,11 @@ const fullstackWorker = BodyWCM(10, 10, 10);
 
 var configList = [
     {
-        name: 'carrier_sos',
+        name: 'carrier_sos_1',
         role: 'carrier',
+        spawn: 'Spawn1',
         body: [CARRY, MOVE],
-        requireFunction: function() {
+        get require() {
             var energyAvailable = util.myRoom().energyAvailable;
             var mainCarrierCost = util.getCreepCost(carrierMain);
             var numMainCarrier = _.filter(Game.creeps, (creep) => creep.memory.configName == 'carrier_from_storage').length;
@@ -37,7 +38,7 @@ var configList = [
                 return 0;
             }
         },
-        argComputer: function() {
+        get args() {
             var result = {
                 sourceId: util.constant.idStorage,
                 targetIdList: util.myRoom().find(FIND_MY_STRUCTURES, {
@@ -55,6 +56,7 @@ var configList = [
     {
         name: 'carrier_from_storage',
         role: 'carrier',
+        spawn: 'Spawn1',
         body: carrierMain,
         require: 1,
         get args() {
@@ -76,24 +78,10 @@ var configList = [
     },
 
     {
-        name: 'carrier_to_upgrade',
-        role: 'carrier',
-        body: carrierMain,
-        require: 0,
-        argComputer: function() {
-            var result = {
-                sourceId: util.constant.idStorage,
-                targetIdList: [util.constant.idContainerNearController],
-                parkWhenWait: true,
-            };
-            return result;
-        }
-    },
-
-    {
         name: "carrier_center",
         role: "carrierCenter",
         body: carrier100,
+        spawn: 'Spawn1',
         require: 1,
         argComputer: function() {
             var result = {
@@ -109,6 +97,7 @@ var configList = [
     {
         name: "digger_down",
         role: "digger",
+        spawn: 'Spawn1',
         body: BodyWCM(10, 0, 2),
         require: 1,
         args: {
@@ -120,6 +109,7 @@ var configList = [
     {
         name: "digger_up",
         role: "diggerLink",
+        spawn: 'Spawn1',
         body: worker10,
         require: 1,
         args: {
@@ -132,6 +122,7 @@ var configList = [
     {
         name: "upgrader",
         role: "upgrader",
+        spawn: 'Spawn1',
         body: BodyWCM(20, 2, 4),
         require: 1,
         args: {
@@ -143,9 +134,10 @@ var configList = [
     {
         name: "recycler",
         role: "recycler",
+        spawn: 'Spawn1',
         body: carrier500,
         require: 1,
-        argComputer: function() {
+        get args() {
             var targetId = util.constant.idStorage;
             var sourceIdList = [];
             try {
@@ -170,8 +162,9 @@ var configList = [
     {
         name: "builder",
         role: "worker",
+        spawn: 'Spawn1',
         body: fullstackWorker,
-        requireFunction: function() {
+        get require() {
             if (util.myRoom().storage.store[RESOURCE_ENERGY] > 600000) {
                 return 2;
             }
@@ -191,7 +184,7 @@ var configList = [
                 return 0;
             }
         },
-        argComputer: function() {
+        get args() {
             var sourceId = util.constant.idStorage;
             return {
                 sourceId: sourceId,
@@ -203,10 +196,11 @@ var configList = [
     {
         name: "miner",
         role: "miner",
+        spawn: 'Spawn1',
         bodyDesigner: (energy) => {
             return BodyWCM(Math.floor((energy - 50) / 100), 0, 1);
         },
-        requireFunction: function() {
+        get require() {
             const mineral = Game.getObjectById(util.constant.idMineral);
             if (mineral && mineral.mineralAmount > 0) {
                 return 1;
@@ -224,6 +218,7 @@ var configList = [
     {
         name: 'carrier_n',
         role: 'carrier',
+        spawn: 'Spawn2',
         body: carrier500,
         require: 2,
         get args() {
@@ -241,9 +236,10 @@ var configList = [
     },
 
     {
-        name: "worker_neighbor",
+        name: "worker_n",
         role: "worker",
-        body: BodyWCM(10, 10, 10),
+        spawn: 'Spawn2',
+        body: BodyWCM(5, 5, 5),
         require: 1,
         argComputer: function() {
             var res = {
@@ -257,7 +253,8 @@ var configList = [
     {
         name: "upgrader_n",
         role: "upgrader",
-        body: BodyWCM(10, 1, 6),
+        spawn: 'Spawn2',
+        body: BodyWCM(5, 1, 3),
         require: 1,
         args: {
             controllerId: util.constant.idRoom2.controller,
@@ -268,7 +265,8 @@ var configList = [
     {
         name: "digger_n",
         role: "digger",
-        body: BodyWCM(10, 0, 5),
+        spawn: 'Spawn2',
+        body: BodyWCM(5, 1, 3),
         require: 1,
         args: {
             sourceId: util.constant.idRoom2.source,
@@ -281,6 +279,7 @@ var configList = [
     {
         name: "harvester_E38S46",
         role: "outer_harvester",
+        spawn: 'Spawn1',
         body: BodyWCM(5, 15, 10),
         requireFunction: function() {
             // if saw hostile creeps in 1500 ticks, do not spawn harvester
@@ -298,6 +297,7 @@ var configList = [
     {
         name: "harvester_E37S45",
         role: "outer_harvester",
+        spawn: 'Spawn1',
         body: BodyWCM(5, 15, 10),
         requireFunction: function() {
             // if saw hostile creeps in 1500 ticks, do not spawn harvester
@@ -326,20 +326,19 @@ var creepManager = {
     },
 
     run: function() {
-        var room = util.myRoom();
-        var spawner = Game.spawns['Spawn1'];
-        if (spawner.spawning) {
-            return;
-        }
-        for (var i = 0; i < configList.length; i++) {
-            var conf = configList[i];
-            var numExist = _.filter(Game.creeps, (creep) => creep.memory.configName == conf.name).length;
-            var confRequire = conf.requireFunction ? conf.requireFunction() : conf.require;
-            if (numExist < confRequire) {
-                var confBody = conf.body ? conf.body : conf.bodyDesigner(room.energyCapacityAvailable);
-                util.tryToSpawnCreep(confBody, conf.name + '_' + Game.time, {configName: conf.name});
-                // 列表中靠前的 creep 有高优先级，即使能量不够，也不 spawn 后面的 creep
-                return;
+        for (var spawnName in Game.spawns) {
+            var spawn = Game.spawns[spawnName];
+            if (spawner.spawning) {
+                continue;
+            }
+            for (var i = 0; i < configList.length; i++) {
+                var conf = configList[i];
+                var numExist = _.filter(Game.creeps, (creep) => creep.memory.configName == conf.name).length;
+                if (numExist < conf.require) {
+                    var body = conf.body != null ? conf.body : conf.bodyDesigner(spawn.room.energyCapacityAvailable);
+                    util.tryToSpawnCreep(body, conf.name + '_' + Game.time, {configName: conf.name});
+                    break;
+                }
             }
         }
     }
