@@ -10,6 +10,8 @@ var creepCommon = {
     waitGotoPark2: () => (creep) => {
         if (creep.room == util.myRoom()) {
             creep.moveTo(util.parkPosition(), { range: 1 });
+        } else {
+            creep.moveTo(util.parkPosition2(), { range: 1 });
         }
     },
 

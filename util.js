@@ -37,6 +37,10 @@ var util = {
         return this.myRoom().getPositionAt(17, 33);
     },
 
+    parkPosition2() {
+        return this.myRoom2().getPositionAt(30, 22);
+    },
+
     tryToSpawnCreep: function(body, name, memory) {
         var res = Game.spawns['Spawn1'].spawnCreep(body, name, {
             memory: memory
