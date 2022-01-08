@@ -138,18 +138,10 @@ var configList = [
         require: 1,
         get args() {
             var targetId = util.constant.idStorage;
-            var sourceIdList = [];
-            try {
-                var roomList = [util.myRoom(), util.myRoom2()];
-                for (var i = 0; i < roomList.length; i++) {
-                    var room = roomList[i];
-                    sourceIdList = sourceIdList.concat(taskCommon.GetRecyclerTargets(room));
-                }
-                if (Game.getObjectById(util.constant.idContainerNearMineral).store[RESOURCE_LEMERGIUM] > 200) {
-                    sourceIdList.push(util.constant.idContainerNearMineral);
-                }
-            } catch (error) {
-                console.log(error);
+            var room = util.myRoom();
+            var sourceIdList = taskCommon.GetRecyclerTargets(room);
+            if (Game.getObjectById(util.constant.idContainerNearMineral).store[RESOURCE_LEMERGIUM] >= 200) {
+                sourceIdList.push(util.constant.idContainerNearMineral);
             }
             return {
                 targetId: targetId,
@@ -270,6 +262,23 @@ var configList = [
         args: {
             sourceId: util.constant.idRoom2.source,
             containerId: util.constant.idRoom2.container_near_source,
+        }
+    },
+
+    {
+        name: "recycler_n",
+        role: "recycler",
+        spawn: 'Spawn2',
+        body: carrier500,
+        require: 1,
+        get args() {
+            var targetId = util.constant.idRoom2.storage;
+            var room = util.myRoom2();
+            var sourceIdList = taskCommon.GetRecyclerTargets(room);
+            return {
+                targetId: targetId,
+                sourceIdList: sourceIdList,
+            };
         }
     },
 

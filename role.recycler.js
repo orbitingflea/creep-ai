@@ -9,7 +9,7 @@ module.exports = (args) => ({
         if (creep.store.getUsedCapacity() == creep.store.getCapacity()) {
             return true;
         }
-        
+
         /*console.log(`[INFO] I am recycler`);
         for (var i = 0; i < args.sourceIdList.length; i++) {
             console.log(`[INFO] - target: ${Game.getObjectById(args.sourceIdList[i])}`)
@@ -23,10 +23,14 @@ module.exports = (args) => ({
         var source = creep.pos.findClosestByPath(sourceList, {range: 1});
         if (!source) {
             source = sourceList[0];
-            // guess: no in same room
+            // maybe no in same room, cannot find by findClosestByPath
         }
 
         if (!creep.pos.inRangeTo(source, 1)) {
+            if (creep.store.getUsedCapacity() >= creep.store.getCapacity() * 0.8) {
+                // almost full, move to target
+                return true;
+            }
             creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00', range: 1}});
             return false;
         }
