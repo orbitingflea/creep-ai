@@ -164,10 +164,10 @@ var configList = [
         body: fullstackWorker,
         requireFunction: function() {
             if (util.myRoom().storage.store[RESOURCE_ENERGY] > 600000) {
-                return 3;
+                return 2;
             }
             if (util.myRoom().storage.store[RESOURCE_ENERGY] > 400000) {
-                return 2;
+                return 1;
             }
             var constructionSites = util.myRoom().find(FIND_MY_CONSTRUCTION_SITES);
             var ramparts = util.myRoom().find(FIND_MY_STRUCTURES, {
@@ -176,10 +176,10 @@ var configList = [
                         structure.hits < structure.hitsMax - 10000;
                 }
             });
-            if (constructionSites.length >= 3) {
-                return 2;
-            } else {
+            if (constructionSites.length >= 1) {
                 return 1;
+            } else {
+                return 0;
             }
         },
         argComputer: function() {
