@@ -10,7 +10,8 @@ Object.defineProperty(RoomObject.prototype, 'memory', {
             //Memory.roomObjects = {};
         }
         Memory.roomObjects[this.id] = value;
-    }
+    },
+    configurable: true
 });
 
 //RoomObject.prototype.memory = Memory.roomObjects[this.id];
