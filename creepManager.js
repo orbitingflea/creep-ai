@@ -5,6 +5,7 @@ var util = require('util');
 var taskCommon = require('task.common');
 require('creepApi');
 var CarrierSystem = require('CarrierSystem');
+const { UpdateStructureStatus } = require('CarrierSystem');
 
 function BodyWCM(nWork, nCarry, nMove) {
     var body = [];
@@ -311,7 +312,7 @@ var configList = [
 var creepManager = {
     updateConfigs: function() {
         // creepApi.clean();
-        
+        UpdateStructureStatus();
         for (var i = 0; i < configList.length; i++) {
             var conf = configList[i];
             var args = conf.args ? conf.args : conf.argComputer();
