@@ -32,6 +32,9 @@ module.exports.loop = function() {
             console.log('Clear invalid memory for Creep: ', name);
         }
     }
+    if (!Memory.roomObjects) {
+        Memory.roomObjects = {};
+    }
     require('memory.roomObject').CleanUp();
 
     creepManager.updateConfigs();
