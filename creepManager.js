@@ -100,7 +100,7 @@ var configList = [
     {
         name: "carrier_center",
         role: "carrierCenter",
-        body: carrier100,
+        body: BodyWCM(0, 4, 1),
         spawn: 'Spawn1',
         require: 1,
         get args() {
