@@ -3,7 +3,7 @@ var roleTower = require('role.tower');
 
 require('creepApi');
 require('mount.creep');
-require('./memory/roomObject');
+require('memory.roomObject');
 
 var creepManager = require('creepManager');
 
@@ -32,7 +32,7 @@ module.exports.loop = function() {
             console.log('Clear invalid memory for Creep: ', name);
         }
     }
-    require('./memory/roomObject').CleanUp();
+    require('memory.roomObject').CleanUp();
 
     creepManager.updateConfigs();
     NewCreepLogic();
