@@ -265,7 +265,7 @@ var configList = [
         require: 1,
         argComputer: function() {
             var res = {
-                sourceId: util.constant.idRoom2.storage,
+                sourceId: util.constant.idRoom2.container_near_controller,
                 taskList: taskCommon.GetWorkerTasks(util.myRoom2()),
             };
             return res;
