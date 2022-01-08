@@ -2,7 +2,7 @@ var util = require('util');
 
 var CarrierSystem = {
     Init() {
-        var listSpecialContainer = [util.constant.idContainerNearController, util.constant.idRoom2.container_near_upgrader];
+        var listSpecialContainer = [util.constant.idContainerNearController, util.constant.idRoom2.container_near_controller];
         for (var i in listSpecialContainer) {
             var container = Game.getObjectById(listSpecialContainer[i]);
             if (container) {
