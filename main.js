@@ -70,11 +70,12 @@ module.exports.loop = function() {
     // Link
     var link1 = Game.getObjectById(util.constant.idLinkUp);
     var link2 = Game.getObjectById(util.constant.idLinkDown);
-    if (link1.store[RESOURCE_ENERGY] == link1.store.getCapacity(RESOURCE_ENERGY)) {
+    if (link1.store[RESOURCE_ENERGY] == link1.store.getCapacity(RESOURCE_ENERGY) && link2.store[RESOURCE_ENERGY] == 0) {
         link1.transferEnergy(link2);
+        return;
     }
     var link3 = Game.getObjectById(util.constant.idRoom1.linkLeft);
-    if (link3.store[RESOURCE_ENERGY] >= 750) {
+    if (link3.store[RESOURCE_ENERGY] >= 600 && link2.store[RESOURCE_ENERGY] == 0) {
         link3.transferEnergy(link2);
     }
 };
