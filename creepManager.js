@@ -327,7 +327,7 @@ var creepManager = {
     run: function() {
         for (var spawnName in Game.spawns) {
             var spawn = Game.spawns[spawnName];
-            if (spawner.spawning) {
+            if (spawn.spawning) {
                 continue;
             }
             for (var i = 0; i < configList.length; i++) {
