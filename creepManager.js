@@ -54,6 +54,27 @@ var configList = [
     },
 
     {
+        name: 'carrier_sos_2',
+        role: 'carrier',
+        spawn: 'Spawn2',
+        require: 1,
+        body: [CARRY, MOVE],
+        get args() {
+            var result = {
+                sourceId: util.constant.idRoom2.storage,
+                targetIdList: util.myRoom2().find(FIND_MY_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_EXTENSION ||
+                                structure.structureType == STRUCTURE_SPAWN);
+                    }
+                }).map((obj) => obj.id),
+                parkWhenWait: true,
+            };
+            return result;
+        }
+    },
+
+    {
         name: 'carrier_from_storage',
         role: 'carrier',
         spawn: 'Spawn1',
