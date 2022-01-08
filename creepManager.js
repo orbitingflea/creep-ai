@@ -83,7 +83,7 @@ var configList = [
         body: carrier100,
         spawn: 'Spawn1',
         require: 1,
-        argComputer: function() {
+        get args() {
             var result = {
                 storageId: util.constant.idStorage,
                 linkId: util.constant.idLinkDown,
@@ -241,7 +241,7 @@ var configList = [
         spawn: 'Spawn2',
         body: BodyWCM(5, 5, 5),
         require: 1,
-        argComputer: function() {
+        get args() {
             var res = {
                 sourceId: util.constant.idRoom2.container_near_controller,
                 taskList: taskCommon.GetWorkerTasks(util.myRoom2()),
@@ -281,7 +281,7 @@ var configList = [
         role: "outer_harvester",
         spawn: 'Spawn1',
         body: BodyWCM(5, 15, 10),
-        requireFunction: function() {
+        get require() {
             // if saw hostile creeps in 1500 ticks, do not spawn harvester
             if (Memory.last_seen_hostile && Game.time - Memory.last_seen_hostile < 1500) {
                 return 0;
@@ -299,7 +299,7 @@ var configList = [
         role: "outer_harvester",
         spawn: 'Spawn1',
         body: BodyWCM(5, 15, 10),
-        requireFunction: function() {
+        get require() {
             // if saw hostile creeps in 1500 ticks, do not spawn harvester
             if (Memory.last_seen_hostile && Game.time - Memory.last_seen_hostile < 1500) {
                 return 0;
@@ -320,8 +320,7 @@ var creepManager = {
         UpdateStructureStatus(util.myRoom2());
         for (var i = 0; i < configList.length; i++) {
             var conf = configList[i];
-            var args = conf.args ? conf.args : conf.argComputer();
-            creepApi.add(conf.name, conf.role, args);
+            creepApi.add(conf.name, conf.role, conf.args);
         }
     },
 
