@@ -62,7 +62,7 @@ var configList = [
         get args() {
             var result = {
                 sourceId: util.constant.idStorage,
-                targetIdList: util.myRoom().find(FIND_MY_STRUCTURES, {
+                targetIdList: util.myRoom().find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.memory.needEnergy);
                     }
@@ -215,7 +215,7 @@ var configList = [
         get args() {
             var result = {
                 sourceId: util.constant.idRoom2.container_near_source,
-                targetIdList: util.myRoom2().find(FIND_MY_STRUCTURES, {
+                targetIdList: util.myRoom2().find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.memory.needEnergy);
                     }
