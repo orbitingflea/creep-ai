@@ -57,7 +57,7 @@ var configList = [
         name: 'carrier_sos_2',
         role: 'carrier',
         spawn: 'Spawn2',
-        require: 1,
+        require: 0,
         body: [CARRY, MOVE],
         get args() {
             var result = {
