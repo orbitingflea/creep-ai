@@ -45,5 +45,5 @@ var CarrierSystem = {
     }
 }
 
-Init();
+CarrierSystem.Init();
 module.exports = CarrierSystem;
