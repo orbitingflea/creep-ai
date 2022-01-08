@@ -59,6 +59,10 @@ module.exports = (args) => ({
             return true;
         }
 
+        for (var i = 0; i < targetList.length; i++) {
+            console.log(`[DEBUG] target: ${targetList[i]}`);
+        }
+
         var target = util.closestObjectWithTopPriority(targetList, carrierTargetPriority, creep.pos);
         if (!target) {
             target = targetList[0];
