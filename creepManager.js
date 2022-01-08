@@ -310,6 +310,24 @@ var configList = [
             roomName: 'E37S45',
             targetId: util.constant.idStorage,
         }
+    },
+
+    {
+        name: "harvester_E37S46",
+        role: "outer_harvester",
+        spawn: 'Spawn1',
+        body: BodyWCM(5, 15, 10),
+        get require() {
+            // if saw hostile creeps in 1500 ticks, do not spawn harvester
+            if (Memory.last_seen_hostile && Game.time - Memory.last_seen_hostile < 1500) {
+                return 0;
+            }
+            return 1;
+        },
+        args: {
+            roomName: 'E37S46',
+            targetId: util.constant.idStorage,
+        }
     }
 ];
 
