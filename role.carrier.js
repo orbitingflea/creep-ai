@@ -18,6 +18,8 @@ function carrierTargetPriority(obj) {
                 return 55;
             case STRUCTURE_STORAGE:
                 return 10;  // least priority
+            case STRUCTURE_LAB:
+                return 20;
             default:
                 return -1;
         }
