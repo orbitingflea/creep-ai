@@ -71,7 +71,6 @@ var configList = [
             };
             for (var i in result.targetIdList) {
                 var target = Game.getObjectById(result.targetIdList[i]);
-                console.log('DEBUG: need energy: ' + target);
             }
             return result;
         }
