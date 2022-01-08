@@ -4,6 +4,7 @@
 var util = require('util');
 var taskCommon = require('task.common');
 require('creepApi');
+var CarrierSystem = require('CarrierSystem');
 
 function BodyWCM(nWork, nCarry, nMove) {
     var body = [];
@@ -55,11 +56,14 @@ var configList = [
         role: 'carrier',
         body: carrierMain,
         require: 1,
-        argComputer: function() {
+        get args() {
             var result = {
                 sourceId: util.constant.idStorage,
-                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom())
-                    .concat([util.constant.idContainerNearController]),
+                targetIdList: util.myRoom().find(FIND_MY_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.memory.needEnergy);
+                    }
+                }).map((obj) => obj.id),
                 parkWhenWait: true,
             };
             return result;
@@ -217,42 +221,15 @@ var configList = [
         role: 'carrier',
         body: carrier500,
         require: 2,
-        argComputer: function() {
+        get args() {
             var result = {
                 sourceId: util.constant.idRoom2.container_near_source,
-                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom2())
-                    .concat([util.constant.idRoom2.container_near_controller, util.constant.idRoom2.storage]),
+                targetIdList: util.myRoom2().find(FIND_MY_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.memory.needEnergy);
+                    }
+                }).concat(util.myRoom2().storage).map((obj) => obj.id),
                 parkWhenWait: false,
-            };
-            return result;
-        }
-    },
-
-    {
-        name: 'carrier_n2',
-        role: 'carrier',
-        body: carrier500,
-        require: 0,
-        argComputer: function() {
-            var result = {
-                sourceId: util.constant.idRoom2.storage,
-                targetIdList: util.getStructureIdListMayNeedEnergy(util.myRoom2()),
-                parkWhenWait: false,
-            };
-            return result;
-        }
-    },
-
-    {
-        name: 'carrier_n_to_storage',
-        role: 'carrier',
-        body: carrier500,
-        require: 0,
-        argComputer: function() {
-            var result = {
-                sourceId: util.constant.idRoom2.container_near_controller,
-                targetIdList: [util.constant.idStorage],
-                parkWhenWait: true,
             };
             return result;
         }
@@ -334,6 +311,7 @@ var configList = [
 var creepManager = {
     updateConfigs: function() {
         // creepApi.clean();
+        
         for (var i = 0; i < configList.length; i++) {
             var conf = configList[i];
             var args = conf.args ? conf.args : conf.argComputer();
