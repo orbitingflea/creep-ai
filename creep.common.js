@@ -9,8 +9,10 @@ var creepCommon = {
 
     waitGotoPark2: () => (creep) => {
         if (creep.room == util.myRoom()) {
+            console.log('park 1');
             creep.moveTo(util.parkPosition(), { range: 1 });
         } else {
+            console.log('park 2');
             creep.moveTo(util.parkPosition2(), { range: 1 });
         }
     },
