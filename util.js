@@ -41,8 +41,8 @@ var util = {
         return this.myRoom2().getPositionAt(30, 22);
     },
 
-    tryToSpawnCreep: function(body, name, memory) {
-        var res = Game.spawns['Spawn1'].spawnCreep(body, name, {
+    tryToSpawnCreep: function(spawn, body, name, memory) {
+        var res = spawn.spawnCreep(body, name, {
             memory: memory
         });
         return res == 0;

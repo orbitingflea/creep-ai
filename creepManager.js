@@ -385,7 +385,7 @@ var creepManager = {
                 var numExist = _.filter(Game.creeps, (creep) => creep.memory.configName == conf.name).length;
                 if (numExist < conf.require) {
                     var body = conf.body != null ? conf.body : conf.bodyDesigner(spawn.room.energyCapacityAvailable);
-                    util.tryToSpawnCreep(body, conf.name + '_' + Game.time, {configName: conf.name});
+                    util.tryToSpawnCreep(spawn, body, conf.name + '_' + Game.time, {configName: conf.name});
                     break;
                 }
             }
