@@ -72,7 +72,7 @@ var utilConstant = {
     },
 
     hitsMaxRampart: 1000000,
-    storage_safe_energy: 300000,
+    storage_safe_energy: 100000,
 };
 
 module.exports = utilConstant;
