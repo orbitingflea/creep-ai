@@ -69,7 +69,5 @@ module.exports = (args) => ({
         return false;
     },
 
-    wait: creep => {
-        if (args.parkWhenWait) creepCommon.waitGotoPark(creep);
-    },
+    wait: creepCommon.waitGotoPark2(),
 });
