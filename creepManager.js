@@ -219,7 +219,7 @@ var configList = [
                     filter: (structure) => {
                         return (structure.memory.needEnergy);
                     }
-                }).concat(util.myRoom2().storage).map((obj) => obj.id),
+                }).concat([util.myRoom2().storage]).map((obj) => obj.id),
                 parkWhenWait: false,
             };
             return result;
