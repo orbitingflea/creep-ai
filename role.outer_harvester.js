@@ -29,20 +29,24 @@ module.exports = (args) => ({
         }
         const room = creep.room;
 
-        const droppedList = room.find(FIND_DROPPED_RESOURCES);
+        const droppedList = room.find(FIND_DROPPED_RESOURCES, {
+            filter: (resource) => {
+                return resource.resourceType == RESOURCE_ENERGY;
+            }
+        });
         const tombList = room.find(FIND_TOMBSTONES, {
             filter: (tomb) => {
-                return tomb.store.getUsedCapacity() > 0;
+                return tomb.store[RESOURCE_ENERGY] > 0;
             }
         });
         const ruinList = room.find(FIND_RUINS, {
             filter: (ruin) => {
-                return ruin.store.getUsedCapacity() > 0;
+                return ruin.store[RESOURCE_ENERGY] > 0;
             }
         });
         var source = creep.pos.findClosestByPath(droppedList.concat(tombList).concat(ruinList));
         if (!source) source = creep.room.find(FIND_SOURCES)[0];
-        
+
         if (!creep.pos.inRangeTo(source, 1)) {
             creep.moveTo(source, {visualizePathStyle: {stroke: '#ffffff', range: 1}});
             return false;
@@ -54,13 +58,8 @@ module.exports = (args) => ({
         var result = creep.pickup(source);
         if (result == ERR_INVALID_TARGET) {
             // target need withdraw method
-            const types = util.constant.resourceTypeList;
-            for (var i = types.length - 1; i >= 0; i--) {
-                var type = types[i];
-                if (source.store[type] > 0) {
-                    creep.withdraw(source, type);
-                }
-            }
+            // only takes energy
+            creep.withdraw(source, RESOURCE_ENERGY);
         }
         return false;
     },

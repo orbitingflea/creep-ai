@@ -73,4 +73,8 @@ module.exports.loop = function() {
     if (link1.store[RESOURCE_ENERGY] == link1.store.getCapacity(RESOURCE_ENERGY)) {
         link1.transferEnergy(link2);
     }
+    var link3 = Game.getObjectById(util.constant.idRoom1.linkLeft);
+    if (link3.store[RESOURCE_ENERGY] >= 750) {
+        link3.transferEnergy(link2);
+    }
 };

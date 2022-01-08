@@ -63,6 +63,10 @@ var utilConstant = {
     idController2: '5bbcaf4a9099fc012e63a6e6',
     idSource2: '5bbcaf4a9099fc012e63a6e7',
 
+    idRoom1: {
+        linkLeft: '61d9b48576241c09d3f8b6ba',
+    },
+
     idRoom2: {
         container_near_controller: '61d4151e76241cb831f71b24',
         controller: '5bbcaf4a9099fc012e63a6e6',

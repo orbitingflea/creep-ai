@@ -319,7 +319,7 @@ var configList = [
         },
         args: {
             roomName: 'E38S46',
-            targetId: util.constant.idStorage,
+            targetId: util.constant.idRoom1.linkLeft,
         }
     },
 
@@ -337,7 +337,7 @@ var configList = [
         },
         args: {
             roomName: 'E37S45',
-            targetId: util.constant.idStorage,
+            targetId: util.constant.idRoom1.linkLeft,
         }
     },
 
@@ -355,7 +355,7 @@ var configList = [
         },
         args: {
             roomName: 'E37S46',
-            targetId: util.constant.idStorage,
+            targetId: util.constant.idRoom1.linkLeft,
         }
     }
 ];
