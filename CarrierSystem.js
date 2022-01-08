@@ -2,7 +2,7 @@ var util = require('util');
 
 var CarrierSystem = {
     Init() {
-        var listSpecialContainer = [util.constant.idContainerNearUpgrader, util.constant.idRoom2.container_near_upgrader];
+        var listSpecialContainer = [util.constant.idContainerNearController, util.constant.idRoom2.container_near_upgrader];
         for (var i in listSpecialContainer) {
             var container = Game.getObjectById(listSpecialContainer[i]);
             if (container) {
@@ -25,7 +25,7 @@ var CarrierSystem = {
                 var cur = structure.store[RESOURCE_ENERGY];
                 if (cur >= lim * 0.9) {
                     structure.memory.needEnergy = false;
-                } else if (cur < lim * 0.5) {
+                } else if (cur < lim * 0.6) {
                     structure.memory.needEnergy = true;
                 }
             } else if (structure.structureType == STRUCTURE_CONTAINER) {
@@ -34,7 +34,7 @@ var CarrierSystem = {
                     var cur = structure.store[RESOURCE_ENERGY];
                     if (cur >= lim * 0.9) {
                         structure.memory.needEnergy = false;
-                    } else if (cur < lim * 0.5) {
+                    } else if (cur < lim * 0.6) {
                         structure.memory.needEnergy = true;
                     }
                 }
@@ -45,5 +45,4 @@ var CarrierSystem = {
     }
 }
 
-CarrierSystem.Init();
 module.exports = CarrierSystem;

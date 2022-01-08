@@ -79,7 +79,7 @@ var configList = [
         name: 'carrier_to_upgrade',
         role: 'carrier',
         body: carrierMain,
-        require: 1,
+        require: 0,
         argComputer: function() {
             var result = {
                 sourceId: util.constant.idStorage,

@@ -3,9 +3,10 @@ var roleTower = require('role.tower');
 
 require('creepApi');
 require('mount.creep');
-require('memory.roomObject');
+var memoryRoomObject = require('memory.roomObject');
 
 var creepManager = require('creepManager');
+var CarrierSystem = require('CarrierSystem');
 
 function NewCreepLogic() {
     var room = Game.spawns['Spawn1'].room;
@@ -35,7 +36,8 @@ module.exports.loop = function() {
     if (!Memory.roomObjects) {
         Memory.roomObjects = {};
     }
-    require('memory.roomObject').CleanUp();
+    memoryRoomObject.CleanUp();
+    CarrierSystem.Init();
 
     creepManager.updateConfigs();
     NewCreepLogic();
