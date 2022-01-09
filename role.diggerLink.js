@@ -15,6 +15,17 @@ module.exports = (args) => ({
         if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity()) {
             return true;
         }
+
+        // if exist dropped resource, pickup
+        var resList = container.pos.lookFor(LOOK_RESOURCES);
+        for (var i = 0; i < resList.length; i++) {
+            var res = resList[i];
+            if (res.resourceType == RESOURCE_ENERGY) {
+                creep.pickup(res);
+                return false;
+            }
+        }
+
         if (container.store[RESOURCE_ENERGY] >= creep.store.getCapacity()) {
             creep.withdraw(container, RESOURCE_ENERGY);
         } else {
