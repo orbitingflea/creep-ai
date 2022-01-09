@@ -68,21 +68,27 @@ module.exports.loop = function() {
     }
 
     // Link
-    var link1 = Game.getObjectById(util.constant.idLinkUp);
-    var link2 = Game.getObjectById(util.constant.idLinkDown);
-    if (link1.store[RESOURCE_ENERGY] == link1.store.getCapacity(RESOURCE_ENERGY) && link2.store[RESOURCE_ENERGY] == 0) {
-        link1.transferEnergy(link2);
-        return;
-    }
-    var link3 = Game.getObjectById(util.constant.idRoom1.linkLeft);
-    if (link3.store[RESOURCE_ENERGY] >= 600 && link2.store[RESOURCE_ENERGY] == 0) {
-        link3.transferEnergy(link2);
-    }
+    var RunLinkRoom1 = function() {
+        var link1 = Game.getObjectById(util.constant.idLinkUp);
+        var link2 = Game.getObjectById(util.constant.idLinkDown);
+        if (link1.store[RESOURCE_ENERGY] == link1.store.getCapacity(RESOURCE_ENERGY) && link2.store[RESOURCE_ENERGY] == 0) {
+            link1.transferEnergy(link2);
+            return;
+        }
+        var link3 = Game.getObjectById(util.constant.idRoom1.linkLeft);
+        if (link3.store[RESOURCE_ENERGY] >= 600 && link2.store[RESOURCE_ENERGY] == 0) {
+            link3.transferEnergy(link2);
+        }
+    };
+    RunLinkRoom1();
 
     // Link N
-    var nlink_s = Game.getObjectById(util.constant.idRoom2.link_near_source);
-    var nlink_center = Game.getObjectById(util.constant.idRoom2.link_center);
-    if (nlink_s.store[RESOURCE_ENERGY] >= 600 && nlink_center.store[RESOURCE_ENERGY] == 0) {
-        nlink_s.transferEnergy(nlink_center);
-    }
+    var RunLinkRoom2 = function() {
+        var nlink_s = Game.getObjectById(util.constant.idRoom2.link_near_source);
+        var nlink_center = Game.getObjectById(util.constant.idRoom2.link_center);
+        if (nlink_s.store[RESOURCE_ENERGY] >= 600 && nlink_center.store[RESOURCE_ENERGY] == 0) {
+            nlink_s.transferEnergy(nlink_center);
+        }
+    };
+    RunLinkRoom2();
 };
