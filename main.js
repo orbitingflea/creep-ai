@@ -78,4 +78,11 @@ module.exports.loop = function() {
     if (link3.store[RESOURCE_ENERGY] >= 600 && link2.store[RESOURCE_ENERGY] == 0) {
         link3.transferEnergy(link2);
     }
+
+    // Link N
+    var nlink_s = Game.getObjectById(util.constant.idRoom2.link_near_source);
+    var nlink_center = Game.getObjectById(util.constant.idRoom2.link_center);
+    if (nlink_s.store[RESOURCE_ENERGY] >= 600 && nlink_center.store[RESOURCE_ENERGY] == 0) {
+        nlink_s.transferEnergy(nlink_center);
+    }
 };
