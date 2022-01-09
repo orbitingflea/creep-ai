@@ -317,7 +317,7 @@ var configList = [
         args: {
             sourceId: util.constant.idRoom2.source,
             containerId: util.constant.idRoom2.container_near_source,
-            linkId: util.constant.idRoom2.link
+            linkId: util.constant.idRoom2.link_source,
         }
     },
 
