@@ -271,26 +271,6 @@ var configList = [
     },
 
     {
-        name: 'carrier_n',
-        role: 'carrier',
-        spawn: 'Spawn2',
-        body: carrier500,
-        require: 0,
-        get args() {
-            var result = {
-                sourceId: util.constant.idRoom2.container_near_source,
-                targetIdList: util.myRoom2().find(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.memory.needEnergy);
-                    }
-                }).concat([util.myRoom2().storage]).map((obj) => obj.id),
-                parkWhenWait: false,
-            };
-            return result;
-        }
-    },
-
-    {
         name: "worker_n",
         role: "worker",
         spawn: 'Spawn2',
@@ -334,7 +314,7 @@ var configList = [
         name: "digger_n",
         role: "diggerLink",
         spawn: 'Spawn2',
-        body: BodyWCM(5, 1, 3),
+        body: BodyWCM(10, 2, 6),
         require: 1,
         args: {
             sourceId: util.constant.idRoom2.source,
@@ -347,7 +327,7 @@ var configList = [
         name: "recycler_n",
         role: "recycler",
         spawn: 'Spawn2',
-        body: carrier500,
+        body: BodyWCM(0, 4, 2),
         require: 1,
         get args() {
             var targetId = util.constant.idRoom2.storage;
