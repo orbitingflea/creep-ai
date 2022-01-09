@@ -57,7 +57,16 @@ var configList = [
         name: 'carrier_sos_2',
         role: 'carrier',
         spawn: 'Spawn2',
-        require: 1,
+        get require() {
+            var energyAvailable = util.myRoom2().energyAvailable;
+            var mainCarrierCost = util.getCreepCost(carrierMain);
+            var numMainCarrier = _.filter(Game.creeps, (creep) => creep.memory.configName == 'carrier_n_from_storage').length;
+            if (numMainCarrier == 0 && energyAvailable < mainCarrierCost) {
+                return 1;
+            } else {
+                return 0;
+            }
+        },
         body: [CARRY, MOVE],
         get args() {
             var result = {
