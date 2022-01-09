@@ -14,8 +14,11 @@ module.exports = (args) => ({
             return true;
         }
 
-        const fromList = _.filter([Game.getObjectById(args.linkId), Game.getObjectById(args.containerId)],
-            (o) => o && o.store.getUsedCapacity(RESOURCE_ENERGY) > 0);
+        var fromList = [Game.getObjectById(args.linkId)];
+        if (args.containerId) {
+            fromList.push(Game.getObjectById(args.containerId));
+        }
+        fromList = fromList.filter(o => o && o.store.getUsedCapacity(RESOURCE_ENERGY) > 0);
         if (fromList.length == 0) {
             return true;
         }

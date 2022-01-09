@@ -245,11 +245,28 @@ var configList = [
     },
 
     {
+        name: "carrier_center_n",
+        role: "carrierCenter",
+        body: BodyWCM(0, 4, 1),
+        spawn: 'Spawn2',
+        require: 1,
+        get args() {
+            var result = {
+                storageId: util.constant.idRoom2.storage,
+                linkId: util.constant.idRoom2.link_center,
+                containerId: null,
+                workingPosition: [25, 22],
+            };
+            return result;
+        }
+    },
+
+    {
         name: 'carrier_n',
         role: 'carrier',
         spawn: 'Spawn2',
         body: carrier500,
-        require: 2,
+        require: 0,
         get args() {
             var result = {
                 sourceId: util.constant.idRoom2.container_near_source,
@@ -293,13 +310,14 @@ var configList = [
 
     {
         name: "digger_n",
-        role: "digger",
+        role: "diggerLink",
         spawn: 'Spawn2',
         body: BodyWCM(5, 1, 3),
         require: 1,
         args: {
             sourceId: util.constant.idRoom2.source,
             containerId: util.constant.idRoom2.container_near_source,
+            linkId: util.constant.idRoom2.link
         }
     },
 
