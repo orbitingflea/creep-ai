@@ -90,9 +90,26 @@ var configList = [
                 }).map((obj) => obj.id),
                 parkWhenWait: true,
             };
-            for (var i in result.targetIdList) {
-                var target = Game.getObjectById(result.targetIdList[i]);
-            }
+            return result;
+        }
+    },
+
+    {
+        name: 'carrier_n_from_storage',
+        role: 'carrier',
+        spawn: 'Spawn2',
+        body: carrierMain,
+        require: 1,
+        get args() {
+            var result = {
+                sourceId: util.constant.idRoom2.storage,
+                targetIdList: util.myRoom2().find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.memory.needEnergy);
+                    }
+                }).map((obj) => obj.id),
+                parkWhenWait: true,
+            };
             return result;
         }
     },
