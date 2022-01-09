@@ -286,7 +286,20 @@ var configList = [
         role: "worker",
         spawn: 'Spawn2',
         body: BodyWCM(5, 5, 5),
-        require: 1,
+        get require() {
+            if (util.myRoom2().storage.store[RESOURCE_ENERGY] > 600000) {
+                return 2;
+            }
+            if (util.myRoom2().storage.store[RESOURCE_ENERGY] > 400000) {
+                return 1;
+            }
+            var constructionSites = util.myRoom2().find(FIND_MY_CONSTRUCTION_SITES);
+            if (constructionSites.length >= 1) {
+                return 1;
+            } else {
+                return 0;
+            }
+        },
         get args() {
             var res = {
                 sourceId: util.constant.idRoom2.container_near_controller,
