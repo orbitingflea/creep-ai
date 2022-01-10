@@ -107,7 +107,7 @@ var configList = [
         name: 'carrier_from_storage_no_extension',
         role: 'carrier',
         spawn: 'Spawn1',
-        body: BodyWCM(0, 4, 2),
+        body: carrier500,
         get require() {
             return Game.getObjectById(util.constant.idContainerNearController).store[RESOURCE_ENERGY] == 0;
         },
